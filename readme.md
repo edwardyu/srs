@@ -16,4 +16,6 @@ Get the app: `git clone https://github.com/edwardyu/srs`
 
 Install dependencies: `php composer.phar install`
 
+Configure .env file. 
+
 Copy files to `/var/www/html`
