@@ -32,3 +32,8 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+//Flashcard routes...
+Route::get('card/create', 'FlashcardController@create');
+Route::post('card/store', 'FlashcardController@store');
+Route::get('card/list', 'FlashcardController@index');
