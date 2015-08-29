@@ -33,7 +33,15 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+/*
 //Flashcard routes...
 Route::get('card/create', 'FlashcardController@create');
 Route::post('card/store', 'FlashcardController@store');
 Route::get('card/list', 'FlashcardController@index');
+*/
+
+//Deck routes...
+Route::get('deck/create', 'DeckController@create');
+Route::get('deck/{id}/add', 'DeckController@addCard');
+Route::post('deck/store', 'DeckController@store');
+Route::post('deck/{id}/storeCard', 'DeckController@storeCard');

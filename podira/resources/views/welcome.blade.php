@@ -5,6 +5,8 @@
     </head>
     <body>
         <h1>Hello world!</h1>
-        <p>I am {{$name}}.</p>
+        <ul>
+        	<li><a href="deck/create">Create a deck.</a></li>
+        </ul>
     </body>
 </html>
