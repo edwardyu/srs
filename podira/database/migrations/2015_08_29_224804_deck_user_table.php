@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeckTable extends Migration
+class DeckUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,20 @@ class CreateDeckTable extends Migration
      */
     public function up()
     {
-        Schema::create('decks', function (Blueprint $table) {
+        Schema::create('deck_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('deck_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->string('permissions');
             $table->timestamps();
-        });
 
-        Schema::table('flashcards', function($table) {
             $table->foreign('deck_id')
                   ->references('id')
                   ->on('decks');
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');
         });        
     }
 
@@ -32,11 +36,6 @@ class CreateDeckTable extends Migration
      */
     public function down()
     {
-        Schema::table('flashcards', function($table) {
-            $table->dropForeign('flashcards_deck_id_foreign');
-            $table->dropColumn('deck_id');
-        });
-        
-        Schema::drop('decks');
+        Schema::drop('deck_user');
     }
 }

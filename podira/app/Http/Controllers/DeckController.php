@@ -8,9 +8,17 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Deck as Deck;
 use App\Flashcard as Flashcard;
+use Auth;
 
 class DeckController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth.deck.view', ['only' => 'addCard']);
+        $this->middleware('auth.deck.edit', ['only' => 'storeCard']);
+    }
+    
     /**
      * Show the form for creating a new deck.
      *
@@ -27,7 +35,7 @@ class DeckController extends Controller
             'name' => $request->name
         ]);
 
-        $deck->save();
+        Auth::user()->decks()->save($deck, ['permissions' => 'edit']);
         $id = $deck->id;
         return redirect()->action('DeckController@addCard', [$id]);
     }

@@ -32,4 +32,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * Return the decks associated with this user.
+     */
+    public function decks()
+    {
+        return $this->belongsToMany('App\Deck')->withPivot('permissions');
+    }
 }

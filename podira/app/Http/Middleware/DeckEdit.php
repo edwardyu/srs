@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class DeckEdit
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if(!$request->user() || !$request->id) {
+            return response('Unauthorized.', 401); 
+        }
+
+        if(!$this->canEdit($request->user(), $request->id)) {
+            return response('Unauthorized.', 401);
+        }
+
+        return $next($request);
+    }
+
+    /**
+     * Return if a user has permission to view a deck.
+     */
+    private function canEdit($user, $id)
+    {
+        try {
+           $permissions = $user->decks->get($id)->pivot->permissions; 
+       } catch(\ErrorException $e) {
+            return False;
+       }
+        
+        if($permissions == 'edit')
+            return True;
+        else
+            return False;
+    }
+}
