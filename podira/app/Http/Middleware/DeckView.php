@@ -32,7 +32,7 @@ class DeckView
     private function canView($user, $id)
     {
         try {
-           $permissions = $user->decks->get($id)->pivot->permissions; 
+           $permissions = $user->decks->find($id)->pivot->permissions; 
        } catch(\ErrorException $e) {
             return False;
        }
