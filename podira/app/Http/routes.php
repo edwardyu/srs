@@ -45,5 +45,6 @@ Route::get('deck/create', 'DeckController@create');
 Route::get('deck/{id}/add', 'DeckController@addCard');
 Route::post('deck/store', 'DeckController@store');
 Route::post('deck/{id}/storeCard', 'DeckController@storeCard');
+Route::post('deck/{id}/storeUser', 'DeckController@storeUser');
 
 Route::get('home', 'UserController@home');

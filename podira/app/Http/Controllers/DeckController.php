@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Deck as Deck;
 use App\Flashcard as Flashcard;
+use App\User as User;
 use Auth;
 
 class DeckController extends Controller
@@ -16,7 +17,7 @@ class DeckController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('auth.deck.view', ['only' => 'addCard']);
-        $this->middleware('auth.deck.edit', ['only' => 'storeCard']);
+        $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser']]);
     }
     
     /**
@@ -57,13 +58,25 @@ class DeckController extends Controller
         if($request->front && $request->back) {
             $card = Flashcard::create([
                 'front' => $request->front,
-                'back' => $request->back,
-                'deck_id' => $request->id
+                'back' => $request->back
             ]);
 
             $deck->flashcards()->save($card);            
         }
 
-        return redirect()->action('DeckController@addCard', [$id]);;
+        return redirect()->action('DeckController@addCard', [$id]);
+    }
+
+    /**
+     * Add a user to the deck.
+     */
+    public function storeUser(Request $request)
+    {
+        $id = $request->id;
+        $deck = Deck::find($id);
+        $user = User::find($request->user_id);
+        $user->decks()->save($deck, ['permissions' => 'view']);
+
+        return redirect()->action('DeckController@addCard', [$id]);
     }
 }

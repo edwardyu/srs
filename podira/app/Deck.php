@@ -14,7 +14,7 @@ class Deck extends Model
 	 */
     public function flashcards()
     {
-    	return $this->hasMany('App\Flashcard');
+    	return $this->morphToMany('App\Flashcard', 'flashcardable');
     }
 
     /**
@@ -22,6 +22,6 @@ class Deck extends Model
      */
     public function users()
     {
-    	return $this->belongsToMany('App\User')->withPivot('permissions');
+    	return $this->morphedByMany('App\User', 'deckable')->withPivot('permissions');
     }
 }

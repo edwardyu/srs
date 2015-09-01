@@ -25,5 +25,18 @@
 		        <button type="submit">Add</button>
 		    </div>
 		</form>	
+
+		<h3>Add an user.</h3>
+		<form method="POST" action="/deck/{{$id}}/storeUser">
+		    {!! csrf_field() !!}
+		    <div>
+		        User ID
+		        <input type="text" name="user_id" value="{{ old('user_id') }}">
+		    </div>
+
+		    <div>
+		        <button type="submit">Add</button>
+		    </div>
+		</form>	
 	</body>
 </html>

@@ -38,6 +38,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function decks()
     {
-        return $this->belongsToMany('App\Deck')->withPivot('permissions');
+        return $this->morphToMany('App\Deck', 'deckable')->withPivot('permissions');
     }
 }

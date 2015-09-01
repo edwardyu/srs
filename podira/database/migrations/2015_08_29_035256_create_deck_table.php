@@ -16,13 +16,15 @@ class CreateDeckTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
-        });
+        });       
 
-        Schema::table('flashcards', function($table) {
-            $table->foreign('deck_id')
-                  ->references('id')
-                  ->on('decks');
-        });        
+        Schema::create('deckables', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('deck_id')->unsigned();
+            $table->morphs('deckable');
+            $table->string('permissions');
+            $table->timestamps();
+        });  
     }
 
     /**
@@ -31,12 +33,8 @@ class CreateDeckTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::table('flashcards', function($table) {
-            $table->dropForeign('flashcards_deck_id_foreign');
-            $table->dropColumn('deck_id');
-        });
-        
+    {        
         Schema::drop('decks');
+        Schema::drop('deckables');
     }
 }

@@ -32,7 +32,7 @@ class DeckEdit
     private function canEdit($user, $id)
     {
         try {
-           $permissions = $user->decks->get($id)->pivot->permissions; 
+           $permissions = $user->decks->find($id)->pivot->permissions; 
        } catch(\ErrorException $e) {
             return False;
        }

@@ -16,7 +16,15 @@ class CreateFlashcardsTable extends Migration
             $table->increments('id');
             $table->text('front');
             $table->text('back');
-            $table->integer('deck_id')->unsigned();
+            $table->timestamps();
+        });
+
+        Schema::create('flashcardables', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('flashcard_id')->unsigned();
+            $table->morphs('flashcardable');
+            $table->text('interaction');
+            $table->tinyInteger('correct');
             $table->timestamps();
         });        
     }
@@ -29,5 +37,6 @@ class CreateFlashcardsTable extends Migration
     public function down()
     {
         Schema::drop('flashcards');
+        Schema::drop('flashcardables');
     }
 }

@@ -4,9 +4,11 @@
 	</head>
 	<body>
 		<h1>Current courses.</h1>
-		@foreach($user->decks as $deck)
-		<p>{{$deck}}</p>
-		@endforeach
+		@if($user->decks)
+			@foreach($user->decks as $deck)
+			<p>{{$deck}}</p>
+			@endforeach
+		@endif
 		<h1>Create a new course.</h1>
 		<form method="POST" action="/deck/store">
 		    {!! csrf_field() !!}
