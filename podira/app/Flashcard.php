@@ -15,4 +15,12 @@ class Flashcard extends Model
     {
     	return $this->morphedByMany('App\Deck', 'flashcardable');
     }
+
+    /** 
+     * Return the sessions that have interacted with this flashcard.
+     */
+    public function sessions()
+    {
+    	return $this->morphedByMany('App\Session', 'flashcardable')->withPivot('interaction', 'correct');
+    }
 }

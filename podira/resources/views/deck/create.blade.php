@@ -6,7 +6,10 @@
 		<h1>Current courses.</h1>
 		@if($user->decks)
 			@foreach($user->decks as $deck)
-			<p>{{$deck}}</p>
+			<p>
+				{{$deck}}
+				<a href="/deck/{{$deck->id}}/session">Start session</a>
+			</p>
 			@endforeach
 		@endif
 		<h1>Create a new course.</h1>

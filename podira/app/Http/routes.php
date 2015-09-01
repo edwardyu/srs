@@ -47,4 +47,7 @@ Route::post('deck/store', 'DeckController@store');
 Route::post('deck/{id}/storeCard', 'DeckController@storeCard');
 Route::post('deck/{id}/storeUser', 'DeckController@storeUser');
 
+//session routes
+Route::get('deck/{id}/session', 'SessionController@startSession');
+
 Route::get('home', 'UserController@home');

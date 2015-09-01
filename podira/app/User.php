@@ -40,4 +40,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->morphToMany('App\Deck', 'deckable')->withPivot('permissions');
     }
+
+    /**
+     * Return the sessions associated with this user.
+     */
+    public function sessions()
+    {
+        return $this->hasMany('App\Session');
+    }
 }

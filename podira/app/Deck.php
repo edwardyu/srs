@@ -24,4 +24,12 @@ class Deck extends Model
     {
     	return $this->morphedByMany('App\User', 'deckable')->withPivot('permissions');
     }
+
+    /**
+    * Return the sessions associated with this deck.
+    */
+    public function sessions()
+    {
+        return $this->morphedByMany('App\Session', 'deckable');
+    }
 }
