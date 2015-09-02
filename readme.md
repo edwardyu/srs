@@ -18,4 +18,6 @@ Install dependencies: `php composer.phar install`
 
 Configure .env file. 
 
-Copy files to `/var/www/html`
+##Run
+Set up db: `php srs/podira/artisan migrate`
+Run! `php -S localhost:8888 -t srs/podira/public`
