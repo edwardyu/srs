@@ -20,4 +20,5 @@ Configure .env file.
 
 ##Run
 Set up db: `php srs/podira/artisan migrate`
+
 Run! `php -S localhost:8888 -t srs/podira/public`
