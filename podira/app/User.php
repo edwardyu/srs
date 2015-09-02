@@ -47,5 +47,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function sessions()
     {
         return $this->hasMany('App\Session');
-    }
+    } 
 }

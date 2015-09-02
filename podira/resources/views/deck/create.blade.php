@@ -8,7 +8,8 @@
 			@foreach($user->decks as $deck)
 			<p>
 				{{$deck}}
-				<a href="/deck/{{$deck->id}}/session">Start session</a>
+				<a href="/deck/{{$deck->id}}/learn">Learn</a>
+				<a href="/deck/{{$deck->id}}/review">Review</a>
 			</p>
 			@endforeach
 		@endif

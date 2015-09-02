@@ -48,6 +48,8 @@ Route::post('deck/{id}/storeCard', 'DeckController@storeCard');
 Route::post('deck/{id}/storeUser', 'DeckController@storeUser');
 
 //session routes
-Route::get('deck/{id}/session', 'SessionController@startSession');
+Route::get('deck/{id}/{type}', 'SessionController@startSession');
+Route::get('deck/{id}/{type}/next', 'SessionController@next');
+Route::post('deck/{id}/{type}/next', 'SessionController@next');
 
 Route::get('home', 'UserController@home');

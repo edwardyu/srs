@@ -1,9 +1,10 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Sessions</title>
 </head>
 <body>
+	<p>User: {{$user}} </p>
 	<h3>This session.</h3>
 	<p>{{$session}}</p>
 
