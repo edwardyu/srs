@@ -16,14 +16,15 @@ class ReviewSessionManager extends AbstractSessionManager
 		$sessionFlashcards = collect([]);
 		
 		foreach($pastSessions as $session) {
-			$sessionFlashcards->merge(
+			$sessionFlashcards = $sessionFlashcards->merge(
 				$session->flashcards()->where('correct', 1)->get()
 			);
 		}
 
 		//for each deck, we want this information: last_review_time, num_correct, next_review_time
 		$this->usableFlashcards = $sessionFlashcards->intersect($deckFlashcards);
-		$this->originalFlashcards = $this->usableFlashcards;
+
+		$this->originalFlashcards = $this->usableFlashcards = $this->usableFlashcards->unique();
 
 		$this->session = new \App\Session(['type' => 'review']);
         $this->user->sessions()->save($this->session);
