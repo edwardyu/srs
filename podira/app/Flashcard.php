@@ -8,6 +8,8 @@ class Flashcard extends Model
 {
     protected $fillable = ['front', 'back'];
 
+    protected $hidden = ['pivot'];
+
     /**
      * Return the deck that owns the flashcard.
      */

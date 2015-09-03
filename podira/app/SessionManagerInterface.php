@@ -6,7 +6,7 @@ namespace App;
 
 interface SessionManagerInterface
 {
-	public function __construct(\App\User $user, \App\Deck $deck);
+	public function __construct(\App\User $user, \App\Deck $deck, $type);
 
 	/**
 	 * Start a session. Generate the necessary questions and answers, but don't load anything yet.
