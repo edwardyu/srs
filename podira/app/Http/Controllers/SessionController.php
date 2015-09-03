@@ -22,9 +22,9 @@ class SessionController extends Controller
         $deck = \App\Deck::find($id);
         
         if($type == 'learn') {
-            $sessionManager = new \App\LearningSessionManager($user, $deck);
+            $sessionManager = new \App\LearningSessionManager($user, $deck, $type);
         } else if($type == 'review') {
-            $sessionManager = new \App\ReviewSessionManager($user, $deck);
+            $sessionManager = new \App\ReviewSessionManager($user, $deck, $type);
         } else {
             return response('Not found.', 404);
         }
@@ -41,7 +41,7 @@ class SessionController extends Controller
             ]);                
         } else {
             $sessionManager->end();
-            return view('You have completed this session!');
+            return 'You have completed this session!';
         }         
     }
 
@@ -70,7 +70,7 @@ class SessionController extends Controller
             ]);                
         } else {
             $sessionManager->end();
-            return view('You have completed this session!');
+            return 'You have completed this session!';
         }        
     }
 
