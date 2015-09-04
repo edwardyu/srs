@@ -29,9 +29,25 @@ class SessionController extends Controller
             return response('Not found.', 404);
         }
 
-        $sessionManager->start();
+        $info = $sessionManager->start();
         Session::put('sessionManager', $sessionManager);
-        return redirect()->action('SessionController@next', [$id, $type]);      
+
+        if($info instanceof \App\QuestionAnswer) {
+            Session::put('fromWhence', 'multiple-choice');
+            return view('session.' . $type)->with([
+                'type' => $type,
+                'deck' => $deck,
+                'question' => $info->getQuestion(),
+                'answers' => $info->getChoices()
+            ]);                
+        } else if($info instanceof \App\Flashcard) {
+            Session::put('fromWhence', 'card');
+            return view('session.card')->with([
+                'card' => $info, 
+                'type' => $type,
+                'deck' => $deck
+            ]);
+        }     
     }
 
     public function next(Request $request, $id, $type)
@@ -43,9 +59,12 @@ class SessionController extends Controller
         $sessionManager = Session::get('sessionManager');
         $user = $request->user();
         $deck = \App\Deck::find($id);
+        $fromWhence = Session::get('fromWhence');
+        $answer = new \App\Answer($request->answer, $fromWhence);
 
-        if ($info = $sessionManager->next($request->answer)) {
+        if ($info = $sessionManager->next($answer)) {
             if($info instanceof \App\QuestionAnswer) {
+                Session::put('fromWhence', 'multiple-choice');
                 return view('session.' . $type)->with([
                     'type' => $type,
                     'deck' => $deck,
@@ -53,6 +72,7 @@ class SessionController extends Controller
                     'answers' => $info->getChoices()
                 ]);                
             } else if($info instanceof \App\Flashcard) {
+                Session::put('fromWhence', 'card');
                 return view('session.card')->with([
                     'card' => $info, 
                     'type' => $type,

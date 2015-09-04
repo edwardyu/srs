@@ -19,7 +19,7 @@ interface SessionManagerInterface
 	 * @param $answer - the result from the previous call
 	 * @return QuestionAnswer|Flashcard|Null
 	 */
-	public function next($answer);
+	public function next(\App\Answer $answer);
 
 	/**
 	 * Store the time spent on this session in the database.
