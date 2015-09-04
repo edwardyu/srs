@@ -8,8 +8,23 @@ use DB;
 
 class LearningSessionManager extends AbstractSessionManager
 {	
-	public function start()
+	protected function getSessionFlashcards()
 	{
+		$this->getAnswerPool();
+
+		if($this->answerPool->count() >= self::NUM_CONCEPTS) {
+			return $this->answerPool->random(self::NUM_CONCEPTS);
+		} else {
+			return $this->answerPool;
+		}		
+	}
+
+	protected function getAnswerPool()
+	{
+		if($this->answerPool) {
+			return $this->answerPool;
+		}
+
 		//load all flashcards that we can't use, because the user has already learned it. 
 		$pastSessions = $this->user->sessions()->where('type', 'learn')->with('flashcards')->get();
 		$this->unusable = collect();
@@ -24,12 +39,7 @@ class LearningSessionManager extends AbstractSessionManager
 		}
 
 		//remove from deck
-		$this->usableFlashcards = $this->deck->flashcards->diff($this->unusable);
-		$this->originalFlashcards = $this->usableFlashcards = $this->usableFlashcards->unique();
-
-		$this->session = new \App\Session(['type' => 'learn']);
-        $this->user->sessions()->save($this->session);
-        $this->session->deck()->save($this->deck);		
-		$this->startTime = microtime();
+		$this->answerPool = $this->deck->flashcards->diff($this->unusable);
+		return $this->answerPool;
 	}
 }

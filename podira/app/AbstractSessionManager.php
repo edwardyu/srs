@@ -25,15 +25,20 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	protected $startTime;
 
 	/**
-	 * The cards that are acceptable to learn.
+	 * The cards that are left to interact with.
 	 */
-	protected $usableFlashcards;
+	protected $remainingFlashcards;
 
 	/**
-	 * The cards that were originally picked out as usable. This collection does not diminish as the session progresses, so it is useful for 
+	 * Cards that have already been interacted with.
+	 */
+	protected $interactedFlashcards;
+
+	/**
+	 * The cards that can be used to generate answer choices. This collection does not diminish as the session progresses, so it is useful for 
 	 * generating random answers.
 	 */
-	protected $originalFlashcards;
+	protected $answerPool;
 
 	/**
 	 * The last Flashcard that the user saw.
@@ -62,9 +67,22 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		$this->count = 0;
 		$this->type = $type;
 		$this->lastFlashcard = Null;
+		$this->answerPool = Null;
 	}
 	
-	abstract public function start();
+	public function start()
+	{
+		$this->remainingFlashcards = $this->getSessionFlashcards();
+		$this->answerPool = $this->getAnswerPool();
+
+		$this->session = new \App\Session(['type' => $this->type]);
+        $this->user->sessions()->save($this->session);
+        $this->session->deck()->save($this->deck);		
+		$this->startTime = microtime();		
+	}
+
+	abstract protected function getSessionFlashcards();
+	abstract protected function getAnswerPool();
 
 	public function next($answer)
 	{
@@ -72,13 +90,13 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 			return Null;
 		}
 
-		if(!$this->usableFlashcards || !$this->usableFlashcards->count()) {
+		if(!$this->remainingFlashcards || !$this->remainingFlashcards->count()) {
 			return Null;
 		}
 
-		$this->nextFlashcard = $this->usableFlashcards->random();
+		$this->nextFlashcard = $this->remainingFlashcards->random();
 		//make sure flashcardPool doesn't contain the current flashcard. 
-		$flashcardPool = $this->originalFlashcards->reject(function($flashcard) {
+		$flashcardPool = $this->answerPool->reject(function($flashcard) {
 			return $flashcard == $this->lastFlashcard;
 		});
 
@@ -109,7 +127,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 
 		if($correct) {
 			//remove card from usuable ones.
-			$this->usableFlashcards = $this->usableFlashcards->reject(function($flashcard) {
+			$this->remainingFlashcards = $this->remainingFlashcards->reject(function($flashcard) {
 				return $flashcard == $this->lastFlashcard;
 			});
 

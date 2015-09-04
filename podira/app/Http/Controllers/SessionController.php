@@ -30,18 +30,8 @@ class SessionController extends Controller
         }
 
         $sessionManager->start();
-        if ($info = $sessionManager->next(null)) {
-            Session::put('sessionManager', $sessionManager);
-            return view('session.' . $type)->with([
-                'type' => $type,
-                'deck' => $deck,
-                'question' => $info->getQuestion(),
-                'answers' => $info->getChoices(),
-            ]);                
-        } else {
-            $sessionManager->end();
-            return 'You have completed this session!';
-        }         
+        Session::put('sessionManager', $sessionManager);
+        return redirect()->action('SessionController@next', [$id, $type]);      
     }
 
     public function next(Request $request, $id, $type)

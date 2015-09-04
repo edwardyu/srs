@@ -8,27 +8,35 @@ use DB;
 
 class ReviewSessionManager extends AbstractSessionManager
 {	
-	public function start()
+	protected function getSessionFlashcards()
 	{
-		//load all flashcards that the user has learned in the past. 
-		$pastSessions = $this->user->sessions()->with('flashcards')->get();
-		$deckFlashcards = $this->deck->flashcards;
-		$sessionFlashcards = collect([]);
-		
-		foreach($pastSessions as $session) {
-			$sessionFlashcards = $sessionFlashcards->merge(
-				$session->flashcards()->where('correct', 1)->get()
-			);
-		}
-
 		//for each deck, we want this information: last_review_time, num_correct, next_review_time
-		$this->usableFlashcards = $sessionFlashcards->intersect($deckFlashcards);
+		$this->answerPool = $this->getAnswerPool();
 
-		$this->originalFlashcards = $this->usableFlashcards = $this->usableFlashcards->unique();
+		if($this->answerPool->count() >= self::NUM_CONCEPTS) {
+			return $this->answerPool->random(self::NUM_CONCEPTS);
+		} else {
+			return $this->answerPool;
+		}
+	}
 
-		$this->session = new \App\Session(['type' => 'review']);
-        $this->user->sessions()->save($this->session);
-        $this->session->deck()->save($this->deck);		
-		$this->startTime = microtime();
+	protected function getAnswerPool()
+	{
+		if($this->answerPool) {
+			return $this->answerPool;
+		} else {
+			$pastSessions = $this->user->sessions()->with('flashcards')->get();
+			$deckFlashcards = $this->deck->flashcards;
+			$sessionFlashcards = collect([]);
+			
+			foreach($pastSessions as $session) {
+				$sessionFlashcards = $sessionFlashcards->merge(
+					$session->flashcards()->where('correct', 1)->get()
+				);
+			}
+
+			//for each deck, we want this information: last_review_time, num_correct, next_review_time
+			return $sessionFlashcards->intersect($deckFlashcards);			
+		}
 	}
 }
