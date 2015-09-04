@@ -16,16 +16,10 @@ interface SessionManagerInterface
 
 	/**
 	 * Return the next set of questions and answers.
-	 * @return [$question, [$answer1, $answer2... $answern]]
+	 * @param $answer - the result from the previous call
+	 * @return QuestionAnswer|Flashcard|Null
 	 */
-	public function next();
-
-	/**
-	 * Check the answer based off the current question.
-	 * @param $answer - a string 
-	 * @return bool
-	 */
-	public function checkAnswer($answer);
+	public function next($answer);
 
 	/**
 	 * Store the time spent on this session in the database.

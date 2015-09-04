@@ -4,7 +4,7 @@
 	<title> {{$type}} {{$deck->name}}</title>
 </head>
 <body>
-	<h1>Learn {{$deck->name}}</h1>
+	<h1>Review {{$deck->name}}</h1>
 	<p>{{$question}}</p>
 	<form method="POST" action="/deck/{{$deck->id}}/review/next">
 	    {!! csrf_field() !!}

@@ -30,14 +30,13 @@ class SessionController extends Controller
         }
 
         $sessionManager->start();
-        if ($info = $sessionManager->next()) {
+        if ($info = $sessionManager->next(null)) {
             Session::put('sessionManager', $sessionManager);
             return view('session.' . $type)->with([
                 'type' => $type,
                 'deck' => $deck,
-                'question' => $info[0],
-                'answers' => $info[1],
-                'sessionManager' => $sessionManager
+                'question' => $info->getQuestion(),
+                'answers' => $info->getChoices(),
             ]);                
         } else {
             $sessionManager->end();
@@ -52,22 +51,25 @@ class SessionController extends Controller
         }
 
         $sessionManager = Session::get('sessionManager');
-        $correct = $sessionManager->checkAnswer($request->answer);
-
-        if(!$correct) {
-            return 'You got the answer wrong.';
-        }
-
         $user = $request->user();
         $deck = \App\Deck::find($id);
 
-        if ($info = $sessionManager->next()) {
-            return view('session.' . $type)->with([
-                'type' => $type,
-                'deck' => $deck,
-                'question' => $info[0],
-                'answers' => $info[1]
-            ]);                
+        if ($info = $sessionManager->next($request->answer)) {
+            if($info instanceof \App\QuestionAnswer) {
+                return view('session.' . $type)->with([
+                    'type' => $type,
+                    'deck' => $deck,
+                    'question' => $info->getQuestion(),
+                    'answers' => $info->getChoices()
+                ]);                
+            } else if($info instanceof \App\Flashcard) {
+                return view('session.card')->with([
+                    'card' => $info, 
+                    'type' => $type,
+                    'deck' => $deck
+                ]);
+            }
+                
         } else {
             $sessionManager->end();
             return 'You have completed this session!';
