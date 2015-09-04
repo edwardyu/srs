@@ -30,6 +30,12 @@ class SessionController extends Controller
         }
 
         $info = $sessionManager->start();
+
+        if(!$info) {
+            $sessionManager->end();
+            return 'You have completed this session!';
+        }
+        
         Session::put('sessionManager', $sessionManager);
 
         if($info instanceof \App\QuestionAnswer) {

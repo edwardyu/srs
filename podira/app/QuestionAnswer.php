@@ -41,9 +41,14 @@ class QuestionAnswer
 	 */
 	public function setChoices($flashcardPool, $numChoices=4)
 	{
-		if($flashcardPool->count() < $numChoices - 1) {
-			throw new InvalidArgumentException("There aren't enough flashcards to generate answers for.");
+		if($flashcardPool->count() < $numChoices) {
+			throw new \InvalidArgumentException("There aren't enough flashcards to generate answers for.");
 		}
+
+		//remove answer from flashcard pool
+		$flashcardPool->reject(function($item) {
+			return $item == $this->flashcard;
+		});
 
 		$randomAnswers = $flashcardPool->random($numChoices - 1);
 		$randomAnswers = $randomAnswers->map(function($flashcard) {

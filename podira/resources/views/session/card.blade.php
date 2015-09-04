@@ -4,7 +4,7 @@
 	<title>Flashcard Review</title>
 </head>
 <body>
-	<h1>Review this card.</h1>
+	<h1>{{$type}} this card.</h1>
 	<p>{{$card->front}}</p>
 	<p>{{$card->back}}</p>
 	<form method="POST" action="/deck/{{$deck->id}}/{{$type}}/next">
