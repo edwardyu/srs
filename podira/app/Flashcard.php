@@ -25,4 +25,12 @@ class Flashcard extends Model
     {
     	return $this->morphedByMany('App\Session', 'flashcardable')->withPivot('interaction', 'correct');
     }
+
+    /**
+     * Return the users that have interacted with this flashcard.
+     */
+    public function users()
+    {
+        return $this->morphedByMany('App\User', 'flashcardable')->withPivot('num_correct', 'num_incorrect', 'last_review_time');
+    }
 }

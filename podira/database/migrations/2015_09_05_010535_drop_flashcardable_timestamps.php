@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserFlashcards extends Migration
+class DropFlashcardableTimestamps extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class CreateUserFlashcards extends Migration
     public function up()
     {
         Schema::table('flashcardables', function(Blueprint $table) {
-            $table->integer('num_correct')->default(0);
-            $table->timestamp('last_review_time');
+            $table->dropColumn(['created_at', 'updated_at']);
         });
     }
 
@@ -26,7 +25,7 @@ class CreateUserFlashcards extends Migration
     public function down()
     {
         Schema::table('flashcardables', function(Blueprint $table) {
-            $table->dropColumn(['num_correct', 'last_review_time']);
+            $table->timestamp();
         });
     }
 }

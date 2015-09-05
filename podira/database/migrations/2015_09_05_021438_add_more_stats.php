@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserFlashcards extends Migration
+class AddMoreStats extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserFlashcards extends Migration
     public function up()
     {
         Schema::table('flashcardables', function(Blueprint $table) {
-            $table->integer('num_correct')->default(0);
-            $table->timestamp('last_review_time');
-        });
+            $table->integer('num_incorrect')->default(0);
+            $table->decimal('recall_score', 6, 3);
+        });        
     }
 
     /**
@@ -26,7 +26,7 @@ class CreateUserFlashcards extends Migration
     public function down()
     {
         Schema::table('flashcardables', function(Blueprint $table) {
-            $table->dropColumn(['num_correct', 'last_review_time']);
+            $table->dropColumn(['num_incorrect', 'recall_score']);
         });
-    }
+    }       
 }

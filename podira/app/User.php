@@ -48,4 +48,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany('App\Session');
     } 
+
+    /**
+     * Return the flashcards that the user has interacted with.
+     */
+    public function flashcards()
+    {
+        return $this->morphToMany('App\Flashcard', 'flashcardable')->withPivot('num_correct', 'num_incorrect', 'last_review_time');
+    }
 }

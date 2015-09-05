@@ -60,6 +60,16 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	 */
 	protected $count;
 
+	/**
+	 * The user that owns this session.
+	 */
+	protected $user;
+
+	/**
+	 * The deck that the user is interacting with.
+	 */
+	protected $deck;
+
 	public function __construct(\App\User $user, \App\Deck $deck, $type)
 	{
 		$this->user = $user;
@@ -123,13 +133,36 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		$correct = (int) ($answer->getAnswer() == $this->lastFlashcard->back);
 		$this->lastFlashcard->sessions()->save($this->session, ['interaction' => $this->type . 'ed', 'correct' => $correct]);
 
-		if($correct && $answer->getFromWhence() == \App\Answer::MC) {
+
+		if($correct && $answer->getFromWhence() == \App\Answer::MC) 
+		{
 			//remove card from usuable ones.
 			$this->remainingFlashcards = $this->remainingFlashcards->reject(function($flashcard) {
 				return $flashcard->id == $this->lastFlashcard->id;
 			});
 			//add card to interacted
 			$this->interactedFlashcards->push($this->lastFlashcard);
+			$query = DB::table('flashcardables')->where('flashcardable_type', 'App\User')
+												->where('flashcardable_id', $this->user->id)
+												->where('flashcard_id', $this->lastFlashcard->id)
+												->get();
+			if(!count($query))
+				$this->user->flashcards()->save($this->lastFlashcard, ['num_correct' => 1, 'last_review_time' => \Carbon\Carbon::now()]);
+			else
+				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_correct');
+		} 
+
+		else if(!$correct && $answer->getFromWhence() == \App\Answer::MC) 
+		{
+			$query = DB::table('flashcardables')->where('flashcardable_type', 'App\User')
+												->where('flashcardable_id', $this->user->id)
+												->where('flashcard_id', $this->lastFlashcard->id)
+												->get();
+
+			if(!count($query))
+				$this->user->flashcards()->save($this->lastFlashcard);
+			else
+				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_incorrect');
 		}
 
 		return $correct;

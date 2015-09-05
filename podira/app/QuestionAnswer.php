@@ -46,8 +46,8 @@ class QuestionAnswer
 		}
 
 		//remove answer from flashcard pool
-		$flashcardPool->reject(function($item) {
-			return $item == $this->flashcard;
+		$flashcardPool = $flashcardPool->reject(function($item) {
+			return $item->id == $this->flashcard->id;
 		});
 
 		$randomAnswers = $flashcardPool->random($numChoices - 1);
