@@ -47,9 +47,15 @@ Route::post('deck/store', 'DeckController@store');
 Route::post('deck/{id}/storeCard', 'DeckController@storeCard');
 Route::post('deck/{id}/storeUser', 'DeckController@storeUser');
 
+//stat routes
+Route::get('deck/{id}/stats', 'StatsController@deckStats');
+
 //session routes
 Route::get('deck/{id}/{type}', 'SessionController@startSession');
 Route::get('deck/{id}/{type}/next', 'SessionController@next');
 Route::post('deck/{id}/{type}/next', 'SessionController@next');
+
+//stat routes
+Route::get('deck/{id}/stats', 'StatsController@deckStats');
 
 Route::get('home', 'UserController@home');
