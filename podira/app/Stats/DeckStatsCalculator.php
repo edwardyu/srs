@@ -26,29 +26,100 @@ class DeckStatsCalculator
 
 	/**
 	 * Get the most difficult concepts in the deck, based on recall score.
-	 * @return collection of [Flashcard, recallScore] pairs. 
+	 * @param $num - number of concepts to return 
+	 * @return ['flashcard_id' => average_recall_score] 
 	 */
-	public function mostDifficultConcepts()
+	public function mostDifficultConcepts($num = self::NUM_CONCEPTS)
 	{
-
+		$scores = $this->calcRecallScores();
+		return array_slice($scores, 0, $num, True);
 	}
 
 	/**
 	 * Get the most intuitive concepts in the deck, based on recall score.
-	 * @return collection of [Flashcard, recallScore] pairs. 
+	 * @param $num - number of concepts to return 
+	 * @return ['flashcard_id' => average_recall_score] 
 	 */	
-	public function mostIntuitiveConcepts()
+	public function mostIntuitiveConcepts($num = self::NUM_CONCEPTS)
 	{
-
+		$scores = $this->calcRecallScores();
+		arsort($scores);
+		$neededScores = array_slice($scores, 0, $num, True);
+		asort($scores);
+		return $neededScores;
 	}
 	
 	/**
-	 * Get all concepts, sorted by recall score.
+	 * Get all concepts, sorted by recall score from low to high.
+	 * @param $force - if set to true, it will recalculate all scores instead of returning the cached version.
 	 * @return ['flashcard_id' => average_recall_score]
 	 */
-	private function getRecallScores()
+	public function calcRecallScores($force = False)
 	{
+		if(isset($this->recallScores) && !$force) {
+			return $this->recallScores;
+		}
 
+		/**
+		 * [
+		 * 		$flashcardId => [
+		 *				'sum_scores' => $sum,
+		 *				'num_scores' => $num
+		 *			 ]
+		 * ]
+		 */
+		$aggregateScores = [];
+
+		foreach($this->deck->users as $user)
+		{
+			$userCalculator = new UserStatsCalculator($user);
+			$scores = $userCalculator->calcRecallScores();
+
+			foreach($scores as $flashcardId => $recallScore)
+			{
+				if($this->inDeck($flashcardId)) {
+					if(array_key_exists($flashcardId, $aggregateScores)) {
+						$aggregateScores[$flashcardId]['sum_scores'] += $recallScore;
+						$aggregateScores[$flashcardId]['sum_scores'] += 1;						
+					} else {
+						$aggregateScores[$flashcardId] = ['sum_scores' => $recallScore, 'num_scores' => 1];						
+					}
+				}
+			}
+		}
+
+		$averageScores = [];
+
+		foreach($aggregateScores as $flashcardId => $info) {
+			$averageScores[$flashcardId] = $info['sum_scores'] / $info['num_scores'];
+		}
+
+		asort($averageScores);
+		$this->recallScores = $averageScores;
+		return $averageScores;
+	}
+
+	/**
+	 * Test if a card is in the deck.
+	 * @param $flashcardId
+	 * @return bool
+	 */
+	private function inDeck($flashcardId)
+	{
+		if(!isset($this->flashcardIds))
+			$this->calcFlashcardIds();
+
+		return $this->flashcardIds->contains($flashcardId);
+	}
+
+	/**
+	 * Get all flashcard ids in the deck and put them in a collection
+	 */
+	private function calcFlashcardIds()
+	{
+		$this->flashcardIds = $this->deck->flashcards->each(function($item) {
+			return $item->id;
+		});
 	}
 
 	/**
