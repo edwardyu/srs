@@ -37,23 +37,22 @@ class LearningSessionManager extends AbstractSessionManager
 
 	public function next(\App\Answer $answer)
 	{
-		$this->nextFlashcard = $this->remainingFlashcards->random();
-
-		if(!in_array($this->nextFlashcard->id, $this->shown)) {
-			$this->shown[] = $this->nextFlashcard->id;
-			$this->lastFlashcard = $this->nextFlashcard;
-			return $this->nextFlashcard;
-		}
-
 		if($this->checkAnswer($answer)) {
-			$qa = new \App\QuestionAnswer($this->nextFlashcard);
-			$qa->setChoices($this->answerPool);
-			$this->lastFlashcard = $this->nextFlashcard;
-
 			if(!$this->remainingFlashcards->count()) 
 				return Null;
 			else
-				return $qa;
+				$this->nextFlashcard = $this->remainingFlashcards->random();
+
+			if(!in_array($this->nextFlashcard->id, $this->shown)) {
+				$this->shown[] = $this->nextFlashcard->id;
+				$this->lastFlashcard = $this->nextFlashcard;
+				return $this->nextFlashcard;
+			}
+
+			$qa = new \App\QuestionAnswer($this->nextFlashcard);
+			$qa->setChoices($this->answerPool);
+			$this->lastFlashcard = $this->nextFlashcard;
+			return $qa;
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
 			return $this->nextFlashcard;			
