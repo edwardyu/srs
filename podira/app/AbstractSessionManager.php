@@ -107,17 +107,16 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 
 	public function next(\App\Answer $answer)
 	{
-		$this->nextFlashcard = $this->remainingFlashcards->random();
-
 		if($this->checkAnswer($answer)) {
-			$qa = new \App\QuestionAnswer($this->nextFlashcard);
-			$qa->setChoices($this->answerPool);
-			$this->lastFlashcard = $this->nextFlashcard;
-
 			if(!$this->remainingFlashcards->count()) 
 				return Null;
 			else
-				return $qa;
+				$this->nextFlashcard = $this->remainingFlashcards->random();
+			
+			$qa = new \App\QuestionAnswer($this->nextFlashcard);
+			$qa->setChoices($this->answerPool);
+			$this->lastFlashcard = $this->nextFlashcard;
+			return $qa;
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
 			return $this->nextFlashcard;			
@@ -140,6 +139,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 			$this->remainingFlashcards = $this->remainingFlashcards->reject(function($flashcard) {
 				return $flashcard->id == $this->lastFlashcard->id;
 			});
+
 			//add card to interacted
 			$this->interactedFlashcards->push($this->lastFlashcard);
 			$query = DB::table('flashcardables')->where('flashcardable_type', 'App\User')
