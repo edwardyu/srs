@@ -131,8 +131,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	{
 		$correct = (int) ($answer->getAnswer() == $this->lastFlashcard->back);
 		$this->lastFlashcard->sessions()->save($this->session, ['interaction' => $this->type . 'ed', 'correct' => $correct]);
-
-
+		
 		if($correct && $answer->getFromWhence() == \App\Answer::MC) 
 		{
 			//remove card from usuable ones.
