@@ -65,7 +65,7 @@ $(document).ready(function(){
 
 						<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/review" style="right:45px;">Review</a>
 						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/learn">Learn</a>
-						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/learn">Delete</a>
+						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/delete">Delete</a>
 
 
 

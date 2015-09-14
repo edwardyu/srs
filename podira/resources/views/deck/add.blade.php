@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', $deck -> name)
 @section('content')
 
 <script>
@@ -87,7 +87,7 @@ $(document).ready(function(){
 									Answer: <i>{{$card -> back}}</i>
 							</h1>
 
-							<div class="skip" style="right:45px;">Delete</div><div class="enter">Edit Card</div>
+							<a class="skip" style="right:45px;"  href="/deck/{{$deck->id}}/deleteCard">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
 
 
 
