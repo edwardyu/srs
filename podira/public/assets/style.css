@@ -81,6 +81,14 @@ textarea, input { outline: none; }
     cursor:pointer;
 }
 
+.links > span > a{
+    color:white;
+    text-decoration: none;
+}
+
+
+
+
 
 /* ANIMATE CSS */
 
@@ -3433,6 +3441,15 @@ Copyright (c) 2015 Daniel Eden
     cursor: pointer;
 }
 
+.displayit{
+  display:block !important;
+
+}
+
+.datanone{
+  display:none;
+}
+
 section[name="main"]{
     height: 300px;
     padding-bottom:180px;
@@ -3452,6 +3469,18 @@ section[name="main"]{
         font-weight:200;
         top:50px;
         font-size:36px;
+    }
+
+    section[name="main"] > h2{
+        margin-top:0px;
+        position:absolute;
+        width:90%;
+        left:5%;
+        text-align:center;
+        font-weight:100;
+        font-family:Lato, sans-serif;
+        top:100px;
+        font-size:16px;
     }
 
     section[name="main"] > h2{
@@ -3675,6 +3704,33 @@ section[name="card"]{
         color: rgba(255,255,255,.5);
 
     }
+
+.minichooser{
+  width:80%;
+  margin-left:10%;
+  display:inline-block;
+  margin-top:100px;
+  margin-bottom:-80px;
+}
+
+.minichooser > .chooser{
+  width:33.3%;
+  float:left;
+  height:50px;
+  text-align: center;
+  font-size:15px;
+  padding-top:15px;
+  border-left:1px rgba(255,255,255,.4) solid;
+  box-sizing: border-box;
+  color:white;
+  background-color: rgba(255,255,255,.1);
+  cursor: pointer;
+}
+
+.minichooser > .chooseractive{
+  background-color: rgba(146,167,252,1) !important;
+  cursor: auto;
+}
 
 
 
@@ -4226,6 +4282,10 @@ animation-duration: 1s;
     border-bottom: 1px rgba(255,255,255,.6) solid;
 }
 
+.purple{
+    color: rgba(146,167,252,1) !important;
+}
+
 
 /* ACCENTS */
 
@@ -4251,6 +4311,11 @@ animation-duration: 1s;
         font-size:.7em;
         margin-top:-22px;
     }
+
+    section[name="main"] > .chosen > h2{
+    font-size:.7em;
+    margin-top:-22px;
+}
     .card{
         width:360px;
     }

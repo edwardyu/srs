@@ -3912,6 +3912,13 @@ animation-duration: 1s;
 /* PORTAL SIDEBAR */
 
 
+.minichooser{
+  width:80%;
+  margin-left:10%;
+  height:50px;
+}
+
+
 
 #header_portal{
     width:200px;
