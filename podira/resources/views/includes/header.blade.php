@@ -3,7 +3,7 @@
     <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira_purp.png') !!}"></a>
     <div class="links">
         <span><a href="/auth/logout" class="purple">Sign Out</a></span>
-        <span><a href="/auth/logout" class="purple">Create Deck</a></span>
+        <span><a href="/home" class="purple">Create Deck</a></span>
     </div>
 </div>
 @else
