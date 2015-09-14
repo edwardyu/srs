@@ -2,9 +2,32 @@
 @section('title', 'Page Title')
 @section('content')
 
+<script>
+$(document).ready(function(){
+
+
+	$('.minichooser a').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('.minichooser a').removeClass('chooseractive');
+		$('.datanone').removeClass('displayit');
+
+		$(this).addClass('chooseractive');
+		$("."+tab_id).addClass('displayit');
+	})
+
+})
+</script>
+
+
 <section name="main" class="bgmatte full">
-		<h1>Create a Flashcard Deck</h1>
-		<form class="deck" method="POST" action="/deck/store">
+	<h1>Decks</h1>
+
+	<div class="minichooser">
+		<a class="chooser chooseractive" style="width:50%;" data-tab="data3">Create Deck</a>
+		<a class="chooser" style="width:50%;"  data-tab="data2">Current Decks</a>
+	</div>
+		<form class="deck datanone data3 displayit" method="POST" action="/deck/store">
 			{!! csrf_field() !!}
 			 <fieldset>General</fieldset>
 				<input placeholder="Title" name="name">
@@ -23,6 +46,35 @@
 				<input type="submit" value="Create Deck">
 		</form>
 
+		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2">
+			@if($user->decks)
+				@foreach($user->decks as $deck)
+				<div class="card sidebyside bgbaige" style="-webkit-animation-duration:0s;">
+				<div class="innercard">
+						<div class="emblem">
+								<div class="inneremblem">
+										<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+								</div>
+
+						</div>
+						<h3 class="matte">{{$deck -> name}}</h3>
+						<h5 class="matte" style="opacity:.5;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
+
+						<br>
+
+
+						<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/review" style="right:45px;">Review</a>
+						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/learn">Learn</a>
+						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/learn">Delete</a>
+
+
+
+				</div>
+
+				</div>
+				@endforeach
+			@endif
+		</div>
 
 
 </section>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Page Title')
-@section('content')
 
+@section('content')
 <body>
     <section name="main" class="bgmatte">
         <h1>Notecards That Learn With Students</h1>

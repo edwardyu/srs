@@ -3909,6 +3909,19 @@ animation-duration: 1s;
         border: 1px rgba(255,255,255,.4) solid;
     }
 
+    .innercard > .thirth{
+      width:33.333%;
+      height:30px;
+      margin-top:5px;
+      color:white;
+      box-sizing: border-box;
+      padding-top:5px;
+      background-color:black;
+      display:block;
+      float:left;
+      cursor:pointer;
+    }
+
     .innercard > .emblem{
         width:60px;
         height:60px;
@@ -3920,7 +3933,7 @@ animation-duration: 1s;
         box-sizing: border-box;
         border: 1px rgba(0,0,0,.05) solid;
         position:relative;
-        }
+      }
 
     .emblem > .inneremblem {
         position:absolute;
@@ -4286,6 +4299,11 @@ animation-duration: 1s;
 .purple{
     color: rgba(146,167,252,1) !important;
 }
+
+.matte{
+    color: rgba(33,38,41,1) !important;
+}
+
 
 
 /* ACCENTS */
