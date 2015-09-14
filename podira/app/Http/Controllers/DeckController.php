@@ -17,7 +17,7 @@ class DeckController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('auth.deck.view', ['only' => 'addCard']);
-        $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser']]);
+        $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser', 'deleteCard', 'editCard', 'deleteDeck']]);
     }
     
     /**
@@ -78,5 +78,23 @@ class DeckController extends Controller
         $user->decks()->save($deck, ['permissions' => 'view']);
 
         return redirect()->action('DeckController@addCard', [$id]);
+    }
+
+    public function deleteCard(Request $request)
+    {
+        $flashcardId = $request->flashcard_id;
+        Flashcard::destroy($flashcardId);
+    }
+
+    public function editCard(Request $request)
+    {
+        $flashcardId = $request->flashcard_id;
+        $flashcard = Flashcard::find($flashcardId);
+        $flashcard->update(['front' => $request->front, 'back' => $request->back]);
+    }
+
+    public function deleteDeck(Request $request)
+    {
+        Deck::destroy($request->id);
     }
 }
