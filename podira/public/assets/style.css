@@ -3720,7 +3720,8 @@ section[name="card"]{
   text-align: center;
   font-size:15px;
   padding-top:15px;
-  border-left:1px rgba(255,255,255,.4) solid;
+  border-left:1px rgba(255,255,255,.2) solid;
+  border-right:1px rgba(255,255,255,.2) solid;
   box-sizing: border-box;
   color:white;
   background-color: rgba(255,255,255,.1);

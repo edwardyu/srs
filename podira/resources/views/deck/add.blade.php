@@ -19,7 +19,7 @@ $(document).ready(function(){
 })
 </script>
 
-<section name="main" class="bgmatte" style="height:auto;">
+<section name="main" class="bgmatte full" style="height:auto;">
 		<h1>{{$deck -> name}}</h1>
 
 		<div class="minichooser">
