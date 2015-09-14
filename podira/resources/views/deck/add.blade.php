@@ -23,12 +23,11 @@ $(document).ready(function(){
 		<h1>{{$deck -> name}}</h1>
 
 		<div class="minichooser">
-			<a class="chooser chooseractive" data-tab="data3">List Deck</a>
-			<a class="chooser" data-tab="data2">Add Users</a>
-			<a class="chooser" data-tab="data1">Add Cards</a>
+			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">Add Cards</a>
+			<a class="chooser" data-tab="data2" style="width:50%;">Add Users</a>
 		</div>
 
-		<form class="deck datanone data1" method="POST" action="/deck/{{$id}}/storeCard">
+		<form class="deck datanone data1 displayit" style="height:170px;" method="POST" action="/deck/{{$id}}/storeCard">
 			{!! csrf_field() !!}
 			 <fieldset>Info</fieldset>
 				<input placeholder="Front" name="front">
@@ -50,7 +49,7 @@ $(document).ready(function(){
 		</form>
 
 
-		<form class="deck datanone data2" method="POST" action="/deck/{{$id}}/storeUser" id="data2">
+		<form class="deck datanone data2" method="POST" style="height:170px;" action="/deck/{{$id}}/storeUser" id="data2">
 			{!! csrf_field() !!}
 			 <fieldset>Info</fieldset>
 				<input placeholder="User ID" name="user_id">
@@ -71,7 +70,7 @@ $(document).ready(function(){
 		</form>
 
 
-				<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data3 displayit">
+				<div style="width:80%;margin-left:10%;text-align:center;" class="">
 					@if ($deck->flashcards->isEmpty())
 						<br><br><br><br><br>
 						You have no current cards in this deck.
