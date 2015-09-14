@@ -1,29 +1,19 @@
 <!-- resources/views/auth/register.blade.php -->
+@extends('layouts.master')
+@section('title', 'Page Title')
+@section('content')
 
-<form method="POST" action="/auth/register">
-    {!! csrf_field() !!}
-
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
-
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
-
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
-
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
-
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+<section name="main" class="bgmatte full">
+    <h1>Sign Up</h1>
+    <form method="POST" action="/auth/register">
+      {!! csrf_field() !!}
+        <input placeholder="First Name" name="name" class="half_1">
+        <input placeholder="Last Name" name="lastname" class="half_2">
+        <input placeholder="Email" name="email">
+        <input placeholder="Password" name="password" type="password">
+        <input placeholder="Confirm Password" name="password_confirmation" type="password">
+        <input type="submit" value="Sign Up">
+        <a> Already Have Account </a>
+    </form>
+</section>
+@endsection

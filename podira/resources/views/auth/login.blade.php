@@ -1,23 +1,22 @@
 <!-- resources/views/auth/login.blade.php -->
+@extends('layouts.master')
+@section('title', 'Page Title')
+@section('content')
 
-<form method="POST" action="/auth/login">
-    {!! csrf_field() !!}
+<body>
+  <section name="main" class="bgmatte full">
+      <h1>Sign In</h1>
+      <form  method="POST" action="/auth/login">
+        {!! csrf_field() !!}
+          <input placeholder="Email" name="email" value="{{ old('email') }}">
+          <input placeholder="Password" name="password" type="password" id="password">
+          <input type="submit" value="Sign In">
+          <a> Forgot Password </a>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+      </form>
 
-    <div>
-        Password
-        <input type="password" name="password" id="password">
-    </div>
 
-    <div>
-        <input type="checkbox" name="remember"> Remember Me
-    </div>
 
-    <div>
-        <button type="submit">Login</button>
-    </div>
-</form>
+  </section>
+</body>
+@endsection

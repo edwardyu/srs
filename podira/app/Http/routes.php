@@ -10,11 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome')->with([
-    	'name' => 'Edward Yu'
-    ]);
-});
+Route::get('/', 'MainController@mainPage');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

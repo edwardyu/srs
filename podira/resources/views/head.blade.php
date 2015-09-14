@@ -1,0 +1,1 @@
+{{ HTML::style('style.css') }}
