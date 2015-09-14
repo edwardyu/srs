@@ -72,29 +72,34 @@ $(document).ready(function(){
 
 
 				<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data3 displayit">
-					@foreach($deck->flashcards as $card)
-					<div class="card sidebyside bgbaige" style="-webkit-animation-duration:0s;">
-					<div class="innercard">
-							<div class="emblem">
-									<div class="inneremblem">
-											<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+					@if ($deck->flashcards->isEmpty())
+						<br><br><br><br><br>
+						You have no current cards in this deck.
+					@else
+							@foreach($deck->flashcards as $card)
+							<div class="card sidebyside bgbaige" style="-webkit-animation-duration:0s;">
+							<div class="innercard">
+									<div class="emblem">
+											<div class="inneremblem">
+													<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+											</div>
+
 									</div>
+									<h1>{{$card -> front}}</h1>
+									<br>
+									<h1>
+											Answer: <i>{{$card -> back}}</i>
+									</h1>
+
+									<a class="skip" style="right:45px;"  href="/deck/{{$deck->id}}/deleteCard">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
+
+
 
 							</div>
-							<h1>{{$card -> front}}</h1>
-							<br>
-							<h1>
-									Answer: <i>{{$card -> back}}</i>
-							</h1>
 
-							<a class="skip" style="right:45px;"  href="/deck/{{$deck->id}}/deleteCard">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
-
-
-
-					</div>
-
-					</div>
-					@endforeach
+							</div>
+							@endforeach
+					@endif
 				</div>
 
 
