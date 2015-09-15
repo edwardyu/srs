@@ -54,6 +54,46 @@ textarea, input { outline: none; }
     margin-left:-6px;
 }
 
+.statflow{
+  width: 80%;
+  margin-left:10%;
+  margin-top:150px;
+}
+
+      .statflow > h1{
+        width: 95%;
+        margin-left:2.5%;
+        margin-right: 2.5%;
+        font-size: 10px;
+        color: rgba(255,255,255,.7);
+        margin-top:20px;
+        display:inline-block;
+        border-bottom: 1px rgba(255,255,255,.7) solid;
+      }
+
+      .statflow .dataquad{
+        width:20%;
+        margin-left: 2.5%;
+        margin-right:2.5%;
+        float:left;
+        height:190px;
+        color:white;
+        background-color: rgba(255,255,255,.10);
+      }
+
+      .statflow .dataquad > h1{
+        font-size: 36px;
+        width:100%;
+        text-align: center;
+      }
+
+      .statflow .dataquad > h2{
+        font-size: 16px;
+        width:80%;
+        margin-left:10%;
+        text-align: center;
+      }
+
 .edit{
     color: #333;
     background-color:#ddd;

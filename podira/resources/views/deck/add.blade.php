@@ -97,8 +97,12 @@ $(document).ready(function(){
 		<h1>Edit {{$deck -> name}}</h1>
 
 		<div class="minichooser">
-			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">Add Cards</a>
-			<a class="chooser" data-tab="data2" style="width:50%;">Add Users</a>
+			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
+				<i class="fa fa-plus-square-o"></i>
+	Add Cards</a>
+			<a class="chooser" data-tab="data2" style="width:50%;">
+				<i class="fa fa-male"> </i>
+				Add Users</a>
 		</div>
 
 		<form class="deck datanone data1 displayit" style="height:170px;" method="POST" action="/deck/{{$id}}/storeCard">

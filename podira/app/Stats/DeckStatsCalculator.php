@@ -13,7 +13,7 @@ class DeckStatsCalculator
 	/**
 	 * How many flashcards to return for most difficult and most intuitive.
 	 */
-	const NUM_CONCEPTS = 5;
+	const NUM_CONCEPTS = 4;
 
 	/**
 	 * Construct the object.
@@ -26,8 +26,8 @@ class DeckStatsCalculator
 
 	/**
 	 * Get the most difficult concepts in the deck, based on recall score.
-	 * @param $num - number of concepts to return 
-	 * @return ['flashcard_id' => average_recall_score] 
+	 * @param $num - number of concepts to return
+	 * @return ['flashcard_id' => average_recall_score]
 	 */
 	public function mostDifficultConcepts($num = self::NUM_CONCEPTS)
 	{
@@ -37,9 +37,9 @@ class DeckStatsCalculator
 
 	/**
 	 * Get the most intuitive concepts in the deck, based on recall score.
-	 * @param $num - number of concepts to return 
-	 * @return ['flashcard_id' => average_recall_score] 
-	 */	
+	 * @param $num - number of concepts to return
+	 * @return ['flashcard_id' => average_recall_score]
+	 */
 	public function mostIntuitiveConcepts($num = self::NUM_CONCEPTS)
 	{
 		$scores = $this->calcRecallScores();
@@ -48,7 +48,7 @@ class DeckStatsCalculator
 		asort($scores);
 		return $neededScores;
 	}
-	
+
 	/**
 	 * Get all concepts, sorted by recall score from low to high.
 	 * @param $force - if set to true, it will recalculate all scores instead of returning the cached version.
@@ -80,9 +80,9 @@ class DeckStatsCalculator
 				if($this->inDeck($flashcardId)) {
 					if(array_key_exists($flashcardId, $aggregateScores)) {
 						$aggregateScores[$flashcardId]['sum_scores'] += $recallScore;
-						$aggregateScores[$flashcardId]['sum_scores'] += 1;						
+						$aggregateScores[$flashcardId]['sum_scores'] += 1;
 					} else {
-						$aggregateScores[$flashcardId] = ['sum_scores' => $recallScore, 'num_scores' => 1];						
+						$aggregateScores[$flashcardId] = ['sum_scores' => $recallScore, 'num_scores' => 1];
 					}
 				}
 			}
@@ -91,7 +91,7 @@ class DeckStatsCalculator
 		$averageScores = [];
 
 		foreach($aggregateScores as $flashcardId => $info) {
-			$averageScores[$flashcardId] = $info['sum_scores'] / $info['num_scores'];
+			$averageScores[$flashcardId] = round($info['sum_scores'] / $info['num_scores']);
 		}
 
 		asort($averageScores);
