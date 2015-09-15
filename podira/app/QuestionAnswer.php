@@ -12,7 +12,7 @@ class QuestionAnswer
 	private $flashcard;
 
 	/**
-	 * Construct a QuestionAnswer object. At first the object will only have one choice for the answer, we have to provide it with a pool of 
+	 * Construct a QuestionAnswer object. At first the object will only have one choice for the answer, we have to provide it with a pool of
 	 * flashcards to get more answer choices.
 	 * @param $flashcard - A flashcard that represents the question and answer.
 	 */
@@ -34,9 +34,9 @@ class QuestionAnswer
 	}
 
 	/**
-	 * Generate multiple choice answers. 
-	 * @param $flashcardPool - a Collection of Flashcards to generate random answers for. 
-	 * @param $numChoices - the total number of multiple choice answers that we want. The correct answer is automatically included as one. 
+	 * Generate multiple choice answers.
+	 * @param $flashcardPool - a Collection of Flashcards to generate random answers for.
+	 * @param $numChoices - the total number of multiple choice answers that we want. The correct answer is automatically included as one.
 	 * @throws InvalidArgumentException
 	 */
 	public function setChoices($flashcardPool, $numChoices=4)

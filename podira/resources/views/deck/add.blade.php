@@ -16,11 +16,35 @@ $(document).ready(function(){
 		$("."+tab_id).addClass('displayit');
 	})
 
+	$('.deletecard').click(function(){
+		var flashcard_id = $(this).attr('flashcardid');
+		console.log(flashcard_id);
+
+		var base_url = 'http://localhost:8000';
+
+		$.ajaxSetup({
+		   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+
+		$.ajax({
+		    type: "POST", // or GET
+		    url: base_url + "/deck/{{$deck->id}}/deleteCard",
+		    data: "flashcard_id=" + flashcard_id,
+		    success: function(data){
+					$("#"+flashcard_id).removeClass('displayyes');
+		    }
+		  });
+
+
+
+
+	})
+
 })
 </script>
 
-<section name="main" class="bgmatte full" style="height:auto;">
-		<h1>{{$deck -> name}}</h1>
+<section name="main" class="bgmatte" style="height:auto;">
+		<h1>Edit {{$deck -> name}}</h1>
 
 		<div class="minichooser">
 			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">Add Cards</a>
@@ -69,32 +93,32 @@ $(document).ready(function(){
 				<input type="submit" value="Add User">
 		</form>
 
-
+		<div class="cardoverview">{{$deck -> name}}'s Cards</div>
 				<div style="width:80%;margin-left:10%;text-align:center;" class="">
 					@if ($deck->flashcards->isEmpty())
-						<br><br><br><br><br>
+						<br><br><br><br><br><br>
 						You have no current cards in this deck.
 					@else
-							@foreach($deck->flashcards as $card)
-							<div class="card sidebyside bgbaige" style="-webkit-animation-duration:0s;">
-							<div class="innercard">
-									<div class="emblem">
-											<div class="inneremblem">
-													<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+							@foreach($deck->flashcards->reverse() as $card)
+							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:115px;">
+									<div class="innercard">
+											<div class="emblem">
+													<div class="inneremblem">
+															<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+													</div>
+
 											</div>
+											<h1>{{$card -> front}}</h1>
+											<br>
+											<h1>
+													Answer: <i>{{$card -> back}}</i>
+											</h1>
+
+											<a class="skip deletecard" flashcardid="{{$card -> id}}" style="right:45px;">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
+
+
 
 									</div>
-									<h1>{{$card -> front}}</h1>
-									<br>
-									<h1>
-											Answer: <i>{{$card -> back}}</i>
-									</h1>
-
-									<a class="skip" style="right:45px;"  href="/deck/{{$deck->id}}/deleteCard">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
-
-
-
-							</div>
 
 							</div>
 							@endforeach
