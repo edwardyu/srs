@@ -74,7 +74,7 @@ class DeckController extends Controller
     {
         $id = $request->id;
         $deck = Deck::find($id);
-        $user = User::find($request->user_id);
+        $user = User::where('email', $request->user_email)->first();
         $user->decks()->save($deck, ['permissions' => 'view']);
 
         return redirect()->action('DeckController@addCard', [$id]);
