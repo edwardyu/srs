@@ -38,7 +38,7 @@ class SessionController extends Controller
 
         if(!$info) {
             $sessionManager->end();
-            return 'You have completed this session!';
+            return view('session.complete');
         }
         
         Session::put('sessionManager', $sessionManager);
@@ -93,7 +93,7 @@ class SessionController extends Controller
                 
         } else {
             $sessionManager->end();
-            return 'You have completed this session!';
+            return view('session.complete');
         }        
     }
 
