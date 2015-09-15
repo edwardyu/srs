@@ -70,6 +70,16 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	 */
 	protected $deck;
 
+	/**
+	 * How many correct answers.
+	 */
+	protected $numCorrect;
+
+	/**
+	 * How many incorrect answers.
+	 */
+	protected $numIncorrect;
+
 	public function __construct(\App\User $user, \App\Deck $deck, $type)
 	{
 		$this->user = $user;
@@ -79,6 +89,8 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		$this->lastFlashcard = Null;
 		$this->answerPool = Null;
 		$this->interactedFlashcards = collect();
+		$this->numCorrect = 0;
+		$this->numIncorrect = 0;
 	}
 	
 	public function start()
@@ -149,6 +161,8 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->save($this->lastFlashcard, ['num_correct' => 1, 'last_review_time' => \Carbon\Carbon::now()]);
 			else
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_correct');
+			
+			$this->numCorrect++;
 		} 
 
 		else if(!$correct && $answer->getFromWhence() == \App\Answer::MC) 
@@ -162,6 +176,8 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->save($this->lastFlashcard);
 			else
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_incorrect');
+			
+			$this->numIncorrect++;
 		}
 
 		return $correct;
@@ -170,6 +186,10 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	public function end()
 	{
 		$timeSpent = time() - $this->startTime;
-		$this->session->update(['time_spent' => $timeSpent]);
+		$this->session->update([
+			'time_spent' => $timeSpent, 
+			'num_correct' => $this->numCorrect,
+			'num_incorrect' => $this->numIncorrect
+		]);
 	}
 }
