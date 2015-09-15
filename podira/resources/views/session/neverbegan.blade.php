@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', 'Oh No!')
 @section('content')
 
 <body>

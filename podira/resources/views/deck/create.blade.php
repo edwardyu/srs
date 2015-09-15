@@ -89,11 +89,14 @@ $(document).ready(function(){
 						<h5 class="matte" style="opacity:.5;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
 
 						<br>
-						<a class="thirth bgmatte deletedeck" deckid="{{$deck->id}}">
+						<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}">
 							<i class="fa fa-trash-o"></i>
 						</a>
 						<a class="thirth bgblue"  href="/deck/{{$deck->id}}/add">
 							<i class="fa fa-pencil"></i>
+						</a>
+						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/add" style="padding-top:3px;padding-left:7px;padding-right:7px;">
+							<i class="fa fa-pie-chart"></i> <span style="font-size:13px;">Statistics</span>
 						</a>
 						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="padding-top:3px;padding-left:7px;padding-right:7px;" >
 							<i class="fa fa-line-chart"></i>  <span style="font-size:13px;">Review</span>
