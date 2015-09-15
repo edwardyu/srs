@@ -4,6 +4,8 @@
  */
 namespace App\Stats;
 
+use DB;
+
 class UserStatsCalculator
 {
 	/**
@@ -44,5 +46,58 @@ class UserStatsCalculator
 
 		asort($scores);
 		return $scores;
+	}
+
+	/**
+	 * Calculate the total time the user has spent on sessions.
+	 * @return int
+	 */
+	public function totalTime()
+	{
+		return intval($this->user->sessions()->sum('time_spent'));
+	}
+
+	/**
+	 * Calculate the total number of cards the user has interacted with (learning + reviewing)
+	 * @return int
+	 */
+	public function totalInteractions()
+	{
+		$total = 0;
+
+		foreach($this->user->sessions as $session)
+		{
+			$interactions = (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
+									   						 ->where('flashcardable_id', $session->id)
+									   						 ->count();
+			$total += $interactions;
+		}
+
+		return $total;
+	}
+
+	/**
+	 * Calculate the accuracy of the user.
+	 * @return float in [0, 1]
+	 */
+	public function accuracy()
+	{
+		$correct = 0;
+		$incorrect = 0;
+
+		foreach($this->user->sessions as $session)
+		{
+			$correct += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
+									   						 ->where('flashcardable_id', $session->id)
+									   						 ->sum('num_correct');
+			$incorrect += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
+									   						 ->where('flashcardable_id', $session->id)
+									   						 ->sum('num_incorrect');			
+		}
+
+		if($incorrect == 0)
+			return 1;
+		else
+			return $correct / $incorrect;		
 	}
 }
