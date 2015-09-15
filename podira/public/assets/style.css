@@ -94,6 +94,16 @@ textarea, input { outline: none; }
         text-align: center;
       }
 
+      .statflow .dataquad > h3{
+        font-size: 24px;
+        opacity:.5;
+        margin-top:12px;
+        margin-bottom:-20px;
+        width:80%;
+        margin-left:10%;
+        text-align: center;
+      }
+
 .edit{
     color: #333;
     background-color:#ddd;

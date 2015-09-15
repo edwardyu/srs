@@ -124,20 +124,26 @@
 				<div class="statflow">
 					<h1 style="margin-bottom:14px;">GENERAL</h1>
 					<div class="dataquad">
+						<h3><i class="fa fa-male"></i> </h3>
 						<h1>{{$numUsers}}</h1>
 						<h2>Number of users learning the deck</h2>
 					</div>
 					<div class="dataquad">
-						<h1>{{$totalTime}}</h1>
+						<h3><i class="fa fa-clock-o"></i> </h3>
+
+						<h1> {{$totalTime}}</h1>
 						<h2>Total seconds spent learning course</h2>
 
 					</div>
 					<div class="dataquad">
+						<h3><i class="fa fa-th"></i> </h3>
+
 						<h1>{{$totalInteractions}}</h1>
 						<h2>Total number of cards interacted with</h2>
 
 					</div>
 					<div class="dataquad">
+						<h3><i class="fa fa-bullseye"></i> </h3>
 						<h1>{{$accuracy}}%</h1>
 						<h2>Average Accuracy</h2>
 
