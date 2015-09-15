@@ -90,7 +90,20 @@ textarea, input { outline: none; }
 }
 
 
+.qanda{
+  width:100%;
+  background-color: transparent;
+  color: rgba(0,0,0,.7);
+  border:none;
+  border-bottom: 2px rgba(0,0,0,.4) solid;
+  height:25px;
+  margin-bottom:-1px;
+}
 
+.qanda + span{
+  color: rgba(0,0,0,.5);
+  font-size:10px;
+}
 
 
 /* ANIMATE CSS */

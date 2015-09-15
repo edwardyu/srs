@@ -20,7 +20,7 @@ class SessionController extends Controller
     {
         $user = $request->user();
         $deck = \App\Deck::find($id);
-        
+
         if($type == 'learn') {
             $sessionManager = new \App\LearningSessionManager($user, $deck, $type);
         } else if($type == 'review') {
@@ -30,17 +30,17 @@ class SessionController extends Controller
         }
 
         try {
-            $info = $sessionManager->start();            
+            $info = $sessionManager->start();
         } catch(\InvalidArgumentException $e) {
             return 'You need at least 4 cards in a deck.';
         }
-        
+
 
         if(!$info) {
             $sessionManager->end();
-            return view('session.complete');
+            return view('session.neverbegan') -> with(['deck' => $deck,'type' => $type]);
         }
-        
+
         Session::put('sessionManager', $sessionManager);
 
         if($info instanceof \App\QuestionAnswer) {
@@ -50,15 +50,15 @@ class SessionController extends Controller
                 'deck' => $deck,
                 'question' => $info->getQuestion(),
                 'answers' => $info->getChoices()
-            ]);                
+            ]);
         } else if($info instanceof \App\Flashcard) {
             Session::put('fromWhence', 'card');
             return view('session.card')->with([
-                'card' => $info, 
+                'card' => $info,
                 'type' => $type,
                 'deck' => $deck
             ]);
-        }     
+        }
     }
 
     public function next(Request $request, $id, $type)
@@ -81,20 +81,20 @@ class SessionController extends Controller
                     'deck' => $deck,
                     'question' => $info->getQuestion(),
                     'answers' => $info->getChoices()
-                ]);                
+                ]);
             } else if($info instanceof \App\Flashcard) {
                 Session::put('fromWhence', 'card');
                 return view('session.card')->with([
-                    'card' => $info, 
+                    'card' => $info,
                     'type' => $type,
                     'deck' => $deck
                 ]);
             }
-                
+
         } else {
             $sessionManager->end();
-            return view('session.complete');
-        }        
+            return view('session.complete') -> with(['deck' => $deck]);
+        }
     }
 
     private function isValidSessionType($type) {
