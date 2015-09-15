@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', 'Your Current Decks')
 @section('content')
 
 <script>
@@ -16,18 +16,41 @@ $(document).ready(function(){
 		$("."+tab_id).addClass('displayit');
 	})
 
+
+	$('.deletedeck').click(function(){
+		var deckid = $(this).attr('deckid');
+		console.log(deckid);
+
+		var base_url = 'http://localhost:8000';
+
+		$.ajaxSetup({
+			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+
+		$.ajax({
+				type: "POST", // or GET
+				url: base_url + "/deck/" + deckid + "/delete",
+				data: "id=" + deckid,
+				success: function(data){
+					$("#"+deckid).removeClass('displayyes');
+				}
+			});
+
+	})
+
 })
 </script>
 
 
-<section name="main" class="bgmatte full">
-	<h1>Decks</h1>
+<section name="main" class="bgmatte" style="height:auto;min-height:80vh;">
+	<h1>Your Current Decks</h1>
 
 	<div class="minichooser">
-		<a class="chooser chooseractive" style="width:50%;" data-tab="data3">Create Deck</a>
-		<a class="chooser" style="width:50%;"  data-tab="data2">Current Decks</a>
+		<a class="chooser chooseractive" style="width:50%;"  data-tab="data2">Current Decks</a>
+
+		<a class="chooser" style="width:50%;" data-tab="data3">Create Deck</a>
 	</div>
-		<form class="deck datanone data3 displayit" method="POST" action="/deck/store">
+		<form class="deck datanone data3" method="POST" action="/deck/store">
 			{!! csrf_field() !!}
 			 <fieldset>General</fieldset>
 				<input placeholder="Title" name="name">
@@ -46,10 +69,10 @@ $(document).ready(function(){
 				<input type="submit" value="Create Deck">
 		</form>
 
-		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2">
+		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
 			@if($user->decks)
 				@foreach($user->decks as $deck)
-				<div class="card sidebyside bgbaige" style="-webkit-animation-duration:0s;">
+				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
 				<div class="innercard">
 						<div class="emblem">
 								<div class="inneremblem">
@@ -61,11 +84,20 @@ $(document).ready(function(){
 						<h5 class="matte" style="opacity:.5;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
 
 						<br>
+						<a class="thirth bgmatte deletedeck" deckid="{{$deck->id}}">
+							<i class="fa fa-trash-o"></i>
+						</a>
+						<a class="thirth bgblue"  href="/deck/{{$deck->id}}/add">
+							<i class="fa fa-pencil"></i>
+						</a>
+						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="padding-top:3px;padding-left:7px;padding-right:7px;" >
+							<i class="fa fa-line-chart"></i>  <span style="font-size:13px;">Review</span>
+						</a>
+						<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/learn" style="padding-top:3px;padding-left:7px;padding-right:7px;">
+							<i class="fa fa-bolt"></i> <span style="font-size:13px;">Learn</span>
+						</a>
 
 
-						<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/review" style="right:45px;">Review</a>
-						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/learn">Learn</a>
-						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/learn">Delete</a>
 
 
 

@@ -45,10 +45,13 @@ textarea, input { outline: none; }
 
 .halfform{
     border:none;
-    width:41.9%;
+    width:91.9%;
     float:left;
-    margin-top:-13px;
-    margin-bottom:10px;
+    margin-top:-23px;
+    margin-bottom:2px;
+    height:30px;
+    text-align:left;
+    margin-left:-6px;
 }
 
 .edit{
@@ -3411,6 +3414,7 @@ Copyright (c) 2015 Daniel Eden
     padding-right: 5px;
     position:absolute;
     bottom:4px;
+    cursor:pointer;
     right:-16px;
     background-color: rgba(146,167,252,1);
 }
@@ -3734,8 +3738,24 @@ section[name="card"]{
 }
 
 
+.displaynone{
+  display:none !important;
+}
+
+.displayyes{
+  display:inline-block !important;
+}
 
 
+.cardoverview{
+  width:80%;
+  margin-left:10%;
+  border-bottom: 1px rgba(255,255,255,.3) solid;
+  font-family: Lato;
+  margin-bottom:-100px;
+  font-size:15px;
+  color: white;
+}
 
 .card{
 width: 400px;
@@ -3909,16 +3929,21 @@ animation-duration: 1s;
         border: 1px rgba(255,255,255,.4) solid;
     }
 
-    .innercard > .thirth{
-      width:33.333%;
-      height:30px;
-      margin-top:5px;
+    .innercard .thirth{
+      padding:5px;
+      width:auto;
+      height:27px;
+      min-width:27px;
+      border-radius:15px;
+      margin-right:5px;
+      margin-top:1px;
       color:white;
       box-sizing: border-box;
       padding-top:5px;
       background-color:black;
       display:block;
-      float:left;
+      border:none;
+      float:right;
       cursor:pointer;
     }
 
@@ -4273,6 +4298,12 @@ animation-duration: 1s;
 .bgmatte{
     background-color: rgba(33,38,41,1) !important;
     background: rgba(33,38,41,1) !important;
+
+}
+
+.bgblue{
+    background-color: #52AEFB !important;
+    background: #52AEFB !important;
 
 }
 
