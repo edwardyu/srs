@@ -1,12 +1,24 @@
 @extends('layouts.master')
 @section('title', 'Your Current Decks')
 @section('content')
+<script>
+$(document).ready(function(){
 
+
+	$('label').click(function(){
+
+		$('.enterb').addClass('displayyes');
+		$('.skipb').removeClass('displayyes');
+
+	})
+
+})
+</script>
 <section name="main" class="bgmatte" style="height:auto;min-height:80vh;">
 	<h1>Review {{$deck -> name}}</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
-				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
+				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" >
 				<div class="innercard">
 						<div class="emblem">
 								<div class="inneremblem">
@@ -15,16 +27,17 @@
 
 						</div>
 						<h1>{{$question}}</h1>
-						 <form>
+						 <form  method="POST" action="/deck/{{$deck->id}}/review/next">
 							 {!! csrf_field() !!}
 							@foreach($answers as $answer)
 							<fieldset class="halfform">
 								 <input type="radio" name="answer" id="{{ $answer }}" value="{{ $answer }}">
-										 <label for="{{ $answer }}"><span></span>{{ $answer }}</label>
+										 <label for="{{ $answer }}"  style="width:100%;"><span></span>{{ $answer }}</label>
 							</fieldset>
 							@endforeach
 
-							<button type="submit" style="border:none;" class="enter">Enter </button>
+							<button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
+							<button type="submit" style="border:none;" class="displayyes displaynone bgpink skipb enter">Skip </button>
 
 						 </form>
 

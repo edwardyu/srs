@@ -46,9 +46,14 @@ $(document).ready(function(){
 	<h1>Your Current Decks</h1>
 
 	<div class="minichooser">
-		<a class="chooser chooseractive" style="width:50%;"  data-tab="data2">Current Decks</a>
+		<a class="chooser chooseractive" style="width:50%;"  data-tab="data2">
+			<i class="fa fa-th-large"></i>
+			Current Decks</a>
 
-		<a class="chooser" style="width:50%;" data-tab="data3">Create Deck</a>
+		<a class="chooser" style="width:50%;" data-tab="data3">
+			<i class="fa fa-plus-square"></i>
+
+			Create Deck</a>
 	</div>
 		<form class="deck datanone data3" method="POST" action="/deck/store">
 			{!! csrf_field() !!}

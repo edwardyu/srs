@@ -16,6 +16,56 @@ $(document).ready(function(){
 		$("."+tab_id).addClass('displayit');
 	})
 
+	$('.editcard').click(function(){
+		var card = $(this).attr('card');
+		$('.caredit' + card).addClass('displayyes');
+		$('.car' + card).removeClass('displayyes');
+	})
+
+	$('.cancelcard').click(function(){
+		var card = $(this).attr('card');
+		$('.caredit' + card).removeClass('displayyes');
+		$('.car' + card).addClass('displayyes');
+	})
+
+  $('.editcardform').submit(function(event) {
+
+      // get the form data
+      // there are many ways to get this data using jQuery (you can use the class or id also)
+      var formData = $(this).serializeArray();
+
+			console.log(formData);
+      // process the form
+			var base_url = 'http://localhost:8000';
+
+			$.ajaxSetup({
+			   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+			});
+
+			$.ajax({
+			    type: "POST", // or GET
+			    url: base_url + "/deck/{{$deck->id}}/editCard",
+					dataType: 'json',
+			    data: formData,
+			    success: function(data){
+						console.log("sucess!!");
+			    }
+			  });
+
+				var card = formData[0].value;
+				$('.caredit' + card).removeClass('displayyes');
+				$('.car' + card).addClass('displayyes');
+				$('.carquestion' + card).html(formData[1].value);
+				$('.caranswer' + card).html(formData[2].value);
+
+
+
+      // stop the form from submitting the normal way and refreshing the page
+      event.preventDefault();
+  });
+
+
+
 	$('.deletecard').click(function(){
 		var flashcard_id = $(this).attr('flashcardid');
 		console.log(flashcard_id);
@@ -47,8 +97,12 @@ $(document).ready(function(){
 		<h1>Edit {{$deck -> name}}</h1>
 
 		<div class="minichooser">
-			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">Add Cards</a>
-			<a class="chooser" data-tab="data2" style="width:50%;">Add Users</a>
+			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
+				<i class="fa fa-plus-square-o"></i>
+	Add Cards</a>
+			<a class="chooser" data-tab="data2" style="width:50%;">
+				<i class="fa fa-male"> </i>
+				Add Users</a>
 		</div>
 
 		<form class="deck datanone data1 displayit" style="height:170px;" method="POST" action="/deck/{{$id}}/storeCard">
@@ -76,7 +130,7 @@ $(document).ready(function(){
 		<form class="deck datanone data2" method="POST" style="height:170px;" action="/deck/{{$id}}/storeUser" id="data2">
 			{!! csrf_field() !!}
 			 <fieldset>Info</fieldset>
-				<input placeholder="User ID" name="user_id">
+				<input placeholder="User Email" name="user_email">
 
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
@@ -100,7 +154,7 @@ $(document).ready(function(){
 						You have no current cards in this deck.
 					@else
 							@foreach($deck->flashcards->reverse() as $card)
-							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:115px;">
+							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:115px;text-align:left;">
 									<div class="innercard">
 											<div class="emblem">
 													<div class="inneremblem">
@@ -108,14 +162,30 @@ $(document).ready(function(){
 													</div>
 
 											</div>
-											<h1>{{$card -> front}}</h1>
-											<br>
-											<h1>
-													Answer: <i>{{$card -> back}}</i>
-											</h1>
+											<div class="displaynone displayyes car{{$card -> id}}">
+												<h1 style="width:100%;"><span class="carquestion{{$card -> id}}">{{$card -> front}}</span></h1>
+												<br>
+												<h1 style="width:100%;">
+														Answer: <i class="caranswer{{$card -> id}}">{{$card -> back}}</i>
+												</h1>
+											</div>
+											<form class="editcardform displaynone editform caredit{{$card -> id}}" >
+												<input value="{{$card -> id}}" name="flashcard_id" type="hidden">
+												<input value="{{$card -> front}}" name="front" class="qanda">
+												<span>Question</span>
+												<br><br>
+												<input value="{{$card -> back}}" name="back"  class="qanda">
+												<span>Answer</span>
+												<input class="bgmatte enter" value="Edit Card" type="submit">
+											</form>
 
-											<a class="skip deletecard" flashcardid="{{$card -> id}}" style="right:45px;">Delete</a><a class="enter" href="/deck/{{$deck->id}}/editCard">Edit Card</a>
+											<div  class="displaynone displayyes car{{$card -> id}}">
+												<a class="skip deletecard" flashcardid="{{$card -> id}}" style="right:45px;">Delete</a><a class="enter editcard" card="{{$card -> id}}">Edit Card</a>
+											</div>
 
+											<div class="displaynone caredit{{$card -> id}}">
+												<a class="skip cancelcard" card="{{$card -> id}}" style="right:50px;">Cancel</a>
+											</div>
 
 
 									</div>

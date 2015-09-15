@@ -10,6 +10,6 @@ use App\Http\Controllers\Controller;
 class MainController extends Controller
 {
   public function mainPage(Request $request){
-    return view('welcome') -> with('isloggedin',true);
+    return view('welcome');
   }
 }

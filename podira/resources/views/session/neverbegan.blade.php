@@ -5,10 +5,7 @@
 <body>
 
     <section name="main" class="bgmatte full">
-        <h1>You Completed {{$deck -> name}} Successfully!</h1>
-        <h2>Great job!</h2>
-
-
+        <h1>You have no current cards to {{$type}}!</h1>
 
     </section>
 </body>
