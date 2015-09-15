@@ -158,4 +158,31 @@ class DeckStatsCalculator
 	{
 		return intval($this->deck->users->count());
 	}
+
+
+	/**
+	 * Accuracy of the users learning the deck.
+	 * @return float in [0, 1]
+	 */
+	public function accuracy()
+	{
+		$correct = 0;
+		$incorrect = 0;
+
+		foreach($this->deck->sessions as $session)
+		{
+			$correct += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
+									   						 ->where('flashcardable_id', $session->id)
+									   						 ->sum('num_correct');
+			$incorrect += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
+									   						 ->where('flashcardable_id', $session->id)
+									   						 ->sum('num_incorrect');
+		}
+
+		if($incorrect == 0)
+			return 1;
+		else
+			return $correct / $incorrect;
+	}
+
 }
