@@ -57,10 +57,6 @@ Route::post('deck/{id}/{type}/next', 'SessionController@next');
 //stat routes
 Route::get('deck/{id}/stats', 'StatsController@deckStats');
 
-Route::get('home', 'UserController@home');
-
-
-
 Route::filter('csrf', function() {
     $token = Request::ajax() ? Request::header('X-CSRF-Token') : Input::get('_token');
     if (Session::token() != $token)
