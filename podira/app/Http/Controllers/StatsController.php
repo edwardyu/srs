@@ -20,7 +20,7 @@ class StatsController extends Controller
 
     /**
      * Show the statistics for the entire deck. Can only be accessed if the user has edit permissions on the deck.
-     * @param Request $request - a HTTP request 
+     * @param Request $request - a HTTP request
      * @param $id - id of the deck.
      */
     public function deckStats(Request $request, $id)
@@ -34,6 +34,7 @@ class StatsController extends Controller
         $mostIntuitiveConcepts = $deckStatsCalculator->mostIntuitiveConcepts();
         $mostDifficultCards = $this->convertArrayKeysToFlashcards($mostDifficultConcepts);
         $mostIntuitiveCards = $this->convertArrayKeysToFlashcards($mostIntuitiveConcepts);
+        $accuracy = $deckStatsCalculator->accuracy();
 
         return view('stats.deck')->with([
             'deck' => $deck,
@@ -43,7 +44,8 @@ class StatsController extends Controller
             'mostDifficultConcepts' => $mostDifficultConcepts,
             'mostIntuitiveConcepts' => $mostIntuitiveConcepts,
             'mostDifficultCards' => $mostDifficultCards,
-            'mostIntuitiveCards' => $mostIntuitiveCards
+            'mostIntuitiveCards' => $mostIntuitiveCards,
+            'accuracy' => round($accuracy*100)
         ]);
     }
 

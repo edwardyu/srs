@@ -138,8 +138,8 @@
 
 					</div>
 					<div class="dataquad">
-						<h1>{{$totalInteractions}}</h1>
-						<h2>Total number of cards interacted with</h2>
+						<h1>{{$accuracy}}%</h1>
+						<h2>Average Accuracy</h2>
 
 					</div>
 
