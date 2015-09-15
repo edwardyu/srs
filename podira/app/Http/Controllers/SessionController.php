@@ -29,7 +29,12 @@ class SessionController extends Controller
             return response('Not found.', 404);
         }
 
-        $info = $sessionManager->start();
+        try {
+            $info = $sessionManager->start();            
+        } catch(\InvalidArgumentException $e) {
+            return 'You need at least 4 cards in a deck.';
+        }
+        
 
         if(!$info) {
             $sessionManager->end();
