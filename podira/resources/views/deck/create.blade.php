@@ -95,7 +95,7 @@ $(document).ready(function(){
 						<a class="thirth bgblue"  href="/deck/{{$deck->id}}/add">
 							<i class="fa fa-pencil"></i>
 						</a>
-						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/add" style="padding-top:3px;padding-left:7px;padding-right:7px;">
+						<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/stats" style="padding-top:3px;padding-left:7px;padding-right:7px;">
 							<i class="fa fa-pie-chart"></i> <span style="font-size:13px;">Statistics</span>
 						</a>
 						<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="padding-top:3px;padding-left:7px;padding-right:7px;" >
