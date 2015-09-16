@@ -125,7 +125,7 @@
     </section>
 
 
-    <section name="card" class="bgpurple">
+    <section name="card" class="bgpurple" style="height:290px;">
         <h1>Data that helps improve your model and class</h1>
         <div style="width:80%;height:150px;margin-left:10%;padding-top:65px;">
           <center style="opacity:.7">Answer Accuracy of AP World History over Time</center>
