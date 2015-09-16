@@ -85,9 +85,9 @@ class UserStatsCalculator
 		$correct = intval($this->user->sessions()->sum('num_correct'));
 		$incorrect = intval($this->user->sessions()->sum('num_incorrect'));
 
-		if($incorrect == 0)
+		if($incorrect + $correct == 0)
 			return 1;
 		else
-			return $correct / $incorrect;		
+			return $correct / ($incorrect + $correct);		
 	}
 }
