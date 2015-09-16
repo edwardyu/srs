@@ -14,7 +14,7 @@
           strokeColor : "rgba(220,220,220,0.8)",
           highlightFill: "rgba(220,220,220,0.75)",
           highlightStroke: "rgba(220,220,220,1)",
-          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+          data : [60,69,63,79]
         }
       ]
     }
@@ -128,7 +128,7 @@
     <section name="card" class="bgpurple">
         <h1>Data that helps improve your model and class</h1>
         <div style="width:80%;height:150px;margin-left:10%;padding-top:65px;">
-          <center style="opacity:.7">Answer Accuracy of AP World History</center>
+          <center style="opacity:.7">Answer Accuracy of AP World History over Time</center>
           <canvas id="canvas" height="90"></canvas>
         </div>
     </section>
