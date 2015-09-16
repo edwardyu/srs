@@ -75,7 +75,7 @@ $(document).ready(function(){
 		</form>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
-			@if($user->decks)
+			@if(!$user->decks->isEmpty())
 				@foreach($user->decks as $deck)
 				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
 				<div class="innercard">
@@ -113,6 +113,9 @@ $(document).ready(function(){
 
 				</div>
 				@endforeach
+			@else
+				<br><br><br><br><br>
+				You have no current flashcards.
 			@endif
 		</div>
 
