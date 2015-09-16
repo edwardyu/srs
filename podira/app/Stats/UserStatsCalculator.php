@@ -82,18 +82,8 @@ class UserStatsCalculator
 	 */
 	public function accuracy()
 	{
-		$correct = 0;
-		$incorrect = 0;
-
-		foreach($this->user->sessions as $session)
-		{
-			$correct += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
-									   						 ->where('flashcardable_id', $session->id)
-									   						 ->sum('num_correct');
-			$incorrect += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
-									   						 ->where('flashcardable_id', $session->id)
-									   						 ->sum('num_incorrect');			
-		}
+		$correct = intval($this->user->sessions()->sum('num_correct'));
+		$incorrect = intval($this->user->sessions()->sum('num_incorrect'));
 
 		if($incorrect == 0)
 			return 1;
