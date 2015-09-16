@@ -1,6 +1,6 @@
 <!-- resources/views/auth/register.blade.php -->
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', 'Sign Up')
 @section('content')
 
 <section name="main" class="bgmatte full">

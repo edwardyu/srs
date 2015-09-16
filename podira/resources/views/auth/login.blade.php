@@ -1,6 +1,6 @@
 <!-- resources/views/auth/login.blade.php -->
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', 'Sign In')
 @section('content')
 
 <body>
