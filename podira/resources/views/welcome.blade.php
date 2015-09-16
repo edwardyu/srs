@@ -32,8 +32,8 @@
     </script>
     <section name="main" class="bgmatte">
         <h1>Notecards That Learn With Students</h1>
-        <h2>Utilizing spaced repetition techniques with classroom analytics to
-        better enable teachers to improve thier curriculum.  <br>Podira provides
+        <h2>We use spaced repetition techniques with classroom analytics to
+        better enable teachers to improve their curriculums.  <br>Podira provides
         educators with the smartest notecards available, optimized to provide feedback and helpful data.</h2>
 
         <div class="statflow">
@@ -47,13 +47,13 @@
 						<h3><i class="fa fa-clock-o"></i> </h3>
 
 						<h1> 48</h1>
-						<h2>Average seconds spent learning course</h2>
+						<h2>Average minutes spent learning course</h2>
 
 					</div>
 					<div class="dataquad">
 						<h3><i class="fa fa-th"></i> </h3>
 
-						<h1>43</h1>
+						<h1>184</h1>
 						<h2>Total number of cards interacted with</h2>
 
 					</div>
