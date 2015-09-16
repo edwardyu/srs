@@ -32,32 +32,32 @@
     </script>
     <section name="main"  style="background-image: url({!! URL::asset('assets/images/p.png'); !!})">
         <h1>Notecards That Learn With Students</h1>
-        <h2>We use spaced repetition techniques with classroom analytics to
+        <h2 style="font-weight:600;">We use spaced repetition techniques with classroom analytics to
         better enable teachers to improve their curriculums.  <br>Podira provides
         educators with the smartest notecards available, optimized to provide feedback and helpful data.</h2>
 
         <div class="statflow">
 					<h1 style="margin-bottom:14px;">Statistics for <i>AP World History</i> (Example)</h1>
-					<div class="dataquad" style="background:rgba(146,167,252,.4)">
+					<div class="dataquad" style="background:rgba(146,167,252,.9)">
 						<h3><i class="fa fa-male"></i> </h3>
 						<h1>45</h1>
 						<h2>Number of users learning the deck</h2>
 					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.4)">
+          <div class="dataquad" style="background:rgba(146,167,252,.9)">
 						<h3><i class="fa fa-clock-o"></i> </h3>
 
 						<h1> 48</h1>
 						<h2>Average minutes spent learning course</h2>
 
 					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.4)">
+          <div class="dataquad" style="background:rgba(146,167,252,.9)">
 						<h3><i class="fa fa-th"></i> </h3>
 
 						<h1>184</h1>
 						<h2>Total number of cards interacted with</h2>
 
 					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.4)">
+          <div class="dataquad" style="background:rgba(146,167,252,.9)">
 						<h3><i class="fa fa-bullseye"></i> </h3>
 						<h1>72%</h1>
 						<h2>Average Accuracy</h2>
@@ -131,6 +131,12 @@
           <center style="opacity:.7">Answer Accuracy of AP World History over Time</center>
           <canvas id="canvas" height="90"></canvas>
         </div>
+    </section>
+
+    <section name="card" class="" style="height:0px;">
+        <h1 class="matte">Ready to get started with Podira's technology?</h1>
+        <br><br><br>
+        <h2 style="text-align:center;"><a href="/auth/register" class="bigsignup bgpurple">Get Started Today!</a></h2>
     </section>
 
 </body>

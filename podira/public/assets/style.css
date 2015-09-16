@@ -3508,6 +3508,22 @@ Copyright (c) 2015 Daniel Eden
     cursor: pointer;
 }
 
+.signup{
+
+  padding:8px;
+  border: 1px white solid;
+  border-radius:5px;
+}
+
+.bigsignup{
+
+  color:white;
+  padding: 10px;
+
+  font-size:.7em;
+  border-radius:5px;
+}
+
 .displayit{
   display:block !important;
 
@@ -3546,7 +3562,7 @@ section[name="main"]{
         width:90%;
         left:5%;
         text-align:center;
-        font-weight:100;
+        font-weight:800;
         font-family:Lato, sans-serif;
         top:100px;
         font-size:16px;

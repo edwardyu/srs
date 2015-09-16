@@ -19,7 +19,7 @@ class DeckController extends Controller
         $this->middleware('auth.deck.view', ['only' => 'addCard']);
         $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser', 'deleteCard', 'editCard', 'deleteDeck']]);
     }
-    
+
     /**
      * Show the form for creating a new deck.
      *
@@ -27,7 +27,7 @@ class DeckController extends Controller
      */
     public function create()
     {
-        return view('deck.create');       
+        return view('deck.create');
     }
 
     public function store(Request $request)
@@ -61,7 +61,7 @@ class DeckController extends Controller
                 'back' => $request->back
             ]);
 
-            $deck->flashcards()->save($card);            
+            $deck->flashcards()->save($card);
         }
 
         return redirect()->action('DeckController@addCard', [$id]);
@@ -75,9 +75,16 @@ class DeckController extends Controller
         $id = $request->id;
         $deck = Deck::find($id);
         $user = User::where('email', $request->user_email)->first();
-        $user->decks()->save($deck, ['permissions' => 'view']);
-
-        return redirect()->action('DeckController@addCard', [$id]);
+        try{
+          if (!$user) {
+              throw new \Exception('No User!');
+          } else {
+          $user->decks()->save($deck, ['permissions' => 'view']);
+          return redirect()->action('DeckController@addCard', [$id]);
+          }
+        } catch (\Exception $e) {
+          return view('errors.nousers');
+        }
     }
 
     public function deleteCard(Request $request)
