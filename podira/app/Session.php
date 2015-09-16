@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-    protected $fillable = ['time_spent', 'type'];
+    protected $fillable = ['time_spent', 'type', 'num_correct', 'num_incorrect'];
 
     /**
      * Return the user who owns the session.

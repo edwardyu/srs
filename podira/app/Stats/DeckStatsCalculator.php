@@ -166,23 +166,13 @@ class DeckStatsCalculator
 	 */
 	public function accuracy()
 	{
-		$correct = 0;
-		$incorrect = 0;
+		$correct = intval($this->deck->sessions()->sum('num_correct'));
+		$incorrect = intval($this->deck->sessions()->sum('num_incorrect'));
 
-		foreach($this->deck->sessions as $session)
-		{
-			$correct += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
-									   						 ->where('flashcardable_id', $session->id)
-									   						 ->sum('num_correct');
-			$incorrect += (int) DB::table('flashcardables')->where('flashcardable_type', 'App\Session')
-									   						 ->where('flashcardable_id', $session->id)
-									   						 ->sum('num_incorrect');
-		}
-
-		if($incorrect == 0)
+		if($incorrect + $correct == 0)
 			return 1;
 		else
-			return $correct / $incorrect;
+			return $correct / ($incorrect + $correct);
 	}
 
 }
