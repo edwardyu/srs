@@ -21,7 +21,7 @@ $(document).ready(function(){
 		var deckid = $(this).attr('deckid');
 		console.log(deckid);
 
-		var base_url = 'http://localhost:8000';
+		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
 			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }

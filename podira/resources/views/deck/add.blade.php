@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 			console.log(formData);
       // process the form
-			var base_url = 'http://localhost:8000';
+			var base_url = window.location.protocol + "//" + window.location.host;
 
 			$.ajaxSetup({
 			   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -163,9 +163,9 @@ $(document).ready(function(){
 
 											</div>
 											<div class="displaynone displayyes car{{$card -> id}}">
-												<h1 style="width:100%;"><span class="carquestion{{$card -> id}}">{{$card -> front}}</span></h1>
+												<h1 style="width:90%;"><span class="carquestion{{$card -> id}}">{{$card -> front}}</span></h1>
 												<br>
-												<h1 style="width:100%;">
+												<h1 style="width:90%;">
 														Answer: <i class="caranswer{{$card -> id}}">{{$card -> back}}</i>
 												</h1>
 											</div>
