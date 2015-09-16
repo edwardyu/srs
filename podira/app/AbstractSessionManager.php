@@ -173,7 +173,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 												->get();
 
 			if(!count($query))
-				$this->user->flashcards()->save($this->lastFlashcard);
+				$this->user->flashcards()->save($this->lastFlashcard, ['num_incorrect' => 1, 'last_review_time' => \Carbon\Carbon::now()]);
 			else
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_incorrect');
 			
