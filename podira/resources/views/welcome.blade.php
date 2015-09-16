@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
+@section('title', 'Smart Flashcards')
 
 @section('content')
 <body>
