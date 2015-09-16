@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'MainController@mainPage');
+Route::get('home', 'MainController@mainPage');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
