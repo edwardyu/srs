@@ -30,7 +30,7 @@
     }
 
     </script>
-    <section name="main" class="bgmatte">
+    <section name="main"  style="background-image: url({!! URL::asset('assets/images/p.png'); !!})">
         <h1>Notecards That Learn With Students</h1>
         <h2>Utilizing spaced repetition techniques with classroom analytics to
         better enable teachers to improve thier curriculum.  <br>Podira provides
@@ -38,26 +38,26 @@
 
         <div class="statflow">
 					<h1 style="margin-bottom:14px;">Statistics for <i>AP World History</i> (Example)</h1>
-					<div class="dataquad">
+					<div class="dataquad" style="background:rgba(146,167,252,.4)">
 						<h3><i class="fa fa-male"></i> </h3>
 						<h1>45</h1>
 						<h2>Number of users learning the deck</h2>
 					</div>
-					<div class="dataquad">
+          <div class="dataquad" style="background:rgba(146,167,252,.4)">
 						<h3><i class="fa fa-clock-o"></i> </h3>
 
 						<h1> 48</h1>
 						<h2>Average seconds spent learning course</h2>
 
 					</div>
-					<div class="dataquad">
+          <div class="dataquad" style="background:rgba(146,167,252,.4)">
 						<h3><i class="fa fa-th"></i> </h3>
 
 						<h1>43</h1>
 						<h2>Total number of cards interacted with</h2>
 
 					</div>
-					<div class="dataquad">
+          <div class="dataquad" style="background:rgba(146,167,252,.4)">
 						<h3><i class="fa fa-bullseye"></i> </h3>
 						<h1>72%</h1>
 						<h2>Average Accuracy</h2>

@@ -3525,6 +3525,8 @@ section[name="main"]{
     position:relative;
     display:inline-block;
     width:100%;
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
     section[name="main"] > h1{
