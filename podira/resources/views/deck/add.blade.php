@@ -192,7 +192,7 @@ $(document).ready(function(){
 													</div>
 
 											</div>
-											<div class="displaynone displayyes car{{$card -> id}}">
+											<div class="displaynone displayyes car{{$card -> id}}" style="width:100%;">
 												<h1 style="width:90%;"><span class="carquestion{{$card -> id}}">{{$card -> front}}</span></h1>
 												<br>
 												<h1 style="width:90%;">
