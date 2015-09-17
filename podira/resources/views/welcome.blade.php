@@ -128,7 +128,7 @@
     <section name="card" class="bgpurple" style="height:290px;">
         <h1>Data that helps improve your model and class</h1>
         <div style="width:80%;height:150px;margin-left:10%;padding-top:65px;">
-          <center style="opacity:.7">Answer Accuracy of AP World History over Time</center>
+          <center style="opacity:.7">Memory Retention of Concepts Learned in AP World History over Time</center>
           <canvas id="canvas" height="90"></canvas>
         </div>
     </section>
@@ -136,7 +136,7 @@
     <section name="card" class="" style="height:0px;">
         <h1 class="matte">Ready to get started with Podira's technology?</h1>
         <br><br><br>
-        <h2 style="text-align:center;"><a href="/auth/register" class="bigsignup bgpurple">Get Started Today!</a></h2>
+        <h2 style="text-align:center;"><a href="/auth/register" class="bigsignup bgpurple">Get Started</a></h2>
     </section>
 
 </body>
