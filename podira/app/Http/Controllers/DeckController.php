@@ -83,7 +83,7 @@ class DeckController extends Controller
           return redirect()->action('DeckController@addCard', [$id]);
           }
         } catch (\Exception $e) {
-          return view('errors.nousers');
+          return json_encode(array(1));
         }
     }
 

@@ -70,7 +70,7 @@ $(document).ready(function(){
 		var flashcard_id = $(this).attr('flashcardid');
 		console.log(flashcard_id);
 
-		var base_url = 'http://localhost:8000';
+		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
 		   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -84,10 +84,37 @@ $(document).ready(function(){
 					$("#"+flashcard_id).removeClass('displayyes');
 		    }
 		  });
+	})
 
 
+	$('.adduser').submit(function(event) {
+		var formData = $(this).serializeArray();
+		console.log(formData);
 
+		var base_url = window.location.protocol + "//" + window.location.host;
 
+		$.ajaxSetup({
+			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+
+		$.ajax({
+				type: "POST", // or GET
+				url: base_url + "/deck/{{$id}}/storeUser",
+				dataType: 'json',
+				data: formData,
+				success: function(res){
+					console.log(res);
+					if(res[0] == 1){
+						console.log("failure!!");
+						$(".userfail").html('That user isn\'t currently registered on Podira');
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					console.log(errorThrown);
+				}
+			});
+
+			event.preventDefault();
 	})
 
 })
@@ -127,7 +154,7 @@ $(document).ready(function(){
 		</form>
 
 
-		<form class="deck datanone data2" method="POST" style="height:170px;" action="/deck/{{$id}}/storeUser" id="data2">
+		<form class="deck datanone data2 adduser" style="height:170px;" id="data2">
 			{!! csrf_field() !!}
 			 <fieldset>Info</fieldset>
 				<input placeholder="User Email" name="user_email">
@@ -145,7 +172,10 @@ $(document).ready(function(){
 						<option>6th Period</option>
 				</select>-->
 				<input type="submit" value="Add User">
+				<div class="userfail" style=""></div>
+
 		</form>
+
 
 		<div class="cardoverview">{{$deck -> name}}'s Cards</div>
 				<div style="width:80%;margin-left:10%;text-align:center;" class="">
