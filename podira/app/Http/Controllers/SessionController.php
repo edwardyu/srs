@@ -32,7 +32,7 @@ class SessionController extends Controller
         try {
             $info = $sessionManager->start();
         } catch(\InvalidArgumentException $e) {
-            return 'You need at least 4 cards in a deck.';
+          return view('errors.fourcards');
         }
 
 
