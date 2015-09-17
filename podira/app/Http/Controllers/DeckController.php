@@ -10,6 +10,7 @@ use App\Deck as Deck;
 use App\Flashcard as Flashcard;
 use App\User as User;
 use Auth;
+use JavaScript;
 
 class DeckController extends Controller
 {
@@ -46,7 +47,13 @@ class DeckController extends Controller
      */
     public function addCard($id)
     {
+
         $deck = Deck::find($id);
+
+        JavaScript::put([
+          'deck' => $deck
+        ]);
+
         return view('deck.add')->with(['id' => $id, 'deck' => $deck]);
     }
 

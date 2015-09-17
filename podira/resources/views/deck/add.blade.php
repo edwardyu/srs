@@ -193,7 +193,13 @@ $(document).ready(function(){
 
 											</div>
 											<div class="displaynone displayyes car{{$card -> id}}" style="width:100%;">
-												<h1 style="width:90%;"><span class="carquestion{{$card -> id}}">{{$card -> front}}</span></h1>
+												<h1 style="width:90%;">
+													@if(strlen($card -> front) < 150)
+													<span class="carquestion{{$card -> id}}">{{$card -> front}}</span>
+													@else
+													<span class="carquestion{{$card -> id}}" style="font-size:10px;">{{$card -> front}}</span>
+													@endif
+												</h1>
 												<br>
 												<h1 style="width:90%;">
 														Answer: <i class="caranswer{{$card -> id}}">{{$card -> back}}</i>
