@@ -192,4 +192,9 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 			'num_incorrect' => $this->numIncorrect
 		]);
 	}
+
+	public function getSession()
+	{
+		return $this->session;
+	}
 }
