@@ -165,7 +165,7 @@
 												<br>
 												<h1 style="width:90%;">
 														Answer: <i class="caranswer{{$card -> id}}">{{$card -> back}}</i><br>
-														Recall Score: {{$mostDifficultConcepts[$card->id]}}%.
+														Memory retention: {{$mostDifficultConcepts[$card->id]}}%.
 
 												</h1>
 											</div>
@@ -211,7 +211,7 @@
 												<h1 style="width:100%;">
 														Answer: <i class="caranswer{{$card -> id}}">{{$card -> back}}</i>
 														<br>
-														Recall Score: {{$mostIntuitiveConcepts[$card->id]}}%.
+														Memory retention: {{$mostIntuitiveConcepts[$card->id]}}%.
 												</h1>
 											</div>
 											<form class="editcardform displaynone editform caredit{{$card -> id}}" >

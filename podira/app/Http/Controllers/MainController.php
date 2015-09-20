@@ -12,9 +12,22 @@ class MainController extends Controller
 {
 	public function mainPage(Request $request)
 	{
-		if(!Auth::check())
+		if(!Auth::check()) {
 			return view('welcome');
-		else
-			return view('deck.create')->with(['user' => Auth::user()]);
+		}
+		else {
+			/**
+			 * ['$deck_id' => ['toLearn' => int, 'toReview' => int]]
+			 */
+			$numToLearnAndReview = [];
+			$user = Auth::user();
+
+			foreach($user->decks as $deck) {
+				$calculator = new \App\Stats\UserDeckStatsCalculator($user, $deck);
+				$numToLearnAndReview[(string) $deck->id] = ['toLearn' => $calculator->numToLearn(), 'toReview' => $calculator->numToReview()];
+			}
+			
+			return view('deck.create')->with(['user' => $user, 'numbers' => $numToLearnAndReview]);
+		}
 	}
 }
