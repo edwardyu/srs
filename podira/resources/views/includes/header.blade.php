@@ -1,10 +1,10 @@
 @if (Auth::check())
-<div id="header" class="">
-    <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira_purp.png') !!}"></a>
+<div id="header" class="bgmatte">
+    <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira.png') !!}"></a>
     <div class="links">
-        <span><a href="/auth/logout" class="purple">Sign Out</a></span>
-        <span><a href="/" class="purple">My Decks</a></span>
-        <span class="purple" style="opacity:.5;cursor:auto;">Logged in as <i>{{Auth::user() -> name}}</i></span>
+        <span><a href="/auth/logout">Sign Out</a></span>
+        <span><a href="/" >My Decks</a></span>
+        <span style="opacity:.5;cursor:auto;">Logged in as <i>{{Auth::user() -> name}}</i></span>
     </div>
 </div>
 @else

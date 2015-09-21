@@ -42,7 +42,7 @@ $(document).ready(function(){
 </script>
 
 
-<section name="main" class="bgmatte" style="height:auto;min-height:80vh;">
+<section name="page" class="bgmatte">
 	<h1>Your Current Decks</h1>
 
 	<div class="minichooser">
@@ -55,6 +55,9 @@ $(document).ready(function(){
 
 			Create Deck</a>
 	</div>
+</section>
+
+<section name="main" style="padding-top:0px;" class="lightmain">
 		<form class="deck datanone data3" method="POST" action="/deck/store">
 			{!! csrf_field() !!}
 			 <fieldset>General</fieldset>
@@ -77,7 +80,7 @@ $(document).ready(function(){
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
 			@if(!$user->decks->isEmpty())
 				@foreach($user->decks as $deck)
-				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
+				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;margin-top:10px;">
 				<div class="innercard">
 						<div class="emblem">
 								<div class="inneremblem">

@@ -3533,6 +3533,29 @@ Copyright (c) 2015 Daniel Eden
   display:none;
 }
 
+section[name="page"]{
+    height: auto;
+    padding: 5%;
+    margin-left:10%;
+    margin-right: 10%;
+    width: 70%;
+    margin-top:10px;
+    border-radius:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-family:lato;
+
+}
+
+section[name="page"] h1{
+    width:100%;
+    text-align:center;
+    font-family: Lato;
+    color:white;
+    font-size: 14px;
+
+}
+
 section[name="main"]{
     height: 300px;
     padding-bottom:180px;
@@ -3588,6 +3611,10 @@ section[name="main"]{
         margin-top:100px;
     }
 
+    section[class="lightmain"] > form  {
+        margin-top: 10px !important;
+    }
+
         section[name="main"] > form > input {
             background-color: rgba(255,255,255,.1);
             color:white;
@@ -3599,6 +3626,11 @@ section[name="main"]{
             box-sizing: border-box;
             margin-bottom: 10px;
             border-radius:3px;
+        }
+
+
+        section[class="lightmain"] > form > input {
+            background-color: rgba(0,0,0,.2) !important;
         }
 
         section[name="main"] > form > input[type="submit"] {
@@ -3794,8 +3826,8 @@ section[name="card"]{
   width:80%;
   margin-left:10%;
   display:inline-block;
-  margin-top:100px;
-  margin-bottom:-80px;
+  margin-bottom:10px;
+
 }
 
 .minichooser > .chooser{
@@ -3805,13 +3837,21 @@ section[name="card"]{
   text-align: center;
   font-size:15px;
   padding-top:15px;
-  border-left:1px rgba(255,255,255,.2) solid;
-  border-right:1px rgba(255,255,255,.2) solid;
   box-sizing: border-box;
   color:white;
   background-color: rgba(255,255,255,.1);
   cursor: pointer;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
+
+.minichooser > .chooser + .chooser{
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 
 .minichooser > .chooseractive{
   background-color: rgba(146,167,252,1) !important;
@@ -4010,7 +4050,7 @@ animation-duration: 1s;
         border: 1px rgba(255,255,255,.4) solid;
     }
 
-    .innercard .thirth{
+    .thirth{
       padding:5px;
       width:auto;
       height:27px;
