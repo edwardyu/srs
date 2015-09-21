@@ -97,12 +97,14 @@ class SessionController extends Controller
             $time = $sessionCalculator->totalTime();
             $cardsInteractedWith = $sessionCalculator->totalInteractions();
             $accuracy = $sessionCalculator->accuracy();
+            $timePerCard = $cardsInteractedWith == 0 ? 0 : $time / $cardsInteractedWith;
 
             return view('session.complete') -> with([
                 'deck' => $deck,
                 'time' => $time,
                 'cardsInteractedWith' => $cardsInteractedWith,
-                'accuracy' => $accuracy
+                'accuracy' => $accuracy,
+                'timePerCard' => $timePerCard
             ]);
         }
     }
