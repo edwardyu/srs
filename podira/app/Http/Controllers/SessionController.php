@@ -91,9 +91,21 @@ class SessionController extends Controller
                 ]);
             }
 
-        } else {
+        } else {           
             $sessionManager->end();
-            return view('session.complete') -> with(['deck' => $deck]);
+            $sessionCalculator = new \App\Stats\SessionStatsCalculator($sessionManager->getSession());
+            $time = $sessionCalculator->totalTime();
+            $cardsInteractedWith = $sessionCalculator->totalInteractions();
+            $accuracy = $sessionCalculator->accuracy();
+            $timePerCard = $cardsInteractedWith == 0 ? 0 : $time / $cardsInteractedWith;
+
+            return view('session.complete') -> with([
+                'deck' => $deck,
+                'time' => $time,
+                'cardsInteractedWith' => $cardsInteractedWith,
+                'accuracy' => $accuracy,
+                'timePerCard' => $timePerCard
+            ]);
         }
     }
 

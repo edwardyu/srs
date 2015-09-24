@@ -2,20 +2,20 @@
 @section('title', 'Your Current Decks')
 @section('content')
 
-<section name="main" class="bgmatte" style="height:auto;min-height:80vh;">
-	<h1>Flashcard Review</h1>
+<section name="main" class="" style="height:auto;min-height:80vh;">
+	<h1 class="matte">Flashcard Review</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
-				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
+				<div class="card sidebyside displaynone displayyes bgmatte" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
 				<div class="innercard">
-						<div class="emblem">
-								<div class="inneremblem">
+						<div class="emblem" style="border:none;">
+								<div class="inneremblem" style="border:none;">
 										<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
 								</div>
 
 						</div>
-						<h3 class="matte">{{$card->front}}</h3>
-						<h5 class="matte" style="opacity:.5;">Answer: {{$card->back}}</h5>
+						<h3>{{$card->front}}</h3>
+						<h5 style="opacity:.5;">Answer: {{$card->back}}</h5>
 
 						<br>
 

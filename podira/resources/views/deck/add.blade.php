@@ -117,26 +117,73 @@ $(document).ready(function(){
 			event.preventDefault();
 	})
 
+
+	$('.deletedeck').click(function(){
+		var deckid = $(this).attr('deckid');
+		console.log(deckid);
+
+		var base_url = window.location.protocol + "//" + window.location.host;
+
+		$.ajaxSetup({
+			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+
+		$.ajax({
+				type: "POST", // or GET
+				url: base_url + "/deck/" + deckid + "/delete",
+				data: "id=" + deckid,
+				success: function(data){
+					// redirect to deck pages
+				}
+			});
+
+	})
+
 })
+
+
+
 </script>
 
-<section name="main" class="bgmatte" style="height:auto;">
-		<h1>Edit {{$deck -> name}}</h1>
 
-		<div class="minichooser">
-			<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
-				<i class="fa fa-plus-square-o"></i>
-	Add Cards</a>
-			<a class="chooser" data-tab="data2" style="width:50%;">
-				<i class="fa fa-male"> </i>
-				Add Users</a>
-		</div>
 
-		<form class="deck datanone data1 displayit" style="height:170px;" method="POST" action="/deck/{{$id}}/storeCard">
+<section name="page" class="bgmatte" >
+	<h1>Edit <i>{{$deck -> name}}</i></h1>
+
+	<div style="width:100%;text-align:center;margin-bottom:20px;">
+			<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/learn" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+				<i class="fa fa-bolt"></i> <span style="font-size:13px;">Learn Deck</span>
+			</a>
+			<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;" >
+				<i class="fa fa-line-chart"></i>  <span style="font-size:13px;">Review Deck</span>
+			</a>
+			<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/stats" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;border: 1px rgba(255,255,255,.3) solid;display:inline-block;">
+				<i class="fa fa-pie-chart"></i> <span style="font-size:13px;">View Statistics</span>
+			</a>
+			<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+				<i class="fa fa-trash-o"></i> <span style="font-size:13px;">Delete Deck</span>
+			</a>
+	</div>
+
+	<div class="minichooser">
+		<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
+			<i class="fa fa-plus-square-o"></i>
+Add Cards</a>
+		<a class="chooser" data-tab="data2" style="width:50%;">
+			<i class="fa fa-male"> </i>
+			Add Users</a>
+	</div>
+
+</section>
+
+<section name="main" class="lightmain" style="height:auto;">
+
+
+		<form class="deck datanone data1 displayit" style="background-color:#F5F5F5" method="POST" action="/deck/{{$id}}/storeCard">
+			<fieldset class="title">Add a New Card</fieldset>
 			{!! csrf_field() !!}
-			 <fieldset>Info</fieldset>
-				<input placeholder="Front" name="front">
-				<input placeholder="Back" name="back">
+				<textarea placeholder="Front" name="front"></textarea>
+				<textarea placeholder="Back" name="back"></textarea>
 
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
@@ -154,9 +201,9 @@ $(document).ready(function(){
 		</form>
 
 
-		<form class="deck datanone data2 adduser" style="height:170px;" id="data2">
+		<form class="deck datanone data2 adduser" style="background-color:#F5F5F5" id="data2">
+			<fieldset class="title">Add a New User</fieldset>
 			{!! csrf_field() !!}
-			 <fieldset>Info</fieldset>
 				<input placeholder="User Email" name="user_email">
 
 				<!--<input placeholder="Short Tagline" name="tagline">

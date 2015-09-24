@@ -14,8 +14,8 @@ $(document).ready(function(){
 
 })
 </script>
-<section name="main" class="bgmatte" style="height:auto;min-height:80vh;">
-	<h1>Review {{$deck -> name}}</h1>
+<section name="main" class="" style="height:auto;min-height:80vh;">
+	<h1 class="matte">Review {{$deck -> name}}</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
 				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" >
