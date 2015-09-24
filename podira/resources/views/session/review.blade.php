@@ -20,6 +20,8 @@ $(document).ready(function(){
 			$(".halfform:nth-of-type(3)").prop('checked', false);
 			$(".halfform:nth-of-type(4)").prop('checked', false);
 			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
 
 			console.log('true');
 		}
@@ -28,19 +30,36 @@ $(document).ready(function(){
 			$(".halfform:nth-of-type(2)").prop('checked', false);
 			$(".halfform:nth-of-type(4)").prop('checked', false);
 			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
 		}
 		if(e.keyCode == 51){
 			$(".halfform:nth-of-type(4)").prop('checked', true);
 			$(".halfform:nth-of-type(3)").prop('checked', false);
 			$(".halfform:nth-of-type(2)").prop('checked', false);
 			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
 		}
 		if(e.keyCode == 52){
 			$(".halfform:nth-of-type(5)").prop('checked', true);
 			$(".halfform:nth-of-type(3)").prop('checked', false);
 			$(".halfform:nth-of-type(4)").prop('checked', false);
 			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
 		}
+		if(e.keyCode == 83){
+			$('form#formcard').submit();
+			return false;
+//skip
+		}
+		if(e.keyCode == 13){
+			$('form#formcard').submit();
+ 			return false;
+//enter
+		}
+
 	});
 
 })
@@ -58,7 +77,7 @@ $(document).ready(function(){
 
 						</div>
 						<h1>{{$question}}</h1>
-						 <form  method="POST" action="/deck/{{$deck->id}}/review/next">
+						 <form  method="POST" id="formcard" action="/deck/{{$deck->id}}/review/next">
 							 {!! csrf_field() !!}
 							@foreach($answers as $answer)
 								 <input type="radio" name="answer" id="{{ $answer }}" class="halfform"  value="{{ $answer }}">
