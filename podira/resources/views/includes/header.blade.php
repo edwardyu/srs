@@ -1,6 +1,6 @@
 @if (Auth::check())
 <div id="header" class="bgmatte">
-    <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira.png') !!}"></a>
+    <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira_matte.png') !!}"></a>
     <div class="links">
         <span><a href="/auth/logout">Sign Out</a></span>
         <span><a href="/" >My Decks</a></span>

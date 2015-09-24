@@ -3608,16 +3608,53 @@ section[name="main"]{
         margin-left:30%;
         padding:10px;
         box-sizing: border-box;
+        position:relative;
         margin-top:100px;
     }
 
+    section[name="main"] > form .title {
+        position:absolute;
+        width:90%;
+        color:black;
+        top:-30px;
+        text-align: center;
+        font-weight: 500;
+    }
+
     section[class="lightmain"] > form  {
-        margin-top: 10px !important;
+        margin-top: 30px !important;
+        padding-top:10px !important;
+        padding-bottom:40px !important;
+        margin-bottom: -10px !important;
+    }
+
+
+    section[class="lightmain"] > form > input::-webkit-input-placeholder {
+       color: rgba(146,167,252,1) !important;
+       opacity:.8;
+    }
+
+    section[class="lightmain"] > form > input:-moz-placeholder { /* Firefox 18- */
+      color: rgba(146,167,252,1) !important;
+      opacity:.8;
+
+    }
+
+    section[class="lightmain"] > form > input::-moz-placeholder {  /* Firefox 19+ */
+      color: rgba(146,167,252,1) !important;
+      opacity:.8;
+
+    }
+
+    section[class="lightmain"] > form > input:-ms-input-placeholder {
+      color: rgba(146,167,252,1) !important;
+      opacity:.8;
+
     }
 
         section[name="main"] > form > input {
             background-color: rgba(255,255,255,.1);
-            color:white;
+            color: rgba(146,167,252,1) !important;
             width:100%;
             height: 40px;
             font-size: 11px;
@@ -3626,16 +3663,38 @@ section[name="main"]{
             box-sizing: border-box;
             margin-bottom: 10px;
             border-radius:3px;
+
+        }
+
+
+        section[name="main"] > form > textarea {
+            background-color: rgba(255,255,255,.1);
+            color: rgba(146,167,252,1) !important;
+            width:100%;
+            height: 40px;
+            font-size: 11px;
+            border:none;
+            padding-left:10px;
+            box-sizing: border-box;
+            padding-top:10px;
+            height:90px;
+            margin-bottom: 10px;
+            border-radius:3px;
+            resize: none;
         }
 
 
         section[class="lightmain"] > form > input {
-            background-color: rgba(0,0,0,.2) !important;
+            background-color: rgba(0,0,0,.1) !important;
+        }
+
+        section[class="lightmain"] > form > textarea {
+            background-color: rgba(0,0,0,.1) !important;
         }
 
         section[name="main"] > form > input[type="submit"] {
             background-color: rgba(146,167,252,1) !important;
-            color: rgba(255,255,255,.7);
+            color: rgba(255,255,255,.7) !important;
             width:25%;
             height: 30px;
             font-size: 11px;
@@ -3645,6 +3704,11 @@ section[name="main"]{
             border-radius:3px;
             float:right;
             cursor: pointer;
+        }
+
+        section[class="lightmain"] > form > input[type="submit"] {
+            margin-bottom: 0px !important;
+            color: white !important;
         }
 
         section[name="main"] > form > a {
@@ -3983,6 +4047,7 @@ animation-duration: 1s;
         color: rgba(33,38,41,.6) !important;
         width:90%;
         font-size:1.0em !important;
+        font-size: 1.2vw !important;
         padding:5px;
         box-sizing:border-box;
         margin-top:-30px !important;

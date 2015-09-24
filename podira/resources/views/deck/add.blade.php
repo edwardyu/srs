@@ -179,11 +179,11 @@ Add Cards</a>
 <section name="main" class="lightmain" style="height:auto;">
 
 
-		<form class="deck datanone data1 displayit" style="height:170px;" method="POST" action="/deck/{{$id}}/storeCard">
+		<form class="deck datanone data1 displayit" style="background-color:#F5F5F5" method="POST" action="/deck/{{$id}}/storeCard">
+			<fieldset class="title">Add a New Card</fieldset>
 			{!! csrf_field() !!}
-			 <fieldset>Info</fieldset>
-				<input placeholder="Front" name="front">
-				<input placeholder="Back" name="back">
+				<textarea placeholder="Front" name="front"></textarea>
+				<textarea placeholder="Back" name="back"></textarea>
 
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
@@ -201,9 +201,9 @@ Add Cards</a>
 		</form>
 
 
-		<form class="deck datanone data2 adduser" style="height:170px;" id="data2">
+		<form class="deck datanone data2 adduser" style="background-color:#F5F5F5" id="data2">
+			<fieldset class="title">Add a New User</fieldset>
 			{!! csrf_field() !!}
-			 <fieldset>Info</fieldset>
 				<input placeholder="User Email" name="user_email">
 
 				<!--<input placeholder="Short Tagline" name="tagline">

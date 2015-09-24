@@ -57,10 +57,10 @@ $(document).ready(function(){
 	</div>
 </section>
 
-<section name="main" style="padding-top:0px;" class="lightmain">
-		<form class="deck datanone data3" method="POST" action="/deck/store">
+<section name="main" style="padding-top:0px;margin-bottom:35px;" class="lightmain">
+		<form class="deck datanone data3" style="background-color:#F5F5F5" method="POST" action="/deck/store">
 			{!! csrf_field() !!}
-			 <fieldset>General</fieldset>
+			<fieldset class="title">Create a New Deck Below:</fieldset>
 				<input placeholder="Title" name="name">
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
@@ -77,10 +77,10 @@ $(document).ready(function(){
 				<input type="submit" value="Create Deck">
 		</form>
 
-		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
+		<div style="width:80%;margin-left:10%;text-align:center;margin-bottom:20px;" class="datanone data2 displayit">
 			@if(!$user->decks->isEmpty())
 				@foreach($user->decks as $deck)
-				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;margin-top:10px;">
+				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;">
 				<div class="innercard">
 						<div class="emblem">
 								<div class="inneremblem">
@@ -89,9 +89,8 @@ $(document).ready(function(){
 
 						</div>
 						<h3 class="matte">{{$deck -> name}}</h3>
-						<h5 class="matte" style="opacity:.5;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
-						<h5 class="matte" style="opacity:.5;">Cards to Learn: {{$numbers[$deck->id]['toLearn']}}</h5>
-						<h5 class="matte" style="opacity:.5;">Cards to Review: {{$numbers[$deck->id]['toReview']}}</h5>
+						<h5 class="matte" style="opacity:.5;margin-bottom:0px;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
+						<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;">Cards to Learn: {{$numbers[$deck->id]['toLearn']}} | Cards to Review: {{$numbers[$deck->id]['toReview']}}</h5>
 						<br>
 						<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}">
 							<i class="fa fa-trash-o"></i>
@@ -122,7 +121,6 @@ $(document).ready(function(){
 				You have no current flashcards.
 			@endif
 		</div>
-
 
 </section>
 @endsection
