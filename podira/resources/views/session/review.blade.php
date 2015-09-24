@@ -12,6 +12,37 @@ $(document).ready(function(){
 
 	})
 
+	$("html").keydown(function(e) {
+    e.keyCode; // this value
+		console.log(e.keyCode);
+		if(e.keyCode == 49){
+			$(".halfform:nth-of-type(2)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+
+			console.log('true');
+		}
+		if(e.keyCode == 50){
+			$(".halfform:nth-of-type(3)").prop('checked', true);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+		}
+		if(e.keyCode == 51){
+			$(".halfform:nth-of-type(4)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+		}
+		if(e.keyCode == 52){
+			$(".halfform:nth-of-type(5)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+		}
+	});
+
 })
 </script>
 <section name="main" class="" style="height:auto;min-height:80vh;">
@@ -30,10 +61,8 @@ $(document).ready(function(){
 						 <form  method="POST" action="/deck/{{$deck->id}}/review/next">
 							 {!! csrf_field() !!}
 							@foreach($answers as $answer)
-							<fieldset class="halfform">
-								 <input type="radio" name="answer" id="{{ $answer }}" value="{{ $answer }}">
-										 <label for="{{ $answer }}"  style="width:100%;"><span></span>{{ $answer }}</label>
-							</fieldset>
+								 <input type="radio" name="answer" id="{{ $answer }}" class="halfform"  value="{{ $answer }}">
+										 <label for="{{ $answer }}"  style="width:100%;display: block;text-align: left;"><span></span>{{ $answer }}</label>
 							@endforeach
 
 							<button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
