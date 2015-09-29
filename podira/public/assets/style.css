@@ -3533,6 +3533,8 @@ Copyright (c) 2015 Daniel Eden
   display:none;
 }
 
+section {}
+
 section[name="page"]{
     height: auto;
     padding: 5%;
@@ -3557,7 +3559,8 @@ section[name="page"] h1{
 }
 
 section[name="main"]{
-    height: 300px;
+    height: auto;
+    min-height: 300px;
     padding-bottom:180px;
     color:white;
     font-family:Lato, sans-serif;

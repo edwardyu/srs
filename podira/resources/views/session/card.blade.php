@@ -1,7 +1,22 @@
 @extends('layouts.master')
 @section('title', 'Your Current Decks')
 @section('content')
-
+<script>
+$("html").keydown(function(e) {
+	e.keyCode; // this value
+	console.log(e.keyCode);
+			if(e.keyCode == 83){
+				$('form#formcard').submit();
+				return false;
+		//skip
+			}
+			if(e.keyCode == 13){
+				$('form#formcard').submit();
+				return false;
+		//enter
+			}
+})
+</script>
 <section name="main" class="" style="height:auto;min-height:80vh;">
 	<h1 class="matte">Flashcard Review</h1>
 
@@ -22,7 +37,7 @@
 
 
 
-						<form method="POST" action="/deck/{{$deck->id}}/{{$type}}/next">
+						<form method="POST" id="formcard" action="/deck/{{$deck->id}}/{{$type}}/next">
 						    {!! csrf_field() !!}
 						    	<input type="hidden" name="answer" value="{{$card->back}}">
 

@@ -79,7 +79,7 @@ $(document).ready(function(){
 
 		<div style="width:80%;margin-left:10%;text-align:center;margin-bottom:20px;" class="datanone data2 displayit">
 			@if(!$user->decks->isEmpty())
-				@foreach($user->decks as $deck)
+				@foreach($user->decks->reverse() as $deck)
 				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;">
 				<div class="innercard">
 						<div class="emblem">

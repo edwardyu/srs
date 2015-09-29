@@ -12,6 +12,56 @@ $(document).ready(function(){
 
 	})
 
+
+
+	$("html").keydown(function(e) {
+		e.keyCode; // this value
+		console.log(e.keyCode);
+		if(e.keyCode == 49){
+			$(".halfform:nth-of-type(2)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
+
+			console.log('true');
+		}
+		if(e.keyCode == 50){
+			$(".halfform:nth-of-type(3)").prop('checked', true);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
+		}
+		if(e.keyCode == 51){
+			$(".halfform:nth-of-type(4)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$(".halfform:nth-of-type(5)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
+		}
+		if(e.keyCode == 52){
+			$(".halfform:nth-of-type(5)").prop('checked', true);
+			$(".halfform:nth-of-type(3)").prop('checked', false);
+			$(".halfform:nth-of-type(4)").prop('checked', false);
+			$(".halfform:nth-of-type(2)").prop('checked', false);
+			$('.enterb').addClass('displayyes');
+			$('.skipb').removeClass('displayyes');
+		}
+		if(e.keyCode == 83){
+			$('form#formcard').submit();
+			return false;
+//skip
+		}
+		if(e.keyCode == 13){
+			$('form#formcard').submit();
+			return false;
+//enter
+		}
+
 })
 </script>
 <section name="main" class="" style="height:auto;min-height:80vh;">
@@ -27,7 +77,7 @@ $(document).ready(function(){
 
 						</div>
 						<h1>{{$question}}</h1>
-						 <form  method="POST" action="/deck/{{$deck->id}}/learn/next">
+						 <form  method="POST" action="/deck/{{$deck->id}}/learn/next" id="formcard">
 							 {!! csrf_field() !!}
 							@foreach($answers as $answer)
 							<fieldset class="halfform">
