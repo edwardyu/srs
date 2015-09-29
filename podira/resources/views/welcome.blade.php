@@ -7,14 +7,14 @@
     var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
     var barChartData = {
-      labels : ["Set 1", "Set 2", "Set 3", "Set 4"],
+      labels : ["Set 1", "Succesful Set", "Problem Identified", "Set 4"],
       datasets : [
         {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,0.8)",
+          fillColor : "rgba(63,169,245,0.2)",
+          strokeColor : "rgba(63,169,245,0.3)",
           highlightFill: "rgba(220,220,220,0.75)",
           highlightStroke: "rgba(220,220,220,1)",
-          data : [60,69,63,79]
+          data : [60,70,63,79]
         }
       ]
     }
@@ -30,44 +30,20 @@
     }
 
     </script>
-    <section name="main"  style="background-image: url({!! URL::asset('assets/images/p.png'); !!})">
-        <h1>Notecards That Learn With Students</h1>
-        <h2 style="font-weight:600;">We use spaced repetition techniques with classroom analytics to
-        better enable teachers to improve their curriculums.  <br>Podira provides
-        educators with the smartest notecards available, optimized to provide feedback and helpful data.</h2>
+    <section name="main"  style="max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-size:35%;background-position: 50% 170px">
+        <h1 class="matte">Memory Retention Tech for Teachers</h1>
+        <h2 style="font-weight:600;" class="matte">Podira utilizes spaced repetition to optimize learning cycles
+        for students by using data and neuroscience. <br>Our 21st century approach to learning allows students
+        to work with things like Flashcards in smarter ways than before.</h2>
+        <h3 style="width:120%;margin-left:-4%;">
+          <canvas id="canvas" height="100"></canvas>
 
-        <div class="statflow">
-					<h1 style="margin-bottom:14px;">Statistics for <i>AP World History</i> (Example)</h1>
-					<div class="dataquad" style="background:rgba(146,167,252,.9)">
-						<h3><i class="fa fa-male"></i> </h3>
-						<h1>45</h1>
-						<h2>Number of users learning the deck</h2>
-					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.9)">
-						<h3><i class="fa fa-clock-o"></i> </h3>
+        </h3>
 
-						<h1> 48</h1>
-						<h2>Average minutes spent learning course</h2>
-
-					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.9)">
-						<h3><i class="fa fa-th"></i> </h3>
-
-						<h1>184</h1>
-						<h2>Total number of cards interacted with</h2>
-
-					</div>
-          <div class="dataquad" style="background:rgba(146,167,252,.9)">
-						<h3><i class="fa fa-bullseye"></i> </h3>
-						<h1>72%</h1>
-						<h2>Average Accuracy</h2>
-
-					</div>
-        </div>
 
     </section>
     <section name="card" class="bgpurple bgpink">
-        <h1>Powerful Flashcard Data for Educators</h1>
+        <h1>Want Data on Your Teaching Techniques?  We Got You Covered</h1>
         <div class="card_demo">
             <div class="card_group">
                 <h3>FOR STUDENTS</h3>
@@ -124,15 +100,14 @@
 
     </section>
 
-
+<!--
     <section name="card" class="bgpurple" style="height:290px;">
         <h1>Data that helps improve your model and class</h1>
         <div style="width:80%;height:150px;margin-left:10%;padding-top:65px;">
           <center style="opacity:.7">Memory Retention of Concepts Learned in AP World History over Time</center>
-          <canvas id="canvas" height="90"></canvas>
         </div>
     </section>
-
+-->
     <section name="card" class="" style="height:0px;">
         <h1 class="matte">Ready to get started with Podira's technology?</h1>
         <br><br><br>
