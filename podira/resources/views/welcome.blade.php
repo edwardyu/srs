@@ -47,8 +47,8 @@
         <div class="card_demo">
             <div class="card_group">
                 <h3>FOR STUDENTS</h3>
-                <div class="card" style="padding-top: 1px;">
-                    <div class="innercard">
+                <div class="card" >
+                    <div class="innercard" style="top: 3px;">
                         <div class="emblem">
                             <div class="inneremblem">
                                 <img src="{!! URL::asset('assets/images/turkey.png') !!}">

@@ -108,10 +108,6 @@ $(document).ready(function(){
 							<i class="fa fa-bolt"></i> <span style="font-size:13px;">Learn</span>
 						</a>
 
-
-
-
-
 				</div>
 
 				</div>

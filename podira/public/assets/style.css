@@ -3833,6 +3833,30 @@ section[name="main"]{
 
         }
 
+.deck input[type="radio"]{
+  display:none;
+}
+
+.deck label{
+  float:left;
+  height: 26px;
+  padding-left:5px;
+  padding-right:5px;
+  background-color: rgba(146,167,252,.4) !important;
+  padding-top: 6px;
+  margin-bottom: 10px;
+  border-radius:4px;
+  box-sizing: border-box;
+  float:left;
+  margin-right: 10px;
+  cursor:pointer;
+  font-size: 12px;
+}
+
+.deck input[type="radio"]:checked + label {
+  background-color: rgba(146,167,252,1) !important;
+}
+
 section[name="card"]{
     height: 600px;
     height: calc(100vh - 60px);
