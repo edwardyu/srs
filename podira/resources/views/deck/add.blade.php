@@ -106,7 +106,7 @@ $(document).ready(function(){
 					console.log(res);
 					if(res[0] == 1){
 						console.log("failure!!");
-						$(".userfail").html('That user isn\'t currently registered on Podira');
+						$(".userfail").html('That user isn\'t currently registered on Podira or has been already added!');
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -145,6 +145,27 @@ $(document).ready(function(){
 
 </script>
 
+<style>
+.user{
+		width: 100%;
+		height: 20px;
+		border-top: 1px #ddd solid;
+		padding: 5px;
+}
+
+.user > .name {
+		width: 20%;
+		display:block;
+		float:left;
+}
+
+.user > .email {
+		width: 40%;
+		display:block;
+		float:left;
+		opacity: .7;
+}
+</style>
 
 
 <section name="page" class="bgmatte" >
@@ -198,6 +219,7 @@ Add Cards</a>
 						<option>6th Period</option>
 				</select>-->
 				<input type="submit" value="Add Card">
+
 		</form>
 
 
@@ -219,13 +241,11 @@ Add Cards</a>
 						<option>6th Period</option>
 				</select>-->
 				<input type="submit" value="Add User">
-				<div class="userfail" style=""></div>
-
 		</form>
 
 
-		<div class="cardoverview">{{$deck -> name}}'s Cards</div>
-				<div style="width:80%;margin-left:10%;text-align:center;" class="">
+		<div class="cardoverview datanone data1 displayit">{{$deck -> name}}'s Cards</div>
+				<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data1 displayit">
 					@if ($deck->flashcards->isEmpty())
 						<br><br><br><br><br><br>
 						You have no current cards in this deck.
@@ -273,6 +293,14 @@ Add Cards</a>
 				</div>
 
 
+			<div class="datanone data2 displayit matte" style="width:40%;margin-left:30%;margin-top:40px;">
+				<div class="userfail purple" style="margin-bottom:10px;"></div>
+
+				@foreach($deck -> users as $user)
+
+					<div class="user"><span class="name">{{$user -> name}}</span><span class="email">{{$user -> email}}</span></div>
+				@endforeach
+			</div>
 
 </section>
 @endsection
