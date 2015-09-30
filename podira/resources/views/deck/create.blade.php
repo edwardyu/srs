@@ -90,7 +90,7 @@ $(document).ready(function(){
 						</div>
 						<h3 class="matte">{{$deck -> name}}</h3>
 						<h5 class="matte" style="opacity:.5;margin-bottom:0px;">Created on {{date('F d, Y', strtotime($deck->created_at))}}</h5>
-						<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;">Cards to Learn: {{$numbers[$deck->id]['toLearn']}} | Cards to Review: {{$numbers[$deck->id]['toReview']}}</h5>
+						<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;">Learn: {{$numbers[$deck->id]['toLearn']}} | Review: {{$numbers[$deck->id]['toReview']}}</h5>
 						<br>
 						<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}">
 							<i class="fa fa-trash-o"></i>

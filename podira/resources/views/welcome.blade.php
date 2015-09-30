@@ -30,7 +30,7 @@
     }
 
     </script>
-    <section name="main"  style="max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-size:35%;background-position: 50% 170px">
+    <section name="main"  style="max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-size:35%;background-position: 50% 174px">
         <h1 class="matte">Memory Retention Tech for Teachers</h1>
         <h2 style="font-weight:600;" class="matte">Podira utilizes spaced repetition to optimize learning cycles
         for students by using data and neuroscience. <br>Our 21st century approach to learning allows students
