@@ -47,7 +47,7 @@
         <div class="card_demo">
             <div class="card_group">
                 <h3>FOR STUDENTS</h3>
-                <div class="card">
+                <div class="card" style="padding-top: 1px;">
                     <div class="innercard">
                         <div class="emblem">
                             <div class="inneremblem">
@@ -56,10 +56,20 @@
 
                         </div>
                         <h1>What Empire Surpassed the <br><span class="highlight">Malmud     Empire</span> in Modern Day Turkey?</h1>
-                        <form>
-                            <input class="answer" placeholder="Enter Your Answer">
-                        </form>
+                        <form  method="POST" id="formcard" style="margin-left:25px;">
 
+           									 <input type="radio" name="answer"  class="halfform"  value="x" id="x">
+           									 <label for="x"  style="width:100%;display: block;text-align: left;"><span></span>Ottoman Empire</label>
+
+                             <input type="radio" name="answer"  class="halfform"  value="k" id="k">
+                             <label for="k"  style="width:100%;display: block;text-align: left;"><span></span>Seljuq Dynasty</label>
+                             <input type="radio" name="answer"  class="halfform"  value="z" id="z">
+                             <label for="z"  style="width:100%;display: block;text-align: left;"><span></span>Assyrian Empire</label>
+                             <input type="radio" name="answer"  class="halfform"  value="y" id="y">
+                             <label for="y"  style="width:100%;display: block;text-align: left;"><span></span>Tanzimat Dynasty</label>
+
+
+           						 </form>
 
 
                     </div>
