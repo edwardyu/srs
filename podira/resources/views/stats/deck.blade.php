@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', $deck -> name . '\'s Stats')
+@section('title', $deck -> name . ' Stats')
 @section('content')
 
 <body>

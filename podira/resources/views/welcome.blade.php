@@ -42,7 +42,7 @@
 
 
     </section>
-    <section name="card" class="bgpurple bgpink">
+    <section name="card" class="bgpurple">
         <h1>Want Data on Your Teaching Techniques?  We Got You Covered</h1>
         <div class="card_demo">
             <div class="card_group">
