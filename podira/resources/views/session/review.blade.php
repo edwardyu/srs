@@ -79,11 +79,10 @@ $(document).ready(function(){
 						<h1>{{$question}}</h1>
 						 <form  method="POST" id="formcard" action="/deck/{{$deck->id}}/review/next">
 							 {!! csrf_field() !!}
-							@foreach($answers as $answer)
-								 <input type="radio" name="answer" id="{{ $answer }}" class="halfform"  value="{{ $answer }}">
-										 <label for="{{ $answer }}"  style="width:100%;display: block;text-align: left;"><span></span>{{ $answer }}</label>
-							@endforeach
-
+								@foreach($answers as $answer)
+									 <input type="radio" name="answer" id="{{ $answer }}" class="halfform"  value="{{ $answer }}">
+									 <label for="{{ $answer }}"  style="width:100%;display: block;text-align: left;"><span></span>{{ $answer }}</label>
+								@endforeach
 							<button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
 							<button type="submit" style="border:none;" class="displayyes displaynone bgpink skipb enter">Skip </button>
 

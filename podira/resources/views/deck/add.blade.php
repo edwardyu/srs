@@ -245,13 +245,13 @@ Add Cards</a>
 
 
 		<div class="cardoverview datanone data1 displayit">{{$deck -> name}}'s Cards</div>
-				<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data1 displayit">
+				<div style="width:60%;margin-left:20%;text-align:center;" class="datanone data1 displayit">
 					@if ($deck->flashcards->isEmpty())
 						<br><br><br><br><br><br>
 						You have no current cards in this deck.
 					@else
 							@foreach($deck->flashcards->reverse() as $card)
-							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:115px;text-align:left;">
+							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:115px;text-align:left;float:left;width:48%;margin-left:1%;margin-right:1%;">
 									<div class="innercard">
 											<div class="emblem">
 													<div class="inneremblem">
@@ -293,11 +293,9 @@ Add Cards</a>
 				</div>
 
 
-			<div class="datanone data2 displayit matte" style="width:40%;margin-left:30%;margin-top:40px;">
+			<div class="datanone data2  matte" style="width:40%;margin-left:30%;margin-top:40px;">
 				<div class="userfail purple" style="margin-bottom:10px;"></div>
-
 				@foreach($deck -> users as $user)
-
 					<div class="user"><span class="name">{{$user -> name}}</span><span class="email">{{$user -> email}}</span></div>
 				@endforeach
 			</div>

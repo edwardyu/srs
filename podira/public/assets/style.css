@@ -3947,7 +3947,7 @@ section[name="card"]{
 
 .card{
 width: 400px;
-height:240px;
+min-height:240px;
 margin-left: auto;
 margin-right: auto;
 margin-top:110px;
@@ -4034,16 +4034,16 @@ animation-duration: 1s;
 
 
     .innercard{
-        position:absolute;
-        top:5px;
-        left:5px;
-        height:230px;
-        width:390;
+        position:relative;
+        margin-left:2%;
+        margin-top:5px;
+        width:96%;
         box-sizing: border-box;
         border-radius:3px;
         border: 1px rgba(0,0,0,.15) solid;
         z-index:1;
         padding-top:35px;
+        min-height: 230px;
     }
 
     .innercard h1{
