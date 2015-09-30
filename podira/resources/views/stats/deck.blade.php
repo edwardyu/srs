@@ -117,7 +117,7 @@
 
 		</script>
 
-    <section name="main" class="bgmatte" style="height:auto;">
+    <section name="main" class="bgpurple" style="height:auto;">
         <h1> Stats for <i>{{$deck -> name}}</i></h1>
         <h2>Below is the data from the flashcard deck.</h2>
 
@@ -150,9 +150,9 @@
 					</div>
 
 					<h1 style=>TOP 4 MOST DIFFICULT CARDS</h1>
-					<div style="width:100%;text-align:center;margin-top:-80px;padding-top:0px;">
+					<div style="width:80%;margin-left:10%;text-align:center;margin-top:-80px;padding-top:0px;">
 							@foreach($mostDifficultCards as $card)
-							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:55px;margin-bottom:-40px;text-align:left;">
+							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:55px;margin-bottom:-40px;text-align:left;float:left;width:48%;margin-left:1%;margin-right:1%;">
 									<div class="innercard">
 											<div class="emblem">
 													<div class="inneremblem">
@@ -195,9 +195,9 @@
 					</div>
 
 					<h1 style="margin-top:60px;">TOP 4 MOST INTUITIVE CARDS</h1>
-					<div style="width:100%;text-align:center;margin-top:-40px;padding-top:0px;">
+					<div style="width:80%;margin-left:10%;text-align:center;margin-top:-40px;padding-top:0px;">
 							@foreach($mostIntuitiveCards as $card)
-							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:55px;margin-bottom:-40px;text-align:left;">
+							<div class="card sidebyside bgbaige displaynone displayyes" id="{{$card -> id}}" style="-webkit-animation-duration:0s;margin-top:55px;margin-bottom:-40px;text-align:left;float:left;width:48%;margin-left:1%;margin-right:1%;">
 									<div class="innercard">
 											<div class="emblem">
 													<div class="inneremblem">
