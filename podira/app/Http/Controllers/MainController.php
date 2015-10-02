@@ -30,4 +30,14 @@ class MainController extends Controller
 			return view('deck.create')->with(['user' => $user, 'numbers' => $numToLearnAndReview]);
 		}
 	}
+
+	public function subscribe(Request $request)
+	{
+		return view('subscribe');
+	}
+
+	public function createSubscription(Request $request)
+	{
+		return $request;
+	}
 }

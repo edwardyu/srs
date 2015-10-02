@@ -12,6 +12,8 @@
 */
 Route::get('/', 'MainController@mainPage');
 Route::get('home', 'MainController@mainPage');
+Route::get('subscribe', 'MainController@subscribe');
+Route::post('createSubscription', 'MainController@createSubscription');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
