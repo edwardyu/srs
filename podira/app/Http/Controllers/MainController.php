@@ -38,6 +38,7 @@ class MainController extends Controller
 
 	public function createSubscription(Request $request)
 	{
-		return $request;
+		\App\Subscription::create($request->stripeToken, Auth::user());
+		return $request->stripeToken;
 	}
 }

@@ -4,7 +4,7 @@
 	<title>Subscribe</title>
 </head>
 <body>
-	Sign up for our awesome service.
+	Display create podira account if they don't have one.
 	<form action="/createSubscription" method="POST">
 	  <script
 	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
