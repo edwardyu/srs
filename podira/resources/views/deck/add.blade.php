@@ -214,6 +214,8 @@ Add Cards</a>
 		<form class="deck datanone data1 displayit" style="background-color:#F5F5F5" method="POST" action="/deck/{{$id}}/storeCard">
 			<fieldset class="title">Add a New Card</fieldset>
 			{!! csrf_field() !!}
+
+				<!--
 				<input type="radio" id="choices" name="cardtype" checked>
 				<label class="cardchooser" data-tab="1" for="choices"><i class="fa fa-align-justify"></i> Four Choices</label>
 
@@ -229,13 +231,16 @@ Add Cards</a>
 
 				<input type="radio" id="math" name="cardtype">
 				<label class="cardchooser" data-tab="5" for="math">% Math</label>
-
+				-->
 				<fieldset class="bgpurple info cardtype cardtype4" style="font-weight:300;margin-bottom:10px;color:white;padding-bottom:16px;border-radius:3px;">Type in the full sentence for the question and the words that will be replaced by the blank in the answer (e.g.: [<b>Question:</b> Salt goes with Pepper, <b>Answer:</b> Salt] for <i>_________ goes with Pepper</i>).</fieldset>
 				<textarea placeholder="Question" name="front"></textarea>
 				<textarea placeholder="Answer" class="cardtype cardtype1 cardtype2 displayit" name="back"></textarea>
+
+				<!--
 				<input class="displayit cardtype cardtype1" placeholder="Fake Answer 1 (Optional)" name="fake-answer-1"></input>
 				<input class="displayit cardtype cardtype1" placeholder="Fake Answer 2 (Optional)" name="fake-answer-2"></input>
 				<input  class="displayit cardtype cardtype1" placeholder="Fake Answer 3 (Optional)" name="fake-answer-3"></input>
+			  -->
 				<input  class="cardtype cardtype4" placeholder="Answer" name="fillin"></input>
 
 				<input type="radio" id="true" name="trueorfalse">
