@@ -4529,6 +4529,94 @@ animation-duration: 1s;
 
     }
 
+/* PAYMENT MODULI */
+
+/* PAYMENT MODULO */
+
+.paymentmoduli{
+  width: 90%;
+  margin-left: 5%;
+  padding: 0px;
+  box-sizing: border-box;
+  min-height:780px;
+}
+
+  .paymentmoduli > .emphasis{
+    min-height: 420px !important;
+    width: 37.333% !important;
+    margin-left: -2% !important;
+    margin-right: -2% !important;
+    margin-top:20px !important;
+  /*  z-index: 2 !important; */
+  }
+
+.paymentmodulo{
+  min-height: 400px;
+  width: 33.333%;
+  float:left;
+  background-color: rgba(255,255,255,.2);
+/*  border: 1px rgba(255,255,255,.2) solid; */
+  box-sizing: border-box;
+  color: white;
+  border-radius: 5px;
+  z-index: 1;
+  position:relative;
+}
+
+    .paymentmodulo h1{
+      font-size: 26px !important;
+      width: 100%;
+      height: 40px;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .paymentmodulo li{
+      font-size: 13px !important;
+      width: 100%;
+      height: 30px;
+      font-weight: 400;
+      padding-left: 10px;
+      box-sizing: border-box;
+      padding-top:7px;
+      list-style: none;
+      border-bottom: 1px rgba(0,0,0,.4) solid;
+
+    }
+
+    .paymentmodulo li:nth-of-type(2n+1){
+      background-color: rgba(0,0,0,.4);
+    }
+
+
+    .paymentmodulo > .mainbutton{
+      position:absolute;
+      width: 40%;
+      left: 30%;
+      bottom: 30px;
+      height: 40px;
+      color:white;
+      text-align: center;
+      background-color: rgba(255,255,255,.9);
+      border-radius: 5px;
+      padding-top: 10px;
+      box-sizing: border-box;
+    }
+
+    .paymentmodulo > .price{
+      position:absolute;
+      width: 100%;
+      left: 0%;
+      bottom: 70px;
+      font-size: 22px;
+      height: 40px;
+      color:white;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+
+
 
 /*COLORS*/
 .bgpurple{
@@ -4569,6 +4657,10 @@ animation-duration: 1s;
 
 .purple{
     color: rgba(146,167,252,1) !important;
+}
+
+.pink{
+  color: rgba(217,187,215,1) !important;
 }
 
 .matte{
