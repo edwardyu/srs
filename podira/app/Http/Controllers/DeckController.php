@@ -30,6 +30,9 @@ class DeckController extends Controller
         return view('deck.create');
     }
 
+
+
+
     public function store(Request $request)
     {
         $deck = Deck::create([
