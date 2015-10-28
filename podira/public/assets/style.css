@@ -4529,6 +4529,64 @@ animation-duration: 1s;
 
     }
 
+/* PAYMENT SUBCRIPTION OPTION */
+.subscription_container{
+  width: 114%;
+  margin-left:-7%;
+  height: 180px;
+  clear:both;
+  margin-top:20px;
+  display:inline-block;
+  margin-bottom:-8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+}
+
+
+    .subscription_container h1{
+      font-size: 27px !important;
+      color:white;
+      width:100%;
+      margin-top:10px;
+      font-weight: 300;
+      text-align:center;
+      margin-bottom:0px;
+    }
+
+    .subscription_container h2{
+      font-size: 15px !important;
+      color:white;
+      width:100%;
+      margin-top:5px;
+      font-weight: 300;
+      text-align:center;
+    }
+
+    .subscription_container .payblock{
+      width: 33.33% !important;
+      float:left;
+      border-left: 1px white solid;
+      box-sizing: border-box;
+    }
+
+        .subscription_container .payblock h1{
+            width: 100%;
+            text-align:center;
+            color:white;
+            font-size: 16px;
+        }
+
+        .subscription_container .payblock h3{
+            width: 100%;
+            text-align:center;
+            color:white;
+            font-size: 12px;
+            margin-top:-10px;
+        }
+
+
+
 /* PAYMENT MODULI */
 
 /* PAYMENT MODULO */
@@ -4538,7 +4596,6 @@ animation-duration: 1s;
   margin-left: 5%;
   padding: 0px;
   box-sizing: border-box;
-  min-height:780px;
 }
 
   .paymentmoduli > .emphasis{
@@ -4550,8 +4607,10 @@ animation-duration: 1s;
   /*  z-index: 2 !important; */
   }
 
+
 .paymentmodulo{
   min-height: 400px;
+  display:inline-block;
   width: 33.333%;
   float:left;
   background-color: rgba(255,255,255,.2);

@@ -47,7 +47,30 @@
 
 			</div>
 
+
 		</div>
+
+		<div class="subscription_container bgpurple">
+			<h1>Want to Pay as You Go?  No Problem!</h1>
+			<h2>Rates below on a per shared deck basis</h2>
+			<div class="payblock">
+				<h1>$1.00</h1>
+				<h2>/user per month</h2>
+				<h3>for first 15 users</h3>
+			</div>
+			<div class="payblock">
+				<h1>$0.75</h1>
+				<h2>/user per month</h2>
+				<h3>for next 100 users</h3>
+			</div>
+			<div class="payblock">
+				<h1>$0.45</h1>
+				<h2>/user per month</h2>
+				<h3>for users thereafter</h3>
+			</div>
+
+		</div>
+
 
 	</section>
 
