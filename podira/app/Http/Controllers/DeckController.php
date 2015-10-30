@@ -18,6 +18,7 @@ class DeckController extends Controller
         $this->middleware('auth');
         $this->middleware('auth.deck.view', ['only' => 'addCard']);
         $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser', 'deleteCard', 'editCard', 'deleteDeck']]);
+        $this->middleware('auth.deck.add', ['only' => 'storeUser']);
     }
 
     /**
