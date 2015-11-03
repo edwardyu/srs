@@ -42,15 +42,15 @@ $(document).ready(function(){
 </script>
 
 
-<section name="page" class="bgmatte">
+<section name="page" class="bgpurple">
 	<h1>Your Current Decks</h1>
 
 	<div class="minichooser">
-		<a class="chooser chooseractive" style="width:50%;"  data-tab="data2">
+		<a class="chooser chooseractive" data-tab="data2">
 			<i class="fa fa-th-large"></i>
 			Current Decks</a>
 
-		<a class="chooser" style="width:50%;" data-tab="data3">
+		<a class="chooser"  data-tab="data3">
 			<i class="fa fa-plus-square"></i>
 
 			Create Deck</a>

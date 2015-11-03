@@ -179,29 +179,29 @@ $(document).ready(function(){
 </style>
 
 
-<section name="page" class="bgmatte" >
+<section name="page" class="bgpurple" >
 	<h1>Edit <i>{{$deck -> name}}</i></h1>
 
 	<div style="width:100%;text-align:center;margin-bottom:20px;">
-			<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/learn" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+			<a class="thirth bgblue outwhite"  href="/deck/{{$deck->id}}/learn" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
 				<i class="fa fa-bolt"></i> <span style="font-size:13px;">Learn Deck</span>
 			</a>
-			<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;" >
+			<a class="thirth bgpink outwhite"  href="/deck/{{$deck->id}}/review" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;" >
 				<i class="fa fa-line-chart"></i>  <span style="font-size:13px;">Review Deck</span>
 			</a>
-			<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/stats" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;border: 1px rgba(255,255,255,.3) solid;display:inline-block;">
+			<a class="thirth bgmatte outwhite"  href="/deck/{{$deck->id}}/stats" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;border: 1px rgba(255,255,255,.3) solid;display:inline-block;">
 				<i class="fa fa-pie-chart"></i> <span style="font-size:13px;">View Statistics</span>
 			</a>
-			<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+			<a class="thirth bgbaige deletedeck matte outwhite" deckid="{{$deck->id}}" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
 				<i class="fa fa-trash-o"></i> <span style="font-size:13px;">Delete Deck</span>
 			</a>
 	</div>
 
 	<div class="minichooser">
-		<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
+		<a class="chooser chooseractive" data-tab="data1" >
 			<i class="fa fa-plus-square-o"></i>
 Add Cards</a>
-		<a class="chooser" data-tab="data2" style="width:50%;">
+		<a class="chooser" data-tab="data2">
 			<i class="fa fa-male"> </i>
 			Add Users</a>
 	</div>

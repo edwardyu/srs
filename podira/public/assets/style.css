@@ -3564,12 +3564,9 @@ section {}
 
 section[name="page"]{
     height: auto;
-    padding: 5%;
-    margin-left:10%;
-    margin-right: 10%;
-    width: 70%;
-    margin-top:10px;
-    border-radius:10px;
+    padding-top: 5%;
+    width: 100%;
+    margin-top:0px;
     padding-top:10px;
     padding-bottom:10px;
     font-family:lato;
@@ -3945,35 +3942,33 @@ section[name="card"]{
   margin-left:10%;
   display:inline-block;
   margin-bottom:10px;
+  text-align:center;
 
 }
 
 .minichooser > .chooser{
-  width:33.3%;
-  float:left;
+  width:20%;
+  border-top: 1px #ddd solid;
+  border-bottom: 1px #ddd solid;
   height:50px;
   text-align: center;
   font-size:15px;
   padding-top:15px;
+  display:inline-block;
   box-sizing: border-box;
   color:white;
-  background-color: rgba(255,255,255,.1);
   cursor: pointer;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  background-color: rgba(146,167,252,1) !important;
 }
 
 .minichooser > .chooser + .chooser{
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 
 .minichooser > .chooseractive{
-  background-color: rgba(146,167,252,1) !important;
   cursor: auto;
+  background-color: rgba(255,255,255,.20) !important;
+
 }
 
 
@@ -4726,6 +4721,10 @@ animation-duration: 1s;
     color: rgba(33,38,41,1) !important;
 }
 
+.outwhite{
+  border: 1px white solid !important;
+  box-sizing: border-box;
+}
 
 
 /* ACCENTS */
