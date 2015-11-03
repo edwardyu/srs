@@ -4526,15 +4526,14 @@ animation-duration: 1s;
 
 /* PAYMENT SUBCRIPTION OPTION */
 .subscription_container{
-  width: 114%;
-  margin-left:-7%;
+  width: 100%;
+  margin-left:0%;
   height: 180px;
   clear:both;
   margin-top:20px;
   display:inline-block;
   margin-bottom:-9px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+
 
 }
 

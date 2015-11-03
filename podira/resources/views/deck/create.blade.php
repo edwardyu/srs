@@ -38,6 +38,8 @@ $(document).ready(function(){
 
 	})
 
+
+
 })
 </script>
 
@@ -61,7 +63,7 @@ $(document).ready(function(){
 		<form class="deck datanone data3" style="background-color:#F5F5F5" method="POST" action="/deck/store">
 			{!! csrf_field() !!}
 			<fieldset class="title">Create a New Deck Below:</fieldset>
-				<input placeholder="Title" name="name">
+				<input placeholder="Title" name="name" required>
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
 				<select>
