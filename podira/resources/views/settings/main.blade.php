@@ -4,10 +4,10 @@
 
 <section name="main" class="lightmain" style="height:auto;">
 
-	<section name="page" class="bgmatte">
-		<h1>Your Current Plan: <i>Basic</i></h1>
+	<section name="page" class="bgbaige">
+		<h1 class="matte">Your Current Plan: <i>Basic</i></h1>
 		<div class="paymentmoduli">
-			<div class="paymentmodulo" >
+			<div class="paymentmodulo bgmatte" >
 				<h1>Basic</h1>
 				<li><i class="fa fa-check-circle-o"></i> Unlimited Personal Flashcard Decks</li>
 				<li><i class="fa fa-check-circle-o"></i> Can Join Shared Decks with Invite</li>
