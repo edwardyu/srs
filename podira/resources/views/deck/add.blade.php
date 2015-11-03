@@ -89,8 +89,10 @@ $(document).ready(function(){
 		    data: "flashcard_id=" + flashcard_id,
 		    success: function(data){
 					$("#"+flashcard_id).removeClass('displayyes');
+
 		    }
 		  });
+
 	})
 
 
@@ -141,6 +143,7 @@ $(document).ready(function(){
 				data: "id=" + deckid,
 				success: function(data){
 					// redirect to deck pages
+					window.location = '/'
 				}
 			});
 
