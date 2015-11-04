@@ -13,7 +13,7 @@
         <input placeholder="Password" name="password" type="password">
         <input placeholder="Confirm Password" name="password_confirmation" type="password">
         <input type="submit" value="Sign Up">
-        <a> Already Have Account </a>
+        <a href="/auth/login"> Already Have Account </a>
     </form>
 </section>
 @endsection
