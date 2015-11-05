@@ -3,7 +3,9 @@
     <a href="/"><img class="logo" src="{!! URL::asset('assets/images/podira_matte.png') !!}"></a>
     <div class="links">
         <span><a href="/auth/logout">Sign Out</a></span>
-        <span><a href="/" >My Decks</a></span>
+        <span><a href="/settings">Payment Details</a></span>
+        <span><a href="/settings">Account Settings</a></span>
+        <span><a href="/">My Decks</a></span>
         <span style="opacity:.5;cursor:auto;">Logged in as <i>{{Auth::user() -> name}}</i></span>
     </div>
 </div>
