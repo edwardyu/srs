@@ -95,7 +95,7 @@ class SessionController extends Controller
                 ]);
             }
 
-        } else {           
+        } else {
             $sessionManager->end();
             $sessionCalculator = new \App\Stats\SessionStatsCalculator($sessionManager->getSession());
             $time = $sessionCalculator->totalTime();

@@ -24,13 +24,18 @@ $("html").keydown(function(e) {
 		</div>
 	@endif
 
-	@if($previouslyCorrect == 0)
+	@if($previouslyCorrect == 0 && isset($previouslyCorrect))
 		<div class="success flipInX animated" style="background-color: #FF6632">
 		 <i class="fa fa-times-circle-o"></i> Incorrect!
 		</div>
 	@endif
 
-	<h1 class="matte">Flashcard Review</h1>
+
+
+	<h1 class="matte">Flashcard Review
+
+
+	</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
 				<div class="card sidebyside displaynone displayyes bgmatte" id="{{$deck->id}}" style="-webkit-animation-duration:0s;">
