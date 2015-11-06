@@ -114,8 +114,15 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		return $qa;
 	}
 
-	abstract protected function getSessionFlashcards();
-	abstract protected function getAnswerPool();
+	protected function getAnswerPool()
+	{
+		return $this->deck->flashcards;
+	}
+
+	public function remainingFlashcards()
+	{
+		return $this->remainingFlashcards->count();
+	}
 
 	/**
 	 * Returns the next item in the session.
