@@ -86,9 +86,6 @@ class SessionController extends Controller
             return response('Not found.', 404);
         }
 
-
-
-
         $sessionManager = Session::get('sessionManager');
 
         try {
@@ -102,7 +99,6 @@ class SessionController extends Controller
         } catch(\InvalidArgumentException $e) {
             return 'Error';
         }
-
 
         $user = $request->user();
         $deck = \App\Deck::find($id);
