@@ -26,8 +26,25 @@ class MainController extends Controller
 				$calculator = new \App\Stats\UserDeckStatsCalculator($user, $deck);
 				$numToLearnAndReview[(string) $deck->id] = ['toLearn' => $calculator->numToLearn(), 'toReview' => $calculator->numToReview()];
 			}
-			
+
 			return view('deck.create')->with(['user' => $user, 'numbers' => $numToLearnAndReview]);
 		}
+	}
+
+	public function pro(Request $request)
+	{
+
+		if(!Auth::check()) {
+			return view('pro');
+		} else {
+			$user = Auth::user();
+			return view('pro')->with(['user' => $user]);
+		}
+	}
+
+	public function createSubscription(Request $request)
+	{
+		\App\Subscription::create($request->stripeToken, Auth::user());
+		return view('pro')->with(['user' => $user, 'congrats' => true]);
 	}
 }

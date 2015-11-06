@@ -4,7 +4,7 @@
         @include('includes.head')
     </head>
     <body>
-      @include('includes.header')
+        @include('includes.header')
         <div class="container" style="height:auto;">
             @yield('content')
         </div>

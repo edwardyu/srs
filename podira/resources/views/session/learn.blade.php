@@ -68,7 +68,7 @@ $(document).ready(function(){
 	<h1 class="matte">Review {{$deck -> name}}</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
-				<div class="card sidebyside displaynone displayyes  bgmatte" id="{{$deck->id}}" >
+				<div class="card sidebyside displaynone displayyes  bgbaige" id="{{$deck->id}}" >
 				<div class="innercard">
 						<div class="emblem">
 								<div class="inneremblem">
@@ -82,7 +82,7 @@ $(document).ready(function(){
 							@foreach($answers as $answer)
 							<fieldset class="halfform">
 								 <input type="radio" name="answer" id="{{ $answer }}" value="{{ $answer }}">
-										 <label for="{{ $answer }}" style="width:100%;"><span></span>{{ $answer }}</label>
+								 <label for="{{ $answer }}" style="width:100%;"><span></span>{{ $answer }}</label>
 							</fieldset>
 							@endforeach
 

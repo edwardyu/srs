@@ -183,6 +183,20 @@ textarea, input { outline: none; }
   text-align:left;
 }
 
+.congrats {
+  width:100%;
+  position:absolute;
+  bottom:0px;
+  height: 80px;
+  background-color: #52AEFb;
+  color:white;
+}
+
+.congrats h1{
+  color:white;
+  text-align:center;
+  font-family: Lato, sans-serif;
+}
 /* ANIMATE CSS */
 
 @charset "UTF-8";
@@ -4586,8 +4600,9 @@ animation-duration: 1s;
 /* PAYMENT MODULO */
 
 .paymentmoduli{
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
+  margin-left: 16%;
+
   padding: 0px;
   box-sizing: border-box;
 }

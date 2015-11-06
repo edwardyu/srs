@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.deck.view' => \App\Http\Middleware\DeckView::class,
         'auth.deck.edit' => \App\Http\Middleware\DeckEdit::class,
+        'auth.deck.add' => \App\Http\Middleware\DeckAddUser::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 }
