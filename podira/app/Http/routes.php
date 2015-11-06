@@ -12,13 +12,14 @@
 */
 Route::get('/', 'MainController@mainPage');
 Route::get('home', 'MainController@mainPage');
-Route::get('subscribe', 'MainController@subscribe');
+Route::get('pro', 'MainController@pro');
 Route::post('createSubscription', 'MainController@createSubscription');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
 
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
@@ -32,6 +33,10 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+// Settings/Payment issues routes:
+Route::get('settings', 'SettingsController@getSettings');
+
+
 /*
 //Flashcard routes...
 Route::get('card/create', 'FlashcardController@create');
@@ -40,6 +45,8 @@ Route::get('card/list', 'FlashcardController@index');
 */
 
 //Deck routes...
+
+
 Route::get('deck/create', 'DeckController@create');
 Route::get('deck/{id}/add', 'DeckController@addCard');
 Route::post('deck/store', 'DeckController@store');
