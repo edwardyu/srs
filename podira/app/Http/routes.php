@@ -20,6 +20,10 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+// Contact Route
+Route::get('contact', 'ContactController@getContact');
+Route::post('contact', 'ContactController@sendMail');
+
 
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');

@@ -368,11 +368,11 @@ Add Cards</a>
 					@endif
 				</div>
 
-
 			<div class="datanone data2  matte" style="width:40%;margin-left:30%;margin-top:40px;">
 				<div class="userfail purple" style="margin-bottom:10px;"></div>
 				@foreach($deck -> users as $user)
 					<div class="user"><span class="name">{{$user -> name}}</span><span class="email">{{$user -> email}}</span>
+
 						<span style="float:right;color:#FF6632;cursor:pointer;" class="deleteuser" deckid="{{$deck->id}}" userid="{{$user->email}}">Delete</span>
 					</div>
 				@endforeach

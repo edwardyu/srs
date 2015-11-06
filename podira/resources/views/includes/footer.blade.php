@@ -1,4 +1,6 @@
-<div style="width:100%;height:50px;color:white;font-family:Lato;font-size:11px;text-align:center;padding-top:19px;box-sizing:border-box;" class="bgmatte">All Rights Reserved</div>
+<div style="width:100%;height:50px;color:white;font-family:Lato;
+font-size:11px;text-align:center;padding-top:19px;box-sizing:border-box;" class="bgmatte">
+All Rights Reserved.  <a href="contact" style="text-decoration:none;color:ddd;">Contact Us</a></div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
