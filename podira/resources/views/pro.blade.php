@@ -51,9 +51,9 @@
 								data-amount="999"
 								data-name="Podira"
 								data-description="Signing Up for Pro"
-								data-image="/128x128.png"
 								data-locale="auto"
 								data-label="Upgrade Today"
+								data-image="/assets/images/Podira_square.png"
 								>
 							</script>
 						</form>
