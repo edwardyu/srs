@@ -117,9 +117,15 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	abstract protected function getSessionFlashcards();
 	abstract protected function getAnswerPool();
 
+	/**
+	 * Returns the next item in the session.
+	 * The format will be an array
+	 * ['previouslyCorrect' => 0|1|null, 'next' => QuestionAnswer|Flashcard]
+	 */
 	public function next(\App\Answer $answer)
 	{
-		if($this->checkAnswer($answer)) {
+		$answerData = $this->checkAnswer($answer);
+		if($answerData['correct']) {
 			if(!$this->remainingFlashcards->count()) 
 				return Null;
 			else
@@ -128,16 +134,20 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 			$qa = new \App\QuestionAnswer($this->nextFlashcard);
 			$qa->setChoices($this->answerPool);
 			$this->lastFlashcard = $this->nextFlashcard;
-			return $qa;
+			if($answerData['fromWhence'] == \App\Answer::MC)
+				return ['previouslyCorrect' => 1, 'next' => $qa];
+			else
+				return ['previouslyCorrect' => null, 'next' => $qa];
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
-			return $this->nextFlashcard;			
+			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];			
 		}
 	}
 
 	/**
 	 * Helper function to check an answer. Side effect: stores the answer in the database.
 	 * @param $answer - the answer to check
+	 * @return ['fromWhence' => '', 'correct' => true|false]
 	 */
 	protected function checkAnswer(\App\Answer $answer)
 	{
@@ -163,6 +173,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_correct');
 			
 			$this->numCorrect++;
+			return ['fromWhence' => \App\Answer::MC, 'correct' => true];
 		} 
 
 		else if(!$correct && $answer->getFromWhence() == \App\Answer::MC) 
@@ -178,9 +189,13 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_incorrect');
 			
 			$this->numIncorrect++;
+			return ['fromWhence' => \App\Answer::MC, 'correct' => false];
 		}
 
-		return $correct;
+		else
+		{
+			return ['fromWhence' => 'card', 'correct' => $correct];
+		}		
 	}
 
 	public function end()

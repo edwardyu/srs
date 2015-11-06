@@ -49,14 +49,16 @@ class SessionController extends Controller
                 'type' => $type,
                 'deck' => $deck,
                 'question' => $info->getQuestion(),
-                'answers' => $info->getChoices()
+                'answers' => $info->getChoices(),
+                'previouslyCorrect' => null
             ]);
         } else if($info instanceof \App\Flashcard) {
             Session::put('fromWhence', 'card');
             return view('session.card')->with([
                 'card' => $info,
                 'type' => $type,
-                'deck' => $deck
+                'deck' => $deck,
+                'previouslyCorrect' => null
             ]);
         }
     }
@@ -74,20 +76,22 @@ class SessionController extends Controller
         $answer = new \App\Answer($request->answer, $fromWhence);
 
         if ($info = $sessionManager->next($answer)) {
-            if($info instanceof \App\QuestionAnswer) {
+            if($info['next'] instanceof \App\QuestionAnswer) {
                 Session::put('fromWhence', 'multiple-choice');
                 return view('session.' . $type)->with([
                     'type' => $type,
                     'deck' => $deck,
                     'question' => $info->getQuestion(),
-                    'answers' => $info->getChoices()
+                    'answers' => $info->getChoices(),
+                    'previouslyCorrect' => $info['previouslyCorrect']
                 ]);
-            } else if($info instanceof \App\Flashcard) {
+            } else if($info['next'] instanceof \App\Flashcard) {
                 Session::put('fromWhence', 'card');
                 return view('session.card')->with([
                     'card' => $info,
                     'type' => $type,
-                    'deck' => $deck
+                    'deck' => $deck,
+                    'previouslyCorrect' => $info['previouslyCorrect']
                 ]);
             }
 

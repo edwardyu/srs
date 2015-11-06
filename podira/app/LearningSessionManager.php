@@ -37,7 +37,8 @@ class LearningSessionManager extends AbstractSessionManager
 
 	public function next(\App\Answer $answer)
 	{
-		if($this->checkAnswer($answer)) {
+		$answerData = $this->checkAnswer($answer);
+		if($answerData['correct']) {
 			if(!$this->remainingFlashcards->count()) 
 				return Null;
 			else
@@ -46,16 +47,22 @@ class LearningSessionManager extends AbstractSessionManager
 			if(!in_array($this->nextFlashcard->id, $this->shown)) {
 				$this->shown[] = $this->nextFlashcard->id;
 				$this->lastFlashcard = $this->nextFlashcard;
-				return $this->nextFlashcard;
+				if($answerData['fromWhence'] == \App\Answer::MC)
+					return ['previouslyCorrect' => 1, 'next' => $this->nextFlashcard];
+				else
+					return ['previouslyCorrect' => null, 'next' => $this->nextFlashcard];
 			}
 
 			$qa = new \App\QuestionAnswer($this->nextFlashcard);
 			$qa->setChoices($this->answerPool);
 			$this->lastFlashcard = $this->nextFlashcard;
-			return $qa;
+			if($answerData['fromWhence'] == \App\Answer::MC)
+				return ['previouslyCorrect' => 1, 'next' => $qa];
+			else
+				return ['previouslyCorrect' => null, 'next' => $qa];
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
-			return $this->nextFlashcard;			
+			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];			
 		}
 	}
 
