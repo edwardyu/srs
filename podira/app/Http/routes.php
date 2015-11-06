@@ -55,6 +55,8 @@ Route::post('deck/{id}/storeUser', 'DeckController@storeUser');
 Route::post('deck/{id}/deleteCard', 'DeckController@deleteCard');
 Route::post('deck/{id}/editCard', 'DeckController@editCard');
 Route::post('deck/{id}/delete', 'DeckController@deleteDeck');
+Route::post('deck/{email}/deleteuser', 'DeckController@deleteUser');
+
 
 //stat routes
 Route::get('deck/{id}/stats', 'StatsController@deckStats');

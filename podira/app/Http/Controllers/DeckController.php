@@ -13,104 +13,124 @@ use Auth;
 
 class DeckController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('auth.deck.view', ['only' => 'addCard']);
-        $this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser', 'deleteCard', 'editCard', 'deleteDeck']]);
-        $this->middleware('auth.deck.add', ['only' => 'storeUser']);
-    }
+	public function __construct()
+	{
+		$this->middleware('auth');
+		$this->middleware('auth.deck.view', ['only' => 'addCard']);
+		$this->middleware('auth.deck.edit', ['only' => ['storeCard', 'storeUser', 'deleteCard', 'editCard', 'deleteDeck']]);
+		$this->middleware('auth.deck.add', ['only' => 'storeUser']);
+	}
 
-    /**
-     * Show the form for creating a new deck.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('deck.create');
-    }
-
-
+	/**
+	 * Show the form for creating a new deck.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return view('deck.create');
+	}
 
 
-    public function store(Request $request)
-    {
-        if(!$request->name){
-          return 'notitle';
-        }
 
-        $deck = Deck::create([
-            'name' => $request->name
-        ]);
 
-        Auth::user()->decks()->save($deck, ['permissions' => 'edit']);
-        $id = $deck->id;
-        return redirect()->action('DeckController@addCard', [$id]);
+	public function store(Request $request)
+	{
+		if(!$request->name){
+		  return 'notitle';
+		}
 
-    }
+		$deck = Deck::create([
+			'name' => $request->name
+		]);
 
-    /**
-     * Add a card to the deck.
-     */
-    public function addCard($id)
-    {
-        $deck = Deck::find($id);
-        return view('deck.add')->with(['id' => $id, 'deck' => $deck]);
-    }
+		Auth::user()->decks()->save($deck, ['permissions' => 'edit']);
+		$id = $deck->id;
+		return redirect()->action('DeckController@addCard', [$id]);
 
-    public function storeCard(Request $request)
-    {
-        $id = $request->id;
-        $deck = Deck::find($id);
+	}
 
-        if($request->front && $request->back) {
-            $card = Flashcard::create([
-                'front' => $request->front,
-                'back' => $request->back
-            ]);
+	/**
+	 * Add a card to the deck.
+	 */
+	public function addCard($id)
+	{
+		$deck = Deck::find($id);
+		return view('deck.add')->with(['id' => $id, 'deck' => $deck]);
+	}
 
-            $deck->flashcards()->save($card);
-        }
+	public function storeCard(Request $request)
+	{
+		$id = $request->id;
+		$deck = Deck::find($id);
 
-        return redirect()->action('DeckController@addCard', [$id]);
-    }
+		if($request->front && $request->back) {
+			$card = Flashcard::create([
+				'front' => $request->front,
+				'back' => $request->back
+			]);
 
-    /**
-     * Add a user to the deck.
-     */
-    public function storeUser(Request $request)
-    {
-        $id = $request->id;
-        $deck = Deck::find($id);
-        $user = User::where('email', $request->user_email)->first();
-        try{
-          if (!$user) {
-              throw new \Exception('No User!');
-          } else {
-          $user->decks()->save($deck, ['permissions' => 'view']);
-          return redirect()->action('DeckController@addCard', [$id]);
-          }
-        } catch (\Exception $e) {
-          return json_encode(array(1));
-        }
-    }
+			$deck->flashcards()->save($card);
+		}
 
-    public function deleteCard(Request $request)
-    {
-        $flashcardId = $request->flashcard_id;
-        Flashcard::destroy($flashcardId);
-    }
+		return redirect()->action('DeckController@addCard', [$id]);
+	}
 
-    public function editCard(Request $request)
-    {
-        $flashcardId = $request->flashcard_id;
-        $flashcard = Flashcard::find($flashcardId);
-        $flashcard->update(['front' => $request->front, 'back' => $request->back]);
-    }
+	/**
+	 * Add a user to the deck.
+	 */
+	public function storeUser(Request $request)
+	{
+		$id = $request->id;
+		$deck = Deck::find($id);
+		$user = User::where('email', $request->user_email)->first();        
+		try {
+			if (!$user) {
+			  throw new \Exception('No User!');
+			}
+			elseif ($deck->users->contains($user)) {
+			 	return redirect()->action('DeckController@addCard', [$id]);
+			 } 
+			else {
+				$user->decks()->save($deck, ['permissions' => 'view']);
+				return redirect()->action('DeckController@addCard', [$id]);
+		    }
+		} 
+		catch (\Exception $e) {
+		  return json_encode(array(1));
+		}
+	}
 
-    public function deleteDeck(Request $request)
-    {
-        Deck::destroy($request->id);
-    }
+	/**
+	 * Delete an user from a deck
+	 */
+	public function deleteUser(Request $request)
+	{
+		$id = $request->id;
+		$deck = Deck::find($id);
+		$user = User::where('email', $request->user_email)->first();
+		if(!$user) {
+			throw new \Exception('No User!');
+		} else {
+			$deck->users()->detach($user->id);
+		}
+	}
+
+	public function deleteCard(Request $request)
+	{
+		$flashcardId = $request->flashcard_id;
+		Flashcard::destroy($flashcardId);
+	}
+
+	public function editCard(Request $request)
+	{
+		$flashcardId = $request->flashcard_id;
+		$flashcard = Flashcard::find($flashcardId);
+		$flashcard->update(['front' => $request->front, 'back' => $request->back]);
+	}
+
+	public function deleteDeck(Request $request)
+	{
+		Deck::destroy($request->id);
+	}
 }

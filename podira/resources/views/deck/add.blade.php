@@ -153,6 +153,30 @@ $(document).ready(function(){
 
 	})
 
+	$('.deleteuser').click(function(){
+		var userid = $(this).attr('userid');
+		var deckid = $(this).attr('deckid');
+
+		console.log(deckid);
+
+		var base_url = window.location.protocol + "//" + window.location.host;
+
+		$.ajaxSetup({
+			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+
+		$.ajax({
+				type: "POST", // or GET
+				url: base_url + "/deck/" + deckid + "/deleteuser",
+				data: "email=" + userid,
+				success: function(data){
+					// redirect to deck pages
+					window.location = '/'
+				}
+			});
+
+	})
+
 })
 
 
@@ -349,7 +373,7 @@ Add Cards</a>
 				<div class="userfail purple" style="margin-bottom:10px;"></div>
 				@foreach($deck -> users as $user)
 					<div class="user"><span class="name">{{$user -> name}}</span><span class="email">{{$user -> email}}</span>
-						<span style="float:right;color:#FF6632">Delete</span>
+						<span style="float:right;color:#FF6632" class="deleteuser" deckid="{{$deck->id}}" userid="{{$user->email}}">Delete</span>
 					</div>
 				@endforeach
 			</div>

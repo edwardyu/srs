@@ -16,14 +16,14 @@ class DeckAddUser
      */
     public function handle($request, Closure $next)
     {
-      //  print "yelo";
+
   //      return response('Unauthorized.', 401);
-    /*  if(!$request->user() || !$request->id) {
+        if(!$request->user() || !$request->id) {
             return response('Unauthorized.', 401);
-        } */
+        }
 
         if(!$this->canAdd($request->user(), $request)) {
-            return response('You have reached the user limit.', 401);
+            return json_encode(array(2));
         }
 
         return $next($request);
@@ -37,7 +37,7 @@ class DeckAddUser
         else {
 
             $deck = \App\Deck::find($request->id);
-            if($deck->users->count >= DeckAddUser::USER_LIMIT){
+            if($deck->users->count() >= DeckAddUser::USER_LIMIT){
               return false;
             }
             else {
