@@ -48,7 +48,7 @@
 							<script
 								src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 								data-key="pk_live_F8wemN8o8LEAPftGPw2mCqFq"
-								data-amount="2000"
+								data-amount="999"
 								data-name="Podira"
 								data-description="Signing Up for Pro"
 								data-image="/128x128.png"
