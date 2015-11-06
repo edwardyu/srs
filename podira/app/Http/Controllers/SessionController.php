@@ -81,14 +81,14 @@ class SessionController extends Controller
                 return view('session.' . $type)->with([
                     'type' => $type,
                     'deck' => $deck,
-                    'question' => $info->getQuestion(),
-                    'answers' => $info->getChoices(),
+                    'question' => $info['next']->getQuestion(),
+                    'answers' => $info['next']->getChoices(),
                     'previouslyCorrect' => $info['previouslyCorrect']
                 ]);
             } else if($info['next'] instanceof \App\Flashcard) {
                 Session::put('fromWhence', 'card');
                 return view('session.card')->with([
-                    'card' => $info,
+                    'card' => $info['next'],
                     'type' => $type,
                     'deck' => $deck,
                     'previouslyCorrect' => $info['previouslyCorrect']
