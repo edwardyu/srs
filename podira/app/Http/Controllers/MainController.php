@@ -45,6 +45,6 @@ class MainController extends Controller
 	public function createSubscription(Request $request)
 	{
 		\App\Subscription::create($request->stripeToken, Auth::user());
-		return view('pro')->with(['user' => $user, 'congrats' => true]);
+		return view('pro')->with(['user' => $request->user, 'congrats' => true]);
 	}
 }
