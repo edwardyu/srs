@@ -117,6 +117,10 @@ $(document).ready(function(){
 						console.log("failure!!");
 						$(".userfail").html('That user isn\'t currently registered on Podira or has been already added!');
 					}
+					if(res[0] == 2){
+						console.log("failure!!");
+						$(".userfail").html('You currently cannot add users.  Upgrade to Pro to add new users!');
+					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
 					console.log(errorThrown);
