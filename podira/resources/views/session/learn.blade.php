@@ -165,7 +165,7 @@ $(document).ready(function(){
 
 						</div>
 						<h1>{{$question}}</h1>
-						 <form  method="POST" id="formcard" action="/deck/{{$deck->id}}/review/next">
+						 <form  method="POST" id="formcard" action="/deck/{{$deck->id}}/learn/next">
 							 {!! csrf_field() !!}
 							 @if(strlen($answers[0]) < 44 && strlen($answers[1]) < 44 && strlen($answers[2]) < 44 && strlen($answers[3]) < 44)
 								@foreach($answers as $answer)
