@@ -16,7 +16,6 @@ class DeckAddUser
      */
     public function handle($request, Closure $next)
     {
-        return response('Unauthorized.', 401); 
         if(!$request->user() || !$request->id) {
             return response('Unauthorized.', 401); 
         }
