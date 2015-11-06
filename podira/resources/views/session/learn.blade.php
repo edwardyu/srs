@@ -211,6 +211,8 @@ $(document).ready(function(){
 
 		</div>
 
+		@include('includes.progress')
+
 
 </section>
 @endsection

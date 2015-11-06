@@ -71,6 +71,8 @@ $("html").keydown(function(e) {
 				</div>
 		</div>
 
+		@include('includes.progress')
+
 
 </section>
 @endsection

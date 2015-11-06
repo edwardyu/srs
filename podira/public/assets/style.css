@@ -208,6 +208,86 @@ box-sizing: border-box;
 padding-top: 8px;
 font-size: 18px;
 }
+
+
+.progress{
+  width:100%;
+  position:fixed;
+  bottom:0px;
+  height: 60px;
+  color:white;
+}
+
+.progress h1{
+  position: absolute;
+  top:0px;
+  color:white;
+  font-family:Lato,sans-serif;
+  font-size:10px;
+  width:100%;
+  text-align:center;
+
+}
+
+.progressbar {
+  width:80%;
+  margin-left:10%;
+  margin-top:30px;
+  height: 10px;
+  background-color:rgba(255,255,255,.7);
+  position:relative;
+}
+
+.progressbar .startdiode {
+  width:30px;
+  height:30px;
+  border-radius: 100%;
+  background-color:white;
+  position:absolute;
+  left:-15px;
+  top:-10px;
+  z-index: 4;
+  box-sizing: border-box;
+  border: 3px white solid;
+}
+
+.progressbar .enddiode {
+  width:30px;
+  height:30px;
+  border-radius: 100%;
+  background-color:white;
+  position:absolute;
+  right:-15px;
+  top:-10px;
+  z-index: 4;
+  box-sizing: border-box;
+  border: 3px white solid;
+
+}
+
+.progressbar .diode {
+  width:20px;
+  height:20px;
+  border-radius: 100%;
+  background-color:white;
+  position:absolute;
+  top:-5px;
+  z-index: 4;
+  box-sizing: border-box;
+  border: 3px white solid;
+
+
+}
+
+.progressbar .innerbar {
+  width:33.333%;
+  height:4px;
+  position:absolute;
+  top:3px;
+  left:0px;
+  z-index: 1;
+
+}
 /* ANIMATE CSS */
 
 @charset "UTF-8";

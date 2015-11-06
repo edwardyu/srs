@@ -36,6 +36,19 @@ class SessionController extends Controller
         }
 
 
+        try {
+            $remainingFlashcards = $sessionManager->remainingFlashcards();
+        } catch(\InvalidArgumentException $e) {
+            return 'Error';
+        }
+
+        try {
+          $totalFlashcards = $sessionManager->getTotalFlashcards();
+        } catch(\InvalidArgumentException $e) {
+            return 'Error';
+        }
+
+
         if(!$info) {
             $sessionManager->end();
             return view('session.neverbegan') -> with(['deck' => $deck,'type' => $type]);
@@ -50,7 +63,9 @@ class SessionController extends Controller
                 'deck' => $deck,
                 'question' => $info->getQuestion(),
                 'answers' => $info->getChoices(),
-                'previouslyCorrect' => null
+                'previouslyCorrect' => null,
+                'remainingFlashcards' => $remainingFlashcards,
+                'totalFlashcards' => $totalFlashcards
             ]);
         } else if($info instanceof \App\Flashcard) {
             Session::put('fromWhence', 'card');
@@ -58,7 +73,9 @@ class SessionController extends Controller
                 'card' => $info,
                 'type' => $type,
                 'deck' => $deck,
-                'previouslyCorrect' => null
+                'previouslyCorrect' => null,
+                'remainingFlashcards' => $remainingFlashcards,
+                'totalFlashcards' => $totalFlashcards
             ]);
         }
     }
@@ -69,7 +86,24 @@ class SessionController extends Controller
             return response('Not found.', 404);
         }
 
+
+
+
         $sessionManager = Session::get('sessionManager');
+
+        try {
+            $remainingFlashcards = $sessionManager->remainingFlashcards();
+        } catch(\InvalidArgumentException $e) {
+            return 'Error';
+        }
+
+        try {
+            $totalFlashcards = $sessionManager->getTotalFlashcards();
+        } catch(\InvalidArgumentException $e) {
+            return 'Error';
+        }
+
+
         $user = $request->user();
         $deck = \App\Deck::find($id);
         $fromWhence = Session::get('fromWhence');
@@ -83,16 +117,20 @@ class SessionController extends Controller
                     'deck' => $deck,
                     'question' => $info['next']->getQuestion(),
                     'answers' => $info['next']->getChoices(),
-                    'previouslyCorrect' => $info['previouslyCorrect']
-                ]);
+                    'previouslyCorrect' => $info['previouslyCorrect'],
+                    'remainingFlashcards' => $remainingFlashcards,
+                    'totalFlashcards' => $totalFlashcards
+                                    ]);
             } else if($info['next'] instanceof \App\Flashcard) {
                 Session::put('fromWhence', 'card');
                 return view('session.card')->with([
                     'card' => $info['next'],
                     'type' => $type,
                     'deck' => $deck,
-                    'previouslyCorrect' => $info['previouslyCorrect']
-                ]);
+                    'previouslyCorrect' => $info['previouslyCorrect'],
+                    'remainingFlashcards' => $remainingFlashcards,
+                    'totalFlashcards' => $totalFlashcards
+                     ]);
             }
 
         } else {

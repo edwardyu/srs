@@ -13,6 +13,11 @@ class LearningSessionManager extends AbstractSessionManager
 	 */
 	private $shown = [];
 
+	public function remainingFlashcards()
+	{
+		return $this->remainingFlashcards->count();
+	}
+
 	public function start()
 	{
 		$this->remainingFlashcards = $this->getSessionFlashcards();
@@ -20,14 +25,14 @@ class LearningSessionManager extends AbstractSessionManager
 
 		$this->session = new \App\Session(['type' => $this->type]);
         $this->user->sessions()->save($this->session);
-        $this->session->deck()->save($this->deck);		
+        $this->session->deck()->save($this->deck);
 		$this->startTime = time();
 
 		if(!$this->remainingFlashcards->count()) {
 			return Null;
 		}
 
-		$this->nextFlashcard = $this->remainingFlashcards->random();	
+		$this->nextFlashcard = $this->remainingFlashcards->random();
 		$qa = new \App\QuestionAnswer($this->nextFlashcard);
 		$qa->setChoices($this->answerPool);
 		$this->lastFlashcard = $this->nextFlashcard;
@@ -39,7 +44,7 @@ class LearningSessionManager extends AbstractSessionManager
 	{
 		$answerData = $this->checkAnswer($answer);
 		if($answerData['correct']) {
-			if(!$this->remainingFlashcards->count()) 
+			if(!$this->remainingFlashcards->count())
 				return Null;
 			else
 				$this->nextFlashcard = $this->remainingFlashcards->random();
@@ -62,13 +67,13 @@ class LearningSessionManager extends AbstractSessionManager
 				return ['previouslyCorrect' => null, 'next' => $qa];
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
-			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];			
+			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];
 		}
 	}
 
 	protected function getSessionFlashcards()
 	{
-		//load all flashcards that we can't use, because the user has already learned it. 
+		//load all flashcards that we can't use, because the user has already learned it.
 		$pastSessions = $this->user->sessions()->where('type', 'learn')->with('flashcards')->get();
 		$this->unusable = collect();
 
@@ -78,7 +83,7 @@ class LearningSessionManager extends AbstractSessionManager
 						->where('correct', 1)
 						->get();
 
-			$this->unusable = $this->unusable->merge($learned);	
+			$this->unusable = $this->unusable->merge($learned);
 		}
 
 		//remove from deck
@@ -90,11 +95,17 @@ class LearningSessionManager extends AbstractSessionManager
 			return $usable->random(self::NUM_CONCEPTS);
 		} else {
 			return $usable;
-		}		
+		}
 	}
 
-	protected function getAnswerPool()
+	public function getTotalFlashcards()
 	{
-		return $this->deck->flashcards;
+		$arr = array();
+		for($i = 0; $i < $this->getSessionFlashcards()->count(); $i++){
+			$arr[] = $i + 1;
+		}
+		return $arr;
 	}
+
+
 }

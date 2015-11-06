@@ -8,7 +8,7 @@ use DB;
 use App\Stats\UserStatsCalculator as UserStatsCalculator;
 
 class ReviewSessionManager extends AbstractSessionManager
-{	
+{
 	protected function getSessionFlashcards()
 	{
 		//get 10 most struggleed with words by recall score
@@ -27,11 +27,26 @@ class ReviewSessionManager extends AbstractSessionManager
 			});
 		}
 
-		return $usable;		
+		return $usable;
 	}
 
 	protected function getAnswerPool()
 	{
 		return $this->deck->flashcards;
 	}
+
+	public function remainingFlashcards()
+	{
+		return $this->remainingFlashcards->count();
+	}
+
+	public function getTotalFlashcards()
+	{
+		$arr = array();
+		for($i = 0; $i < $this->getSessionFlashcards()->count(); $i++){
+			$arr[] = $i + 1;
+		}
+		return $arr;
+	}
+
 }
