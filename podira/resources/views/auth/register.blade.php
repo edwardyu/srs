@@ -7,8 +7,7 @@
     <h1>Sign Up</h1>
     <form method="POST" action="/auth/register">
       {!! csrf_field() !!}
-        <input placeholder="First Name" name="name" class="half_1">
-        <input placeholder="Last Name" name="lastname" class="half_2">
+        <input placeholder="Full Name" name="name">
         <input placeholder="Email" name="email">
         <input placeholder="Password" name="password" type="password">
         <input placeholder="Confirm Password" name="password_confirmation" type="password">
