@@ -31,8 +31,15 @@ class DeckController extends Controller
         return view('deck.create');
     }
 
+
+
+
     public function store(Request $request)
     {
+        if(!$request->name){
+          return 'notitle';
+        }
+
         $deck = Deck::create([
             'name' => $request->name
         ]);
@@ -40,6 +47,7 @@ class DeckController extends Controller
         Auth::user()->decks()->save($deck, ['permissions' => 'edit']);
         $id = $deck->id;
         return redirect()->action('DeckController@addCard', [$id]);
+
     }
 
     /**

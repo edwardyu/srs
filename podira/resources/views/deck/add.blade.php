@@ -16,6 +16,13 @@ $(document).ready(function(){
 		$("."+tab_id).addClass('displayit');
 	})
 
+
+	$('.cardchooser').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		$('.cardtype').removeClass('displayit');
+		$(".cardtype"+tab_id).addClass('displayit');
+	})
+
 	$('.editcard').click(function(){
 		var card = $(this).attr('card');
 		$('.caredit' + card).addClass('displayyes');
@@ -82,8 +89,10 @@ $(document).ready(function(){
 		    data: "flashcard_id=" + flashcard_id,
 		    success: function(data){
 					$("#"+flashcard_id).removeClass('displayyes');
+
 		    }
 		  });
+
 	})
 
 
@@ -134,6 +143,7 @@ $(document).ready(function(){
 				data: "id=" + deckid,
 				success: function(data){
 					// redirect to deck pages
+					window.location = '/'
 				}
 			});
 
@@ -165,32 +175,36 @@ $(document).ready(function(){
 		float:left;
 		opacity: .7;
 }
+
+.cardtype{
+	display:none;
+}
 </style>
 
 
-<section name="page" class="bgmatte" >
+<section name="page" class="bgpurple" >
 	<h1>Edit <i>{{$deck -> name}}</i></h1>
 
 	<div style="width:100%;text-align:center;margin-bottom:20px;">
-			<a class="thirth bgpurple"  href="/deck/{{$deck->id}}/learn" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+			<a class="thirth bgblue outwhite"  href="/deck/{{$deck->id}}/learn" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
 				<i class="fa fa-bolt"></i> <span style="font-size:13px;">Learn Deck</span>
 			</a>
-			<a class="thirth bgpink"  href="/deck/{{$deck->id}}/review" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;" >
+			<a class="thirth bgpink outwhite"  href="/deck/{{$deck->id}}/review" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;" >
 				<i class="fa fa-line-chart"></i>  <span style="font-size:13px;">Review Deck</span>
 			</a>
-			<a class="thirth bgmatte"  href="/deck/{{$deck->id}}/stats" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;border: 1px rgba(255,255,255,.3) solid;display:inline-block;">
+			<a class="thirth bgmatte outwhite"  href="/deck/{{$deck->id}}/stats" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;border: 1px rgba(255,255,255,.3) solid;display:inline-block;">
 				<i class="fa fa-pie-chart"></i> <span style="font-size:13px;">View Statistics</span>
 			</a>
-			<a class="thirth bgbaige deletedeck matte" deckid="{{$deck->id}}" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
+			<a class="thirth bgbaige deletedeck matte outwhite" deckid="{{$deck->id}}" style="float:none;padding-top:3px;padding-left:7px;padding-right:7px;display:inline-block;">
 				<i class="fa fa-trash-o"></i> <span style="font-size:13px;">Delete Deck</span>
 			</a>
 	</div>
 
 	<div class="minichooser">
-		<a class="chooser chooseractive" data-tab="data1" style="width:50%;">
+		<a class="chooser chooseractive" data-tab="data1" >
 			<i class="fa fa-plus-square-o"></i>
 Add Cards</a>
-		<a class="chooser" data-tab="data2" style="width:50%;">
+		<a class="chooser" data-tab="data2">
 			<i class="fa fa-male"> </i>
 			Add Users</a>
 	</div>
@@ -203,8 +217,42 @@ Add Cards</a>
 		<form class="deck datanone data1 displayit" style="background-color:#F5F5F5" method="POST" action="/deck/{{$id}}/storeCard">
 			<fieldset class="title">Add a New Card</fieldset>
 			{!! csrf_field() !!}
-				<textarea placeholder="Front" name="front"></textarea>
-				<textarea placeholder="Back" name="back"></textarea>
+
+				<!--
+				<input type="radio" id="choices" name="cardtype" checked>
+				<label class="cardchooser" data-tab="1" for="choices"><i class="fa fa-align-justify"></i> Four Choices</label>
+
+				<input type="radio" id="fill" name="cardtype">
+				<label class="cardchooser" data-tab="2" for="fill"><i class="fa fa-pencil"></i> Write In</label>
+
+				<input type="radio" id="tof" name="cardtype">
+				<label class="cardchooser" data-tab="3" for="tof"><i class="fa fa-check-square-o"></i> True or False</label>
+
+				<input type="radio" id="blank" name="cardtype">
+				<label class="cardchooser" data-tab="4" for="blank"><i class="fa fa-pencil-square-o"></i> Fill In the Blank</label>
+
+
+				<input type="radio" id="math" name="cardtype">
+				<label class="cardchooser" data-tab="5" for="math">% Math</label>
+				-->
+				<fieldset class="bgpurple info cardtype cardtype4" style="font-weight:300;margin-bottom:10px;color:white;padding-bottom:16px;border-radius:3px;">Type in the full sentence for the question and the words that will be replaced by the blank in the answer (e.g.: [<b>Question:</b> Salt goes with Pepper, <b>Answer:</b> Salt] for <i>_________ goes with Pepper</i>).</fieldset>
+				<textarea placeholder="Question" name="front"></textarea>
+				<textarea placeholder="Answer" class="cardtype cardtype1 cardtype2 displayit" name="back"></textarea>
+
+				<!--
+				<input class="displayit cardtype cardtype1" placeholder="Fake Answer 1 (Optional)" name="fake-answer-1"></input>
+				<input class="displayit cardtype cardtype1" placeholder="Fake Answer 2 (Optional)" name="fake-answer-2"></input>
+				<input  class="displayit cardtype cardtype1" placeholder="Fake Answer 3 (Optional)" name="fake-answer-3"></input>
+			  -->
+				<input  class="cardtype cardtype4" placeholder="Answer" name="fillin"></input>
+
+				<input type="radio" id="true" name="trueorfalse">
+				<label class="cardtype cardtype3" for="true"><i class="fa fa-check"></i> True</label>
+
+				<input type="radio" id="false" name="trueorfalse">
+				<label class="cardtype cardtype3" for="false"><i class="fa fa-close"></i> False</label>
+
+
 
 				<!--<input placeholder="Short Tagline" name="tagline">
 				<fieldset>Class</fieldset>
@@ -242,7 +290,7 @@ Add Cards</a>
 				</select>-->
 				<input type="submit" value="Add User">
 		</form>
-
+<br>
 
 		<div class="cardoverview datanone data1 displayit">{{$deck -> name}}'s Cards</div>
 				<div style="width:60%;margin-left:20%;text-align:center;" class="datanone data1 displayit">
