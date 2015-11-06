@@ -30,16 +30,6 @@ class ReviewSessionManager extends AbstractSessionManager
 		return $usable;
 	}
 
-	protected function getAnswerPool()
-	{
-		return $this->deck->flashcards;
-	}
-
-	public function remainingFlashcards()
-	{
-		return $this->remainingFlashcards->count();
-	}
-
 	public function getTotalFlashcards()
 	{
 		$arr = array();
