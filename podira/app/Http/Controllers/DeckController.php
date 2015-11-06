@@ -83,19 +83,19 @@ class DeckController extends Controller
 	{
 		$id = $request->id;
 		$deck = Deck::find($id);
-		$user = User::where('email', $request->user_email)->first();        
+		$user = User::where('email', $request->user_email)->first();
 		try {
 			if (!$user) {
 			  throw new \Exception('No User!');
 			}
 			elseif ($deck->users->contains($user)) {
 			 	return redirect()->action('DeckController@addCard', [$id]);
-			 } 
+			 }
 			else {
 				$user->decks()->save($deck, ['permissions' => 'view']);
 				return redirect()->action('DeckController@addCard', [$id]);
 		    }
-		} 
+		}
 		catch (\Exception $e) {
 		  return json_encode(array(1));
 		}
@@ -106,6 +106,7 @@ class DeckController extends Controller
 	 */
 	public function deleteUser(Request $request)
 	{
+		
 		$id = $request->id;
 		$deck = Deck::find($id);
 		$user = User::where('email', $request->user_email)->first();
