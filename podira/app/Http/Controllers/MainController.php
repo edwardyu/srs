@@ -33,10 +33,11 @@ class MainController extends Controller
 
 	public function pro(Request $request)
 	{
-		return view('pro');
+
 		if(!Auth::check()) {
 			return view('pro');
 		} else {
+			$user = Auth::user();
 			return view('pro')->with(['user' => $user]);
 		}
 	}
@@ -44,6 +45,6 @@ class MainController extends Controller
 	public function createSubscription(Request $request)
 	{
 		\App\Subscription::create($request->stripeToken, Auth::user());
-		return $request->stripeToken;
+		return view('pro')->with(['user' => $user, 'congrats' => true]);
 	}
 }

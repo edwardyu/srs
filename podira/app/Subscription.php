@@ -5,7 +5,7 @@ class Subscription
 {
 	public static function create($stripeToken, \App\User $user)
 	{
-		$user->subscription('monthly')->create($creditCardToken);
+		$user->subscription('Pro')->create($stripeToken,array('plan' => 'Pro'));
 	}
 
 	public static function isSubscribed(\App\User $user)
