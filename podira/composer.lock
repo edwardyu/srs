@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4efafbc2cc0939c91c24fb13598b33bb",
-    "content-hash": "481b5aa122dbc20f402c3ee886dade5c",
+    "hash": "f29f7af8949890439ff5c2bceb95b1b8",
+    "content-hash": "b94fc6f4d629b61d90ae0e5ca41dd788",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -812,16 +812,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v5.0.11",
+            "version": "v5.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier.git",
-                "reference": "02c9059e9d5733962f5a1c33dada2becaaab7840"
+                "reference": "49653283ff5d1168575486aa7e219a6a4b84ef7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier/zipball/02c9059e9d5733962f5a1c33dada2becaaab7840",
-                "reference": "02c9059e9d5733962f5a1c33dada2becaaab7840",
+                "url": "https://api.github.com/repos/laravel/cashier/zipball/49653283ff5d1168575486aa7e219a6a4b84ef7f",
+                "reference": "49653283ff5d1168575486aa7e219a6a4b84ef7f",
                 "shasum": ""
             },
             "require": {
@@ -865,7 +865,7 @@
                 "laravel",
                 "stripe"
             ],
-            "time": "2015-09-22 15:52:27"
+            "time": "2015-10-14 15:18:12"
         },
         {
             "name": "laravel/framework",
