@@ -201,7 +201,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 
 		else
 		{
-			return ['fromWhence' => 'card', 'correct' => 1];
+			return ['fromWhence' => 'card', 'correct' => true];
 		}		
 	}
 

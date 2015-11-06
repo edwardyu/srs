@@ -141,13 +141,13 @@ $(document).ready(function(){
 </script>
 <section name="main" class="" style="height:auto;min-height:80vh;">
 
-	@if($previouslyCorrect == 1)
+	@if($previouslyCorrect === 1)
 		<div class="success flipInX animated">
 		 <i class="fa fa-check-circle-o"></i> Correct!
 		</div>
 	@endif
 
-	@if($previouslyCorrect == 0)
+	@if($previouslyCorrect === 0)
 		<div class="success flipInX animated" style="background-color: #FF6632">
 		 <i class="fa fa-times-circle-o"></i> Incorrect!
 		</div>
