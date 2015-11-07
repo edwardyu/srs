@@ -1,16 +1,21 @@
-<!-- resources/views/auth/password.blade.php -->
+<!-- resources/views/auth/login.blade.php -->
+@extends('layouts.master')
+@section('title', 'Sign In')
+@section('content')
 
-<form method="POST" action="/password/email">
-    {!! csrf_field() !!}
+<body>
+  <section name="main" class="bgmatte full">
+      <h1>Reset Password</h1>
+      <form  method="POST" action="/password/email">
+        {!! csrf_field() !!}
+          <input placeholder="Email" name="email" value="{{ old('email') }}">
+          <input type="submit" value="Sign In">
+          <a href="/auth/register">Remember Password </a>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+      </form>
 
-    <div>
-        <button type="submit">
-            Send Password Reset Link
-        </button>
-    </div>
-</form>
+
+
+  </section>
+</body>
+@endsection

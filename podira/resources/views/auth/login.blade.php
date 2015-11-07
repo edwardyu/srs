@@ -11,7 +11,7 @@
           <input placeholder="Email" name="email" value="{{ old('email') }}">
           <input placeholder="Password" name="password" type="password" id="password">
           <input type="submit" value="Sign In">
-          <a> Forgot Password </a>
+          <a href="/auth/password"> Forgot Password </a>
 
       </form>
 
