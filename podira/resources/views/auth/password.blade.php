@@ -11,11 +11,7 @@
           <input placeholder="Email" name="email" value="{{ old('email') }}">
           <input type="submit" value="Sign In">
           <a href="/auth/register">Remember Password </a>
-
       </form>
-
-
-
   </section>
 </body>
 @endsection

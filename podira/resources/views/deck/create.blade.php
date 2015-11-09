@@ -116,7 +116,7 @@ $(document).ready(function(){
 				@endforeach
 			@else
 				<br><br><br><br><br>
-				You have no current flashcards.
+				<span class="matte">You have no current flashcards.</span>
 			@endif
 		</div>
 
