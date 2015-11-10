@@ -11,7 +11,7 @@ class UserDeckStatsCalculator
 	private $user;
 	private $deck;
 	private $deckCards;
-	const REVIEW_THRESHOLD = .9;
+	const REVIEW_THRESHOLD = 90;
 
 	public function __construct(\App\User $user, \App\Deck $deck)
 	{
@@ -28,9 +28,8 @@ class UserDeckStatsCalculator
 	{
 		$userCalculator = new UserStatsCalculator($this->user);
 		$userCalculator->calcRecallScores();
-		$needToReview = $this->user->flashcards()->where('last_review_time', '!=', '0000-00-00 00:00:00')
-											 ->where('recall_score', '<=', self::REVIEW_THRESHOLD)
-											 ->get();
+		$needToReview = $this->user->flashcards()->where('recall_score', '<=', self::REVIEW_THRESHOLD)
+											     ->get();
 		$numToReview = $this->deckCards->intersect($needToReview)->count();
 		return $numToReview;
 	}
