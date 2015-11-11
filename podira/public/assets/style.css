@@ -209,7 +209,6 @@ padding-top: 8px;
 font-size: 18px;
 }
 
-
 .progress{
   width:100%;
   position:fixed;
@@ -288,6 +287,16 @@ font-size: 18px;
   z-index: 1;
 
 }
+
+
+.optionbutton{
+	float:none !important;
+  padding-top:1px !important;
+  padding-left:7px !important;
+  padding-right:7px !important;
+  display:inline-block !important;
+}
+
 /* ANIMATE CSS */
 
 @charset "UTF-8";
