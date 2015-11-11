@@ -4,19 +4,17 @@
 <script>
 $("html").keydown(function(e) {
 	e.keyCode; // this value
-	console.log(e.keyCode);
 			if(e.keyCode == 83){
 				$('form#formcard').submit();
 				return false;
-				//skip
 			}
 			if(e.keyCode == 13){
 				$('form#formcard').submit();
 				return false;
-				//enter
 			}
 })
 </script>
+
 <section name="main" class="" style="height:auto;min-height:80vh;">
 	@if($previouslyCorrect == 1)
 		<div class="success flipInX animated">
@@ -30,11 +28,7 @@ $("html").keydown(function(e) {
 		</div>
 	@endif
 
-
-
 	<h1 class="matte">Flashcard Review
-
-
 	</h1>
 
 		<div style="width:80%;margin-left:10%;text-align:center;" class="datanone data2 displayit">
@@ -48,12 +42,7 @@ $("html").keydown(function(e) {
 						</div>
 						<h3>{{$card->front}}</h3>
 						<h5 style="opacity:.5;">Answer: {{$card->back}}</h5>
-
 						<br>
-
-
-
-
 						<form method="POST" id="formcard" action="/deck/{{$deck->id}}/{{$type}}/next">
 						    {!! csrf_field() !!}
 						    	<input type="hidden" name="answer" value="{{$card->back}}">
@@ -62,17 +51,11 @@ $("html").keydown(function(e) {
 
 						</form>
 
-
-
-
-
 				</div>
 
 				</div>
 		</div>
 
 		@include('includes.progress')
-
-
 </section>
 @endsection

@@ -4,7 +4,6 @@
 <script>
 $(document).ready(function(){
 
-
 	$('label').click(function(){
 		$('.enterb').addClass('displayyes');
 		$('.skipb').removeClass('displayyes');
@@ -27,7 +26,6 @@ $(document).ready(function(){
 	})
 
 	$('.extra_block').click(function(){
-		console.log($(this).attr('choiceid'))
 		$('.extra_text').html("<b>My Answer:</b> " + $(this).html());
 
 		if($(this).attr('choiceid') == 1){
@@ -39,7 +37,6 @@ $(document).ready(function(){
 			$('.skipb').removeClass('displayyes');
 			$('.extra_block').removeClass('extra_chosen');
 			$(this).addClass('extra_chosen');
-			console.log('true');
 		}
 		if($(this).attr('choiceid') == 2){
 			$(".halfform:nth-of-type(3)").prop('checked', true);
@@ -75,7 +72,6 @@ $(document).ready(function(){
 
 	$("html").keydown(function(e) {
     e.keyCode; // this value
-		console.log(e.keyCode);
 		if(e.keyCode == 49){
 			$(".halfform:nth-of-type(2)").prop('checked', true);
 			$(".halfform:nth-of-type(3)").prop('checked', false);
@@ -86,7 +82,6 @@ $(document).ready(function(){
 			$('.extra_block').removeClass('extra_chosen');
 			$('.block1').addClass('extra_chosen');
 			$('.extra_text').html("<b>My Answer:</b> " + $('.block1').html());
-			console.log('true');
 		}
 		if(e.keyCode == 50){
 			$(".halfform:nth-of-type(3)").prop('checked', true);
@@ -98,7 +93,6 @@ $(document).ready(function(){
 			$('.extra_block').removeClass('extra_chosen');
 			$('.block2').addClass('extra_chosen');
 			$('.extra_text').html("<b>My Answer:</b> " + $('.block2').html());
-
 		}
 		if(e.keyCode == 51){
 			$(".halfform:nth-of-type(4)").prop('checked', true);
@@ -110,7 +104,6 @@ $(document).ready(function(){
 			$('.extra_block').removeClass('extra_chosen');
 			$('.block3').addClass('extra_chosen');
 			$('.extra_text').html("<b>My Answer:</b> " + $('.block3').html());
-
 		}
 		if(e.keyCode == 52){
 			$(".halfform:nth-of-type(5)").prop('checked', true);
@@ -122,21 +115,16 @@ $(document).ready(function(){
 			$('.extra_block').removeClass('extra_chosen');
 			$('.block4').addClass('extra_chosen');
 			$('.extra_text').html("<b>My Answer:</b> " + $('.block4').html());
-
 		}
 		if(e.keyCode == 83){
 			$('form#formcard').submit();
 			return false;
-//skip
 		}
 		if(e.keyCode == 13){
 			$('form#formcard').submit();
  			return false;
-//enter
 		}
-
 	});
-
 })
 </script>
 <section name="main" class="" style="height:auto;min-height:80vh;">
