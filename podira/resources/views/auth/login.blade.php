@@ -9,9 +9,7 @@
       <h1>Sign In</h1>
       <form  method="POST" action="/auth/login" class="signin">
         <div style="color:#ff6632;text-align:center;margin-bottom:5px;" class="error"></div>
-
         {!! csrf_field() !!}
-
           <input placeholder="Email" name="email" value="{{ old('email') }}">
           <input placeholder="Password" name="password" type="password" id="password">
           <input type="submit"  value="Sign In">
@@ -47,7 +45,6 @@
           }
 			  });
         event.preventDefault();
-
     });
   </script>
 </body>

@@ -4,18 +4,13 @@
 
 <script>
 $(document).ready(function(){
-
-
 	$('.minichooser a').click(function(){
 		var tab_id = $(this).attr('data-tab');
-
 		$('.minichooser a').removeClass('chooseractive');
 		$('.datanone').removeClass('displayit');
-
 		$(this).addClass('chooseractive');
 		$("."+tab_id).addClass('displayit');
 	})
-
 
 	$('.cardchooser').click(function(){
 		var tab_id = $(this).attr('data-tab');
@@ -36,26 +31,17 @@ $(document).ready(function(){
 	})
 
   $('.editcardform').submit(function(event) {
-
-      // get the form data
-      // there are many ways to get this data using jQuery (you can use the class or id also)
       var formData = $(this).serializeArray();
-
-			console.log(formData);
-      // process the form
 			var base_url = window.location.protocol + "//" + window.location.host;
-
 			$.ajaxSetup({
 			   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 			});
-
 			$.ajax({
 			    type: "POST", // or GET
 			    url: base_url + "/deck/{{$deck->id}}/editCard",
 					dataType: 'json',
 			    data: formData,
 			    success: function(data){
-						console.log("sucess!!");
 			    }
 			  });
 
@@ -64,10 +50,6 @@ $(document).ready(function(){
 				$('.car' + card).addClass('displayyes');
 				$('.carquestion' + card).html(formData[1].value);
 				$('.caranswer' + card).html(formData[2].value);
-
-
-
-      // stop the form from submitting the normal way and refreshing the page
       event.preventDefault();
   });
 
@@ -75,8 +57,6 @@ $(document).ready(function(){
 
 	$('.deletecard').click(function(){
 		var flashcard_id = $(this).attr('flashcardid');
-		console.log(flashcard_id);
-
 		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
@@ -89,17 +69,13 @@ $(document).ready(function(){
 		    data: "flashcard_id=" + flashcard_id,
 		    success: function(data){
 					$("#"+flashcard_id).removeClass('displayyes');
-
 		    }
 		  });
-
 	})
 
 
 	$('.adduser').submit(function(event) {
 		var formData = $(this).serializeArray();
-		console.log(formData);
-
 		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
@@ -112,35 +88,27 @@ $(document).ready(function(){
 				dataType: 'json',
 				data: formData,
 				success: function(res){
-					console.log(res);
 					if(res[0] == 1){
-						console.log("failure!!");
 						$(".userfail").html('That user isn\'t currently registered on Podira or has been already added!');
 					}
 					if(res[0] == 2){
-						console.log("failure!!");
 						$(".userfail").html('You currently cannot add users.  Upgrade to Pro to add new users!');
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown){
-					console.log(errorThrown);
 				}
 			});
-
 			event.preventDefault();
 	})
 
 
 	$('.deletedeck').click(function(){
 		var deckid = $(this).attr('deckid');
-		console.log(deckid);
-
 		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
 			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 		});
-
 		$.ajax({
 				type: "POST", // or GET
 				url: base_url + "/deck/" + deckid + "/delete",
@@ -156,15 +124,11 @@ $(document).ready(function(){
 	$('.deleteuser').click(function(){
 		var userid = $(this).attr('userid');
 		var deckid = $(this).attr('deckid');
-
-		console.log(deckid);
-
 		var base_url = window.location.protocol + "//" + window.location.host;
 
 		$.ajaxSetup({
 			 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 		});
-
 		$.ajax({
 				type: "POST", // or GET
 				url: base_url + "/deck/" + deckid + "/deleteUser",
@@ -174,40 +138,11 @@ $(document).ready(function(){
 					window.location = '/'
 				}
 			});
-
 	})
-
 })
-
-
-
 </script>
 
-<style>
-.user{
-		width: 100%;
-		height: 20px;
-		border-top: 1px #ddd solid;
-		padding: 5px;
-}
 
-.user > .name {
-		width: 20%;
-		display:block;
-		float:left;
-}
-
-.user > .email {
-		width: 40%;
-		display:block;
-		float:left;
-		opacity: .7;
-}
-
-.cardtype{
-	display:none;
-}
-</style>
 
 
 <section name="page" class="bgpurple" >
