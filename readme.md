@@ -16,7 +16,7 @@ Get the app: `git clone https://github.com/edwardyu/srs`
 
 Install dependencies: `php composer.phar install`
 
-Configure .env file. 
+Configure .env file.  Be sure to change the port if necessary 
 
 ##Run
 Set up db: `php srs/podira/artisan migrate`
