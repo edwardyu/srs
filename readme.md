@@ -24,3 +24,6 @@ Set up db: `php srs/podira/artisan migrate`
 Run! `php -S localhost:8888 -t srs/podira/public`
 
 If you use MAMP or WAMPP, simply point the directory to the public folder.
+
+
+All Rights Reserved. 
