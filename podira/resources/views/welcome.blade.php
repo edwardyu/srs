@@ -30,7 +30,17 @@
     }
 
     </script>
-    <section name="main"  style="max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-size:35%;background-position: 50% 174px">
+    <section name="video" style="background-image:url({!! URL::asset('assets/preview5.png'); !!});" >
+      <div style="width:100vw; height:100vh; top:0; left: 0; background: rgba(0,0,0,0.5); position:absolute; z-index:5"></div>
+      <video autoplay loop  style="width:100vw;position:absolute; z-index:4">
+          <source src="{!! URL::asset('assets/podira_site.mp4'); !!}" type="video/mp4">
+      </video>
+      <h1>Remembering and Knowing When to Study is Hard.</h1>
+      <h2>With us, you'll know exactly when you're about to forget something.  Using spaced repetition
+      <br> technology, take control of your studying by letting us do the gruntwork.   </h2>
+      <a href="/auth/register" class="bgblue">Sign Up Today</a>
+    </section>
+    <section name="main"  style="max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-color:white;background-size:35%;background-position: 50% 174px">
         <h1 class="matte">Memory Retention Tech for Teachers and Students</h1>
         <h2 style="font-weight:600;" class="matte">Podira utilizes spaced repetition to optimize learning cycles
         for students by using data and neuroscience. <br>Our 21st century approach to learning allows students
@@ -42,7 +52,7 @@
 
 
     </section>
-    <section name="card" class="bgpurple">
+    <section name="card" class="bgpurple" style="z-index:3;">
         <h1>Want Data on Your Teaching Techniques?  We Got You Covered</h1>
         <div class="card_demo">
             <div class="card_group">
