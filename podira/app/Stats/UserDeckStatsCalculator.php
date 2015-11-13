@@ -11,7 +11,7 @@ class UserDeckStatsCalculator
 	private $user;
 	private $deck;
 	private $deckCards;
-	const REVIEW_THRESHOLD = 90;
+	const REVIEW_THRESHOLD = 80;
 
 	public function __construct(\App\User $user, \App\Deck $deck)
 	{

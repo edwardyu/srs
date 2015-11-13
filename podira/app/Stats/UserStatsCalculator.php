@@ -36,7 +36,7 @@ class UserStatsCalculator
 			$correctMultiplier = 2 * pow(2, $flashcard->pivot->num_correct);
 			$secondsSinceLastReview = time() - \Carbon\Carbon::parse($flashcard->pivot->last_review_time)->timestamp;
 			$decay = exp(-$secondsSinceLastReview / (self::SECONDS_PER_DAY * $correctMultiplier));
-			$recallScore = $accuracy * $decay;
+			$recallScore = $accuracy*.3 + .7*$decay;
 			$recallScore *= 100;
 			$scores[strval($flashcard->id)] = $recallScore;
 			$this->user->flashcards()->where('flashcard_id', $flashcard->id)
