@@ -130,10 +130,13 @@
 					</div>
 					<div class="dataquad">
 						<h3><i class="fa fa-clock-o"></i> </h3>
-
+						@if($totalTime > 59)
+						<h1> {{($totalTime / 60)}}</h1>
+						<h2>Total minutes spent learning course</h2>
+						@else
 						<h1> {{$totalTime}}</h1>
 						<h2>Total seconds spent learning course</h2>
-
+						@endif
 					</div>
 					<div class="dataquad">
 						<h3><i class="fa fa-th"></i> </h3>
