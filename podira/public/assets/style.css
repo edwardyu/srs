@@ -3696,12 +3696,71 @@ section[name="page"] h1{
 
 }
 
+section[name="video"]{
+    height: 100vh;
+    height: calc(100vh - 90px);
+    max-height: 80vh;
+    padding:0px;
+    color:white;
+    font-family:Lato, sans-serif;
+    position:relative;
+    display:inline-block;
+    width:100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    z-index:1;
+}
+section[name="video"] h1{
+  position:absolute;
+  width:80%;
+  left:10%;
+  top:100px;
+  color:white;
+  font-family:Lato, sans-serif;;
+  font-size:40px;
+  z-index: 6;
+  font-weight:200;
+
+  text-align:center;
+}
+
+section[name="video"] h2{
+  position:absolute;
+  width:80%;
+  left:10%;
+  top:170px;
+  font-weight:300;
+
+  color:white;
+  font-family:Lato, sans-serif;;
+  font-size:22px;
+  z-index: 6;
+  text-align:center;
+}
+
+section[name="video"] a{
+  position:absolute;
+  width:20%;
+  margin-left: 40%;
+  height: 40px;
+  color:white;
+  text-align:center;
+  z-index: 7;
+  top:265px;
+  padding-top:7px;
+  box-sizing: border-box;;
+  border: 2px white solid;
+  border-radius:10px;
+}
+
+
 section[name="main"]{
     height: auto;
     min-height: 300px;
     padding-bottom:180px;
     color:white;
     font-family:Lato, sans-serif;
+    z-index:2;
     position:relative;
     display:inline-block;
     width:100%;
