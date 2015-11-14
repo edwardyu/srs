@@ -35,10 +35,10 @@
       <video autoplay loop  style="width:100vw;position:absolute; z-index:4">
           <source src="{!! URL::asset('assets/podira_site.mp4'); !!}" type="video/mp4">
       </video>
-      <h1>Remembering and Knowing When to Study is Hard.</h1>
+      <h1>Podira Flashcards are Smart Flashcards.</h1>
       <h2>With us, you'll know exactly when you're about to forget something.  Using spaced repetition
-      <br> technology, take control of your studying by letting us do the gruntwork.   </h2>
-      <a href="/auth/register" class="bgblue">Sign Up Today</a>
+      <br> technology, take control of your studying by letting us do the gruntwork of scheduling.   </h2>
+      <a href="/auth/register" class="bgblue">Sign Up for Beta Today</a>
     </section>
     <section name="main"  style="max-width:100vw;overflow:hidden;max-height:300px;background-image: url({!! URL::asset('assets/images/brain.png'); !!});background-color:white;background-size:35%;background-position: 50% 174px">
         <h1 class="matte">Memory Retention Tech for Teachers and Students</h1>

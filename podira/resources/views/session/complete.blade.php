@@ -3,8 +3,6 @@
 @section('content')
 
 <body>
-
-
     <section name="main" class="bgmatte" style="height:auto;">
         <h1> Stats for <i>{{$deck -> name}}</i></h1>
         <h2>Below is the data from the flashcard deck.</h2>
