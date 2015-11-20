@@ -60,24 +60,7 @@ $(document).ready(function(){
 </section>
 
 <section name="main" style="padding-top:0px;margin-bottom:35px;" class="lightmain">
-		<form class="deck datanone data3" style="background-color:#F5F5F5" method="POST" action="/deck/store">
-			{!! csrf_field() !!}
-			<fieldset class="title">Create a New Deck Below:</fieldset>
-				<input placeholder="Title" name="name" required>
-				<!--<input placeholder="Short Tagline" name="tagline">
-				<fieldset>Class</fieldset>
-				<select>
-						<option>Arabic History</option>
-						<option>AP World History</option>
-				</select>
-				<select>
-						<option>All Sections</option>
-						<option>1st Period</option>
-						<option>2nd Period</option>
-						<option>6th Period</option>
-				</select>-->
-				<input type="submit" value="Create Deck">
-		</form>
+
 
 		<div style="width:80%;margin-left:10%;text-align:center;margin-bottom:20px;" class="datanone data2 displayit">
 
@@ -112,7 +95,7 @@ $(document).ready(function(){
 									<option>6th Period</option>
 							</select>-->
 							<br>
-							<input type="submit" value="Create Deck" class="thirth bgblue" style="margin-top:10px;margin-right:-5px">
+							<input type="submit" value="Create Deck" class="thirth bgblue" style="margin-top:10px;margin-right:-5px padding-top:3px;padding-left:7px;padding-right:7px;">
 					</form>
 					<br>
 
