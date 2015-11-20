@@ -80,8 +80,49 @@ $(document).ready(function(){
 		</form>
 
 		<div style="width:80%;margin-left:10%;text-align:center;margin-bottom:20px;" class="datanone data2 displayit">
+
+			<div class="card sidebyside displaynone displayyes" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;">
+			<div class="innercard" style="border-style:dashed;">
+					<div class="emblem">
+							<div class="inneremblem">
+									<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+							</div>
+
+					</div>
+					<h3 class="matte">Add A New Deck</h3>
+					<h5 class="matte" style="opacity:.5;margin-bottom:0px;"> &nbsp </h5>
+					<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;"> &nbsp </h5>
+
+					<form style="position:absolute;top:140px;" method="POST" action="/deck/store" >
+						{!! csrf_field() !!}
+							<input placeholder="Title" name="name" required style="width:100%;height:40px;
+							border:none;
+							border-bottom: 1px rgba(40,40,40,.4) solid;
+							background-color:transparent;" class="matte">
+							<!--<input placeholder="Short Tagline" name="tagline">
+							<fieldset>Class</fieldset>
+							<select>
+									<option>Arabic History</option>
+									<option>AP World History</option>
+							</select>
+							<select>
+									<option>All Sections</option>
+									<option>1st Period</option>
+									<option>2nd Period</option>
+									<option>6th Period</option>
+							</select>-->
+							<br>
+							<input type="submit" value="Create Deck" class="thirth bgblue" style="margin-top:10px;margin-right:-5px">
+					</form>
+					<br>
+
+
+			</div>
+
+			</div>
+
 			@if(!$user->decks->isEmpty())
-				@foreach($user->decks->reverse() as $deck)
+				@foreach($user->decks->reverse() as $index => $deck)
 				<div class="card sidebyside bgbaige displaynone displayyes" id="{{$deck->id}}" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;">
 				<div class="innercard">
 						<div class="emblem">
@@ -113,7 +154,31 @@ $(document).ready(function(){
 				</div>
 
 				</div>
+
 				@endforeach
+
+				@if(count($user->decks) %2 == 0)
+				<div class="card sidebyside displaynone displayyes" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;visibility:hidden !important;">
+				<div class="innercard" style="border-style:dashed;">
+						<div class="emblem">
+								<div class="inneremblem">
+										<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+								</div>
+
+						</div>
+						<h3 class="matte">  <!-- BLANK --> </h3>
+						<h5 class="matte" style="opacity:.5;margin-bottom:0px;"> &nbsp </h5>
+						<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;"> &nbsp </h5>
+
+
+						<br>
+
+
+				</div>
+
+				</div>
+				@endif
+
 			@else
 				<br><br><br><br><br>
 				<span class="matte">You have no current flashcards.</span>
