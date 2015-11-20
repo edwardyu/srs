@@ -47,7 +47,7 @@ $(document).ready(function(){
 <section name="page" class="bgpurple">
 	<h1>Your Current Decks</h1>
 
-	<div class="minichooser">
+	<div class="minichooser" style="display:none;">
 		<a class="chooser chooseractive" data-tab="data2">
 			<i class="fa fa-th-large"></i>
 			Current Decks</a>
