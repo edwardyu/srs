@@ -67,7 +67,8 @@ class DeckController extends Controller
 		if($request->front && $request->back) {
 			$card = Flashcard::create([
 				'front' => $request->front,
-				'back' => $request->back
+				'back' => $request->back,
+				'cardtype' => $request->cardtype
 			]);
 
 			$deck->flashcards()->save($card);
@@ -106,7 +107,7 @@ class DeckController extends Controller
 	 */
 	public function deleteUser(Request $request)
 	{
-		
+
 		$id = $request->id;
 		$deck = Deck::find($id);
 		$user = User::where('email', $request->user_email)->first();

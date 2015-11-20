@@ -38,9 +38,11 @@ class FlashcardController extends Controller
      */
     public function store(Request $request)
     {
+
         Flashcard::create([
             'front' => $request->front,
-            'back' => $request->back
+            'back' => $request->back,
+            'cardtype' => $request->cardtype
         ]);
 
         return redirect('card/list');
