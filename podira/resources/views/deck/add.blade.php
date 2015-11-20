@@ -298,6 +298,27 @@ Add Cards</a>
 
 							</div>
 							@endforeach
+							@if(count($deck->flashcards) %2 == 0)
+							<div class="card sidebyside displaynone displayyes" style="-webkit-animation-duration:0s;margin-top:10px;margin-bottom:0px;visibility:hidden !important;">
+							<div class="innercard" style="border-style:dashed;">
+									<div class="emblem">
+											<div class="inneremblem">
+													<img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+											</div>
+
+									</div>
+									<h3 class="matte">  <!-- BLANK --> </h3>
+									<h5 class="matte" style="opacity:.5;margin-bottom:0px;"> &nbsp </h5>
+									<h5 class="matte" style="opacity:.5;margin-top:2px;margin-bottom:0px;"> &nbsp </h5>
+
+
+									<br>
+
+
+							</div>
+
+							</div>
+							@endif
 					@endif
 				</div>
 
