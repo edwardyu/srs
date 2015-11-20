@@ -81,7 +81,9 @@ $(document).ready(function(){
 							<input placeholder="Title" name="name" required style="width:100%;height:40px;
 							border:none;
 							border-bottom: 1px rgba(40,40,40,.4) solid;
-							background-color:transparent;" class="matte">
+							font-size: 18px;
+							font-weight: 600;
+							background-color:transparent;" class="purple">
 							<!--<input placeholder="Short Tagline" name="tagline">
 							<fieldset>Class</fieldset>
 							<select>
