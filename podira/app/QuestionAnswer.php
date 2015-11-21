@@ -28,11 +28,16 @@ class QuestionAnswer
 
 	/**
 	 * Returns whether the answer is correct or not.
+	 * accounts for fill in in an non-case sensitive fashion.
 	 * @return bool
 	 */
 	public function isCorrect($answer)
 	{
-		return $answer == $this->answer;
+		if(($this->cardtype) == 'fill'){
+			return strtoupper($answer) == strtoupper($this->answer);
+		} else {
+			return $answer == $this->answer;
+		}
 	}
 
 	/**

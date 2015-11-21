@@ -35,7 +35,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	protected $interactedFlashcards;
 
 	/**
-	 * The cards that can be used to generate answer choices. This collection does not diminish as the session progresses, so it is useful for 
+	 * The cards that can be used to generate answer choices. This collection does not diminish as the session progresses, so it is useful for
 	 * generating random answers.
 	 */
 	protected $answerPool;
@@ -92,7 +92,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		$this->numCorrect = 0;
 		$this->numIncorrect = 0;
 	}
-	
+
 	public function start()
 	{
 		$this->remainingFlashcards = $this->getSessionFlashcards();
@@ -100,14 +100,14 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 
 		$this->session = new \App\Session(['type' => $this->type]);
         $this->user->sessions()->save($this->session);
-        $this->session->deck()->save($this->deck);		
+        $this->session->deck()->save($this->deck);
 		$this->startTime = time();
 
 		if(!$this->remainingFlashcards->count()) {
 			return Null;
 		}
 
-		$this->nextFlashcard = $this->remainingFlashcards->random();	
+		$this->nextFlashcard = $this->remainingFlashcards->random();
 		$qa = new \App\QuestionAnswer($this->nextFlashcard);
 		$qa->setChoices($this->answerPool);
 		$this->lastFlashcard = $this->nextFlashcard;
@@ -133,11 +133,11 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	{
 		$answerData = $this->checkAnswer($answer);
 		if($answerData['correct']) {
-			if(!$this->remainingFlashcards->count()) 
+			if(!$this->remainingFlashcards->count())
 				return Null;
 			else
 				$this->nextFlashcard = $this->remainingFlashcards->random();
-			
+
 			$qa = new \App\QuestionAnswer($this->nextFlashcard);
 			$qa->setChoices($this->answerPool);
 			$this->lastFlashcard = $this->nextFlashcard;
@@ -147,7 +147,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				return ['previouslyCorrect' => null, 'next' => $qa];
 		} else {
 			$this->nextFlashcard = $this->lastFlashcard;
-			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];			
+			return ['previouslyCorrect' => 0, 'next' => $this->nextFlashcard];
 		}
 	}
 
@@ -158,10 +158,16 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 	 */
 	protected function checkAnswer(\App\Answer $answer)
 	{
-		$correct = (int) ($answer->getAnswer() == $this->lastFlashcard->back);
+		if($this->lastFlashcard->cardtype == 'fill'){
+			$correct = (int) (strtoupper($answer->getAnswer()) == strtoupper($this->lastFlashcard->back));
+		} else {
+			$correct = (int) ($answer->getAnswer() == $this->lastFlashcard->back);
+		}
+
+
 		$this->lastFlashcard->sessions()->save($this->session, ['interaction' => $this->type . 'ed', 'correct' => $correct]);
-		
-		if($correct && $answer->getFromWhence() == \App\Answer::MC) 
+
+		if($correct && $answer->getFromWhence() == \App\Answer::MC)
 		{
 			//remove card from usuable ones.
 			$this->remainingFlashcards = $this->remainingFlashcards->reject(function($flashcard) {
@@ -178,12 +184,12 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->save($this->lastFlashcard, ['num_correct' => 1, 'last_review_time' => \Carbon\Carbon::now()]);
 			else
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_correct');
-			
+
 			$this->numCorrect++;
 			return ['fromWhence' => \App\Answer::MC, 'correct' => true];
-		} 
+		}
 
-		else if(!$correct && $answer->getFromWhence() == \App\Answer::MC) 
+		else if(!$correct && $answer->getFromWhence() == \App\Answer::MC)
 		{
 			$query = DB::table('flashcardables')->where('flashcardable_type', 'App\User')
 												->where('flashcardable_id', $this->user->id)
@@ -194,7 +200,7 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 				$this->user->flashcards()->save($this->lastFlashcard, ['num_incorrect' => 1, 'last_review_time' => \Carbon\Carbon::now()]);
 			else
 				$this->user->flashcards()->where('flashcard_id', $this->lastFlashcard->id)->increment('num_incorrect');
-			
+
 			$this->numIncorrect++;
 			return ['fromWhence' => \App\Answer::MC, 'correct' => false];
 		}
@@ -202,14 +208,14 @@ abstract class AbstractSessionManager implements SessionManagerInterface
 		else
 		{
 			return ['fromWhence' => 'card', 'correct' => true];
-		}		
+		}
 	}
 
 	public function end()
 	{
 		$timeSpent = time() - $this->startTime;
 		$this->session->update([
-			'time_spent' => $timeSpent, 
+			'time_spent' => $timeSpent,
 			'num_correct' => $this->numCorrect,
 			'num_incorrect' => $this->numIncorrect
 		]);
