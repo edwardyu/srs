@@ -186,12 +186,11 @@ Add Cards</a>
 				<input type="radio" id="tof" name="cardtype" value="tof">
 				<label class="cardchooser" data-tab="3" for="tof"><i class="fa fa-check-square-o"></i> True or False</label>
 
+				<input type="radio" id="fill" name="cardtype" value="fill">
+				<label class="cardchooser" data-tab="2" for="fill"><i class="fa fa-pencil"></i> Write In</label>
 
-				<!--
 
-								<input type="radio" id="fill" name="cardtype">
-								<label class="cardchooser" data-tab="2" for="fill"><i class="fa fa-pencil"></i> Write In</label>
-
+			  <!--
 				<input type="radio" id="blank" name="cardtype">
 				<label class="cardchooser" data-tab="4" for="blank"><i class="fa fa-pencil-square-o"></i> Fill In the Blank</label>
 
@@ -199,6 +198,8 @@ Add Cards</a>
 				<input type="radio" id="math" name="cardtype">
 				<label class="cardchooser" data-tab="5" for="math">% Math</label>
 				-->
+
+
 				<fieldset class="bgpurple info cardtype cardtype4" style="font-weight:300;margin-bottom:10px;color:white;padding-bottom:16px;border-radius:3px;">Type in the full sentence for the question and the words that will be replaced by the blank in the answer (e.g.: [<b>Question:</b> Salt goes with Pepper, <b>Answer:</b> Salt] for <i>_________ goes with Pepper</i>).</fieldset>
 				<textarea placeholder="Question" name="front"></textarea>
 				<textarea placeholder="Answer" class="cardtype cardtype1 cardtype2 displayit" name="back"></textarea>
