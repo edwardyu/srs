@@ -82,7 +82,7 @@ $(document).ready(function(){
 							border:none;
 							border-bottom: 1px rgba(40,40,40,.4) solid;
 							font-size: 18px;
-							font-weight: 600;
+							font-weight: 400;
 							background-color:transparent;" class="purple">
 							<!--<input placeholder="Short Tagline" name="tagline">
 							<fieldset>Class</fieldset>
