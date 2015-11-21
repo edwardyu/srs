@@ -97,7 +97,7 @@ $(document).ready(function(){
 									<option>6th Period</option>
 							</select>-->
 							<br>
-							<input type="submit" value="Create Deck" class="thirth bgblue" style="margin-top: 10px;margin-right: -5px;padding-left: 7px;padding-right: 7px;font-size: 13px;">
+							<input type="submit" value="Create Deck" class="thirth bgblue" style="margin-top: 10px;margin-right: -5px;padding-left: 7px;padding-right: 7px;font-size: 12px;">
 					</form>
 					<br>
 
