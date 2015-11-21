@@ -179,15 +179,18 @@ Add Cards</a>
 			<fieldset class="title">Add a New Card</fieldset>
 			{!! csrf_field() !!}
 
-				<!--
-				<input type="radio" id="choices" name="cardtype" checked>
+
+				<input type="radio" id="choices" name="cardtype" value="choices" checked>
 				<label class="cardchooser" data-tab="1" for="choices"><i class="fa fa-align-justify"></i> Four Choices</label>
 
-				<input type="radio" id="fill" name="cardtype">
-				<label class="cardchooser" data-tab="2" for="fill"><i class="fa fa-pencil"></i> Write In</label>
-
-				<input type="radio" id="tof" name="cardtype">
+				<input type="radio" id="tof" name="cardtype" value="tof">
 				<label class="cardchooser" data-tab="3" for="tof"><i class="fa fa-check-square-o"></i> True or False</label>
+
+
+				<!--
+
+								<input type="radio" id="fill" name="cardtype">
+								<label class="cardchooser" data-tab="2" for="fill"><i class="fa fa-pencil"></i> Write In</label>
 
 				<input type="radio" id="blank" name="cardtype">
 				<label class="cardchooser" data-tab="4" for="blank"><i class="fa fa-pencil-square-o"></i> Fill In the Blank</label>
@@ -207,10 +210,10 @@ Add Cards</a>
 			  -->
 				<input  class="cardtype cardtype4" placeholder="Answer" name="fillin"></input>
 
-				<input type="radio" id="true" name="trueorfalse">
+				<input type="radio" id="true" name="back" value="True">
 				<label class="cardtype cardtype3" for="true"><i class="fa fa-check"></i> True</label>
 
-				<input type="radio" id="false" name="trueorfalse">
+				<input type="radio" id="false" name="back" value="False">
 				<label class="cardtype cardtype3" for="false"><i class="fa fa-close"></i> False</label>
 
 
