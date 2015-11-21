@@ -154,7 +154,9 @@ $(document).ready(function(){
 						</div>
 						<h1>{{$question}}</h1>
 						 <form  method="POST" id="formcard" action="/deck/{{$deck->id}}/learn/next">
+
 							 {!! csrf_field() !!}
+						 @if($cardtype == 'choices')
 							 @if(strlen($answers[0]) < 44 && strlen($answers[1]) < 44 && strlen($answers[2]) < 44 && strlen($answers[3]) < 44)
 								@foreach($answers as $answer)
 									 <input type="radio" name="answer" id="{{ $answer }}" class="halfform"  value="{{ $answer }}">
@@ -166,7 +168,13 @@ $(document).ready(function(){
 										<label for="{{ $answers[$index[0] - 1] }}"  style="display:none;" choiceid="{{$index[1]}}" style="width:100%;display: block;text-align: left;"><span></span>{{ $index[1] }}</label>
 								 @endforeach
 								 <div class="extra_text"><span style="color:#aaa">Click Below to Answer</span></div>
-							  @endif
+								@endif
+							@else
+									<input type="radio" name="answer" id="1" class="halfform" style="display:none;"  value="True">
+									<label for="1"  style="display:none;" choiceid="1" style="width:100%;display: block;text-align: left;"><span></span>True</label>
+									<input type="radio" name="answer" id="2" class="halfform" style="display:none;"  value="False">
+									<label for="2"  style="display:none;" choiceid="2" style="width:100%;display: block;text-align: left;"><span></span>False</label>
+							@endif
 							<button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
 							<button type="submit" style="border:none;" class="displayyes displaynone bgpink skipb enter">Skip </button>
 						 </form>
@@ -180,6 +188,7 @@ $(document).ready(function(){
 
 				</div>
 				<div style="width:100%;clear:both;"></div>
+				@if($cardtype == 'choices')
 				@if(!strlen($answers[0]) < 44 || !strlen($answers[1]) < 44 || !strlen($answers[2]) < 44 || !strlen($answers[3]) < 44)
 				 @foreach([1,2,3,4] as $index)
 				 		<div class="extra_block block{{$index}}" choiceid="{{$index}}">
@@ -195,6 +204,12 @@ $(document).ready(function(){
 
 							{{$answers[$index - 1]}}</div>
 				 @endforeach
+				@endif
+				@else
+				<div class="extra_block block1" choiceid="1">
+					True</div>
+				<div class="extra_block block2" choiceid="2">
+					False</div>
 				@endif
 
 		</div>

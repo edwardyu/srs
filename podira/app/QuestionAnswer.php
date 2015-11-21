@@ -10,6 +10,7 @@ class QuestionAnswer
 	private $answer;
 	private $choices;
 	private $flashcard;
+	private $cardtype;
 
 	/**
 	 * Construct a QuestionAnswer object. At first the object will only have one choice for the answer, we have to provide it with a pool of
@@ -20,6 +21,7 @@ class QuestionAnswer
 	{
 		$this->flashcard = $flashcard;
 		$this->question = $flashcard->front;
+		$this->cardtype = $flashcard->cardtype;
 		$this->answer = $flashcard->back;
 		$this->choices = [$this->answer];
 	}
@@ -71,5 +73,10 @@ class QuestionAnswer
 	public function getQuestion()
 	{
 		return $this->question;
+	}
+
+	public function getCardtype()
+	{
+		return $this->cardtype;
 	}
 }

@@ -63,6 +63,7 @@ class SessionController extends Controller
                 'deck' => $deck,
                 'question' => $info->getQuestion(),
                 'answers' => $info->getChoices(),
+                'cardtype' => $info->getCardtype(),
                 'previouslyCorrect' => null,
                 'remainingFlashcards' => $remainingFlashcards,
                 'totalFlashcards' => $totalFlashcards
@@ -113,6 +114,7 @@ class SessionController extends Controller
                     'deck' => $deck,
                     'question' => $info['next']->getQuestion(),
                     'answers' => $info['next']->getChoices(),
+                    'cardtype' => $info['next']->getCardtype(),
                     'previouslyCorrect' => $info['previouslyCorrect'],
                     'remainingFlashcards' => $remainingFlashcards,
                     'totalFlashcards' => $totalFlashcards
