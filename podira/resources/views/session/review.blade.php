@@ -172,11 +172,18 @@ $(document).ready(function(){
 								@endforeach
 								<div class="extra_text"><span style="color:#aaa">Click Below to Answer</span></div>
 							 @endif
-						 @else
+					 	 @elseif($cardtype == 'tof')
 								 <input type="radio" name="answer" id="1" class="halfform" style="display:none;"  value="True">
 								 <label for="1"  style="display:none;" choiceid="1" style="width:100%;display: block;text-align: left;"><span></span>True</label>
 								 <input type="radio" name="answer" id="2" class="halfform" style="display:none;"  value="False">
 								 <label for="2"  style="display:none;" choiceid="2" style="width:100%;display: block;text-align: left;"><span></span>False</label>
+						 @else
+								 <input placeholder="Answer" id="answerfield" name="answer" required style="width:100%;height:40px;
+								 border:none;
+								 border-bottom: 1px rgba(40,40,40,.4) solid;
+								 font-size: 18px;
+								 font-weight: 600;
+								 background-color:transparent;" class="purple">
 						 @endif
 						 <button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
 						 <button type="submit" style="border:none;" class="displayyes displaynone bgpink skipb enter">Skip </button>
@@ -208,7 +215,7 @@ $(document).ready(function(){
 							{{$answers[$index - 1]}}</div>
 				 @endforeach
 				@endif
-				@else
+				@elseif($cardtype == 'tof')
 				<div class="extra_block block1" choiceid="1">
 					True</div>
 				<div class="extra_block block2" choiceid="2">

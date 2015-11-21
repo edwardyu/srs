@@ -4,6 +4,12 @@
 <script>
 $(document).ready(function(){
 
+	$('#answerfield').keyup(function(){
+		console.log("Hi");
+		$('.enterb').addClass('displayyes');
+		$('.skipb').removeClass('displayyes');
+	})
+
 	$('label').click(function(){
 		$('.enterb').addClass('displayyes');
 		$('.skipb').removeClass('displayyes');
@@ -127,6 +133,7 @@ $(document).ready(function(){
 	});
 })
 </script>
+
 <section name="main" class="" style="height:auto;min-height:80vh;">
 
 	@if($previouslyCorrect === 1)
@@ -169,11 +176,22 @@ $(document).ready(function(){
 								 @endforeach
 								 <div class="extra_text"><span style="color:#aaa">Click Below to Answer</span></div>
 								@endif
-							@else
+							@elseif($cardtype == 'tof')
 									<input type="radio" name="answer" id="1" class="halfform" style="display:none;"  value="True">
 									<label for="1"  style="display:none;" choiceid="1" style="width:100%;display: block;text-align: left;"><span></span>True</label>
 									<input type="radio" name="answer" id="2" class="halfform" style="display:none;"  value="False">
 									<label for="2"  style="display:none;" choiceid="2" style="width:100%;display: block;text-align: left;"><span></span>False</label>
+							@else
+
+
+							<input placeholder="Answer" id="answerfield" name="answer" required style="width:100%;height:40px;
+							border:none;
+							border-bottom: 1px rgba(40,40,40,.4) solid;
+							font-size: 18px;
+							font-weight: 600;
+							background-color:transparent;" class="purple">
+
+
 							@endif
 							<button type="submit" style="border:none;" class="displaynone enterb enter">Enter </button>
 							<button type="submit" style="border:none;" class="displayyes displaynone bgpink skipb enter">Skip </button>
@@ -189,23 +207,23 @@ $(document).ready(function(){
 				</div>
 				<div style="width:100%;clear:both;"></div>
 				@if($cardtype == 'choices')
-				@if(!strlen($answers[0]) < 44 || !strlen($answers[1]) < 44 || !strlen($answers[2]) < 44 || !strlen($answers[3]) < 44)
-				 @foreach([1,2,3,4] as $index)
-				 		<div class="extra_block block{{$index}}" choiceid="{{$index}}">
-							@if($index == 1)
-								(A)
-							@elseif($index == 2)
-								(B)
-							@elseif($index == 3)
-								(C)
-							@else($index == 4)
-								(D)
-							@endif
+						@if(!strlen($answers[0]) < 44 || !strlen($answers[1]) < 44 || !strlen($answers[2]) < 44 || !strlen($answers[3]) < 44)
+						 @foreach([1,2,3,4] as $index)
+						 		<div class="extra_block block{{$index}}" choiceid="{{$index}}">
+									@if($index == 1)
+										(A)
+									@elseif($index == 2)
+										(B)
+									@elseif($index == 3)
+										(C)
+									@else($index == 4)
+										(D)
+									@endif
 
-							{{$answers[$index - 1]}}</div>
-				 @endforeach
-				@endif
-				@else
+									{{$answers[$index - 1]}}</div>
+						 @endforeach
+						@endif
+				@elseif($cardtype == 'tof')
 				<div class="extra_block block1" choiceid="1">
 					True</div>
 				<div class="extra_block block2" choiceid="2">
