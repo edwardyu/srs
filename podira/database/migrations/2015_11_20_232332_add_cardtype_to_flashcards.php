@@ -26,7 +26,7 @@ class AddCardtypeToFlashcards extends Migration
     public function down()
     {
         Schema::table('flashcards', function (Blueprint $table) {
-            //
+            $table->dropColumn(['cardtype']);
         });
     }
 }

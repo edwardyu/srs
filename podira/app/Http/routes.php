@@ -14,6 +14,7 @@ Route::get('/', 'MainController@mainPage');
 Route::get('home', 'MainController@mainPage');
 Route::get('pro', 'MainController@pro');
 Route::post('createSubscription', 'MainController@createSubscription');
+Route::get('/global', 'MainController@globalDecks');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
