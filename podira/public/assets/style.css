@@ -3696,6 +3696,34 @@ section[name="page"] h1{
 
 }
 
+section[name="math"]{
+    height: 100vh;
+    height: calc(100vh - 90px);
+    padding:0px;
+    color:white;
+    font-family:Lato, sans-serif;
+    position:relative;
+    display:inline-block;
+    width:100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    z-index:1;
+}
+
+section[name="math"] h1{
+  position:absolute;
+  width:80%;
+  left:10%;
+  top:60px;
+  color:#444;
+  font-family:Lato, sans-serif;;
+  font-size:40px;
+  z-index: 6;
+  font-weight:200;
+
+  text-align:center;
+}
+
 section[name="video"]{
     height: 100vh;
     height: calc(100vh - 90px);
@@ -4292,6 +4320,18 @@ animation-duration: 1s;
         width:90%;
         margin-left:5%;
         z-index:2;
+    }
+
+    .innercard > textarea{
+        width:90%;
+        margin-left:5%;
+        z-index:2;
+        background-color:transparent;
+        resize:none;
+        height: 70px;
+        border:none;
+        font-size:15px;
+
     }
 
     .innercard > form .answer{

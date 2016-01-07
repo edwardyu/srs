@@ -30,6 +30,83 @@
     }
 
     </script>
+    <script>
+    $( document ).ready(function() {
+        $( "#input" ).keypress(function() {
+          obj = new mathex($( "#input" ).val() + " ");
+          html = obj.html;
+          $(".render").html(html);
+        });
+    });
+    </script>
+    <script>
+    $( document ).ready(function() {
+        $( "#input2" ).keypress(function() {
+          obj = new mathex($( "#input2" ).val() + " ");
+          html = obj.html;
+          $(".render2").html(html);
+        });
+    });
+    </script>
+    <section name="math">
+      <h1>Powerful, beautiful flashcards for all instructors<br>
+        <i>even math teachers</i>.</h1>
+
+        <div class="card_demo" style="margin-top:60px;">
+            <div class="card_group">
+                <h3 class="matte" style="font-weight:400">BUILD</h3>
+                <div class="card" >
+                    <div class="innercard" style="top: 3px;">
+                        <div class="emblem">
+                            <div class="inneremblem">
+                                <img src="{!! URL::asset('assets/images/podira_watermark.png') !!}">
+                            </div>
+
+                        </div>
+                        <textarea placeholder="question" id="input">a integral from 2 to 9 of 2x squared + 2x + 5
+                        </textarea>
+                        <textarea placeholder="answer" id="input2">592.67</textarea>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card_group">
+                <h3 class="matte" style="font-weight:400">RENDERED</h3>
+                <div class="card bgmatte lightborder">
+                  <div class="innercard" style="top: 3px;padding-top:12px;">
+
+                    <div class="render" equation style="color:white;font-family:Times, Times New Roman;">
+                      <div integral="">
+                      <div lowerbound="">
+                       2
+                      </div>
+                      <div upperbound="">
+                       9
+                      </div>
+                      <div of="">
+                       2x<sup>2</sup> + 2x + 5
+                      </div>
+                      </div>
+                    </div>
+
+                    <div class="render2" equation style="color:white;font-family:Times, Times New Roman;">
+                      <div term>
+                        592.67
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
     <section name="video" style="background-image:url({!! URL::asset('assets/preview5.png'); !!});" >
       <div style="width:100vw; height:100vh; top:0; left: 0; background: rgba(0,0,0,0.5); position:absolute; z-index:5"></div>
       <video autoplay loop  style="width:100vw;position:absolute; z-index:4">
