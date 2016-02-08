@@ -47,4 +47,10 @@ class MainController extends Controller
 		\App\Subscription::create($request->stripeToken, Auth::user());
 		return view('pro')->with(['user' => $request->user, 'congrats' => true]);
 	}
+
+	public function globalDecks(Request $request)
+	{
+		$decks = \App\Deck::all();
+		return $decks;
+	}
 }

@@ -135,4 +135,15 @@ class DeckController extends Controller
 	{
 		Deck::destroy($request->id);
 	}
+
+	/**
+	 * Copy a deck to this user
+	 */
+	public function copyDeck(Request $request)
+	{
+		$id = $request->id;
+		$deck = Deck::find($id);
+		$newDeck = $deck->clone();
+		Auth::user()->decks()->save($newDeck, ['permissions' => 'edit']);		
+	}
 }

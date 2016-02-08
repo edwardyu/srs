@@ -24,8 +24,6 @@ class AddTypeToFlashcards extends Migration
      */
     public function down()
     {
-        Schema::table('flashcards', function (Blueprint $table) {
-            //
-        });
+        
     }
 }
